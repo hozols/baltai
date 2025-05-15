@@ -88,9 +88,9 @@ const Features = () => {
   };
   
   return (
-    <section id="features" className="w-full py-20 px-6 md:px-12">
-      <div className="max-w-7xl mx-auto space-y-16">
-        <div className="text-center space-y-4 max-w-3xl mx-auto">
+    <section id="features" className="w-full py-12 md:py-16 px-6 md:px-12">
+      <div className="max-w-7xl mx-auto space-y-12">
+        <div className="text-center space-y-3 max-w-3xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-medium tracking-tighter">
             Everything your team needs
           </h2>
