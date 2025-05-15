@@ -81,4 +81,13 @@
   .text-balance {
     text-wrap: balance;
   }
+  
+  /* New glassmorphic utilities */
+  .cosmic-glass {
+    @apply backdrop-blur-sm bg-cosmic-darker/70 border border-white/10 shadow-[0_0_15px_rgba(203,255,77,0.15)];
+  }
+  
+  .cosmic-card {
+    @apply bg-cosmic-light/5 border border-cosmic-light/10 backdrop-blur-sm;
+  }
 }

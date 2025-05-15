@@ -42,7 +42,7 @@ const HeroSection = () => {
         </div>
       </div>
       
-      {/* Task Manager UI integrated in hero section */}
+      {/* Task Manager UI integrated in hero section with glassmorphic effect */}
       <div className="w-full max-w-7xl mt-12 z-10">
         <DashboardUIPreview />
       </div>
@@ -53,9 +53,9 @@ const HeroSection = () => {
 // Create a simplified version of DashboardPreview specifically for the hero section
 const DashboardUIPreview = () => {
   return (
-    <div className="cosmic-glow relative rounded-xl overflow-hidden border border-cosmic-light/20 shadow-2xl">
+    <div className="cosmic-glow relative rounded-xl overflow-hidden border border-white/10 backdrop-blur-sm bg-cosmic-darker/70 shadow-[0_0_15px_rgba(203,255,77,0.15)]">
       {/* Dashboard Header */}
-      <div className="bg-cosmic-darker w-full">
+      <div className="bg-cosmic-darker/80 backdrop-blur-md w-full">
         <div className="flex items-center justify-between p-4 border-b border-cosmic-light/10">
           <div className="flex items-center gap-4">
             <div className="h-8 w-8 rounded-md bg-cosmic-light/20 flex items-center justify-center">
@@ -154,7 +154,7 @@ const DashboardUIPreview = () => {
             {/* Kanban Board */}
             <div className="flex gap-4 overflow-x-auto pb-4">
               {/* To Do Column */}
-              <div className="flex flex-col w-72 min-w-72 rounded-lg bg-cosmic-light/5 border border-cosmic-light/10">
+              <div className="flex flex-col w-72 min-w-72 rounded-lg bg-cosmic-light/5 border border-cosmic-light/10 backdrop-blur-sm">
                 <div className="p-3 border-b border-cosmic-light/10 flex items-center justify-between">
                   <div className="flex items-center gap-2">
                     <span className="h-3 w-3 rounded-full bg-cosmic-muted/50"></span>
@@ -256,7 +256,7 @@ const DashboardUIPreview = () => {
               </div>
               
               {/* In Progress Column */}
-              <div className="flex flex-col w-72 min-w-72 rounded-lg bg-cosmic-light/5 border border-cosmic-light/10">
+              <div className="flex flex-col w-72 min-w-72 rounded-lg bg-cosmic-light/5 border border-cosmic-light/10 backdrop-blur-sm">
                 <div className="p-3 border-b border-cosmic-light/10 flex items-center justify-between">
                   <div className="flex items-center gap-2">
                     <span className="h-3 w-3 rounded-full bg-blue-400"></span>
@@ -337,7 +337,7 @@ const DashboardUIPreview = () => {
               </div>
               
               {/* In Review Column */}
-              <div className="flex flex-col w-72 min-w-72 rounded-lg bg-cosmic-light/5 border border-cosmic-light/10 md:block hidden">
+              <div className="flex flex-col w-72 min-w-72 rounded-lg bg-cosmic-light/5 border border-cosmic-light/10 backdrop-blur-sm md:block hidden">
                 <div className="p-3 border-b border-cosmic-light/10 flex items-center justify-between">
                   <div className="flex items-center gap-2">
                     <span className="h-3 w-3 rounded-full bg-amber-400"></span>
