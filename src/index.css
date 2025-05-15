@@ -107,23 +107,4 @@
   .nav-pill-item.active {
     @apply bg-cosmic-light/10 text-white;
   }
-  
-  /* Sketch arrow animation */
-  @keyframes draw-arrow {
-    from {
-      stroke-dashoffset: 320;
-    }
-    to {
-      stroke-dashoffset: 0;
-    }
-  }
-  
-  @keyframes draw-arrowhead {
-    from {
-      stroke-dashoffset: 60;
-    }
-    to {
-      stroke-dashoffset: 0;
-    }
-  }
 }
