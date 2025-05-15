@@ -107,4 +107,15 @@
   .nav-pill-item.active {
     @apply bg-cosmic-light/10 text-white;
   }
+  
+  /* Icon glow effect for feature cards */
+  .icon-glow {
+    filter: drop-shadow(0 0 6px rgba(203, 255, 77, 0.4));
+    transition: filter 0.3s ease;
+  }
+  
+  .collapsible-trigger:hover .icon-glow {
+    filter: drop-shadow(0 0 10px rgba(203, 255, 77, 0.6));
+  }
 }
+
