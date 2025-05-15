@@ -111,7 +111,7 @@
   /* Sketch arrow animation */
   @keyframes draw-arrow {
     from {
-      stroke-dashoffset: 220;
+      stroke-dashoffset: 280;
     }
     to {
       stroke-dashoffset: 0;

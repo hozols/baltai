@@ -20,25 +20,26 @@ const SketchArrow = ({ className }: SketchArrowProps) => {
   return (
     <div className={`absolute z-20 pointer-events-none ${className}`}>
       <svg
-        width="120"
-        height="150"
-        viewBox="0 0 120 150"
+        width="150"
+        height="180"
+        viewBox="0 0 150 180"
         fill="none"
         className={`transition-opacity duration-500 ${isVisible ? 'opacity-100' : 'opacity-0'}`}
       >
+        {/* Updated path to curve more naturally around elements */}
         <path
-          d="M30,10 C50,40 60,70 55,110 C53,125 60,135 90,140"
+          d="M30,20 C40,50 25,80 40,110 C55,140 100,140 120,150"
           stroke="#CBFF4D"
           strokeWidth="3"
           strokeLinecap="round"
           strokeLinejoin="round"
-          strokeDasharray="220"
-          strokeDashoffset={isVisible ? "0" : "220"}
+          strokeDasharray="280"
+          strokeDashoffset={isVisible ? "0" : "280"}
           className="transition-all duration-1500 ease-out"
           fill="none"
         />
         <path
-          d="M75,130 L90,140 L95,120"
+          d="M105,145 L120,150 L115,130"
           stroke="#CBFF4D"
           strokeWidth="3"
           strokeLinecap="round"

@@ -45,8 +45,8 @@ const HeroSection = () => {
         </div>
       </div>
       
-      {/* Sketch Arrow pointing from header to UI */}
-      <SketchArrow className="right-1/4 top-44 md:right-1/3 md:top-40 lg:right-1/3 lg:top-36 hidden md:block" />
+      {/* Adjusted position of the Sketch Arrow to avoid text overlap */}
+      <SketchArrow className="left-8 top-72 md:left-20 md:top-80 lg:left-24 lg:top-72 hidden md:block" />
       
       {/* Task Manager UI integrated in hero section with glassmorphic effect */}
       <div className="w-full max-w-7xl mt-12 z-10">
