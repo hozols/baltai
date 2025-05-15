@@ -15,10 +15,12 @@ const HeroSection = () => {
       </div>
       
       <div className="relative z-10 max-w-4xl text-center space-y-6">
-        <span className="inline-flex items-center gap-2 px-3 py-1 text-xs font-medium rounded-full bg-cosmic-light/20 text-cosmic-accent">
-          <span className="flex h-2 w-2 rounded-full bg-cosmic-accent"></span>
-          Launching new team features
-        </span>
+        <div className="flex justify-center">
+          <span className="inline-flex items-center gap-2 px-3 py-1 text-xs font-medium rounded-full bg-cosmic-light/20 text-cosmic-accent">
+            <span className="flex h-2 w-2 rounded-full bg-cosmic-accent"></span>
+            Launching new team features
+          </span>
+        </div>
         
         <h1 className="text-4xl md:text-6xl lg:text-7xl font-medium tracking-tighter text-balance">
           Task management for <span className="text-cosmic-accent">high-performing</span> teams
