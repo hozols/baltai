@@ -11,12 +11,12 @@ import BackgroundEffects from '@/components/BackgroundEffects';
 
 const Index = () => {
   return (
-    <div className="min-h-screen flex flex-col bg-cosmic-dark text-white relative overflow-x-hidden">
+    <div className="min-h-screen flex flex-col bg-cosmic-dark text-white relative overflow-hidden">
       <BackgroundEffects />
       <Header />
-      <DashboardPreview />
-      <main>
+      <main className="relative z-10">
         <HeroSection />
+        <DashboardPreview />
         <Features />
         <Testimonials />
         <Pricing />

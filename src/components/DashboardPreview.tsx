@@ -3,10 +3,10 @@ import React from 'react';
 
 const DashboardPreview = () => {
   return (
-    <section id="dashboard" className="w-full pt-6 pb-16 px-6 md:px-12 mt-2">
-      <div className="max-w-7xl mx-auto space-y-6">
-        <div className="text-center space-y-3 max-w-3xl mx-auto mb-8">
-          <h2 className="text-2xl md:text-3xl font-medium tracking-tighter">
+    <section id="dashboard" className="w-full py-20 px-6 md:px-12">
+      <div className="max-w-7xl mx-auto space-y-16">
+        <div className="text-center space-y-4 max-w-3xl mx-auto">
+          <h2 className="text-3xl md:text-4xl font-medium tracking-tighter">
             Intuitive task management interface
           </h2>
           <p className="text-cosmic-muted text-lg">
@@ -14,7 +14,6 @@ const DashboardPreview = () => {
           </p>
         </div>
         
-        {/* Dashboard Preview - The rest of this component stays the same */}
         <div className="cosmic-glow relative rounded-xl overflow-hidden border border-cosmic-light/20 shadow-2xl">
           {/* Mock Dashboard */}
           <div className="bg-cosmic-darker w-full">
