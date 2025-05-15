@@ -25,6 +25,9 @@ const Testimonials = () => {
   
   return (
     <section className="w-full py-20 px-6 md:px-12 bg-cosmic-darker relative overflow-hidden">
+      {/* Lime gradient background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-cosmic-accent/5 to-cosmic-darker"></div>
+      
       {/* Background grid */}
       <div className="absolute inset-0 cosmic-grid opacity-20"></div>
       
