@@ -90,4 +90,21 @@
   .cosmic-card {
     @apply bg-cosmic-light/5 border border-cosmic-light/10 backdrop-blur-sm;
   }
+  
+  /* Navigation pill styles */
+  .nav-pill {
+    @apply backdrop-blur-md bg-cosmic-light/5 border border-white/10 rounded-full;
+  }
+  
+  .nav-pill-item {
+    @apply px-4 py-2 text-sm rounded-full transition-colors;
+  }
+  
+  .nav-pill-item:hover {
+    @apply bg-cosmic-light/10 text-white;
+  }
+  
+  .nav-pill-item.active {
+    @apply bg-cosmic-light/10 text-white;
+  }
 }
