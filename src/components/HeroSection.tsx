@@ -209,6 +209,49 @@ const DashboardUIPreview = () => {
                       </span>
                     </div>
                   </div>
+                  
+                  {/* New Task Card */}
+                  <div className="p-3 bg-cosmic-darker rounded-md border border-cosmic-light/10 shadow-sm">
+                    <div className="flex justify-between items-start mb-2">
+                      <span className="text-xs font-medium px-2 py-1 rounded-full bg-blue-400/20 text-blue-300">Development</span>
+                      <span className="text-cosmic-muted text-xs">May 24</span>
+                    </div>
+                    <h5 className="font-medium mb-1">Set up automated testing</h5>
+                    <p className="text-xs text-cosmic-muted mb-3">Configure CI/CD pipeline for test automation</p>
+                    <div className="flex justify-between items-center">
+                      <div className="flex -space-x-1">
+                        <div className="h-6 w-6 rounded-full bg-cosmic-light/40 border-2 border-cosmic-darker"></div>
+                        <div className="h-6 w-6 rounded-full bg-cosmic-light/20 border-2 border-cosmic-darker"></div>
+                      </div>
+                      <span className="flex items-center gap-1 text-cosmic-muted text-xs">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M8 12H16M8 16H12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                        </svg>
+                        0/6
+                      </span>
+                    </div>
+                  </div>
+                  
+                  {/* New Task Card */}
+                  <div className="p-3 bg-cosmic-darker rounded-md border border-cosmic-light/10 shadow-sm">
+                    <div className="flex justify-between items-start mb-2">
+                      <span className="text-xs font-medium px-2 py-1 rounded-full bg-purple-400/20 text-purple-300">Design</span>
+                      <span className="text-cosmic-muted text-xs">May 25</span>
+                    </div>
+                    <h5 className="font-medium mb-1">Create brand style guide</h5>
+                    <p className="text-xs text-cosmic-muted mb-3">Document colors, typography, and UI components</p>
+                    <div className="flex justify-between items-center">
+                      <div className="flex -space-x-1">
+                        <div className="h-6 w-6 rounded-full bg-cosmic-light/30 border-2 border-cosmic-darker"></div>
+                      </div>
+                      <span className="flex items-center gap-1 text-cosmic-muted text-xs">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M8 12H16M8 16H12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                        </svg>
+                        0/3
+                      </span>
+                    </div>
+                  </div>
                 </div>
               </div>
               
@@ -244,6 +287,49 @@ const DashboardUIPreview = () => {
                           <path d="M8 12H16M8 16H12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                         </svg>
                         2/3
+                      </span>
+                    </div>
+                  </div>
+                  
+                  {/* New Task Card */}
+                  <div className="p-3 bg-cosmic-darker rounded-md border border-cosmic-light/10 shadow-sm">
+                    <div className="flex justify-between items-start mb-2">
+                      <span className="text-xs font-medium px-2 py-1 rounded-full bg-cosmic-accent/20 text-cosmic-accent">Marketing</span>
+                      <span className="text-cosmic-muted text-xs">May 19</span>
+                    </div>
+                    <h5 className="font-medium mb-1">SEO optimization</h5>
+                    <p className="text-xs text-cosmic-muted mb-3">Improve meta descriptions and keywords across site</p>
+                    <div className="flex justify-between items-center">
+                      <div className="flex -space-x-1">
+                        <div className="h-6 w-6 rounded-full bg-cosmic-accent/20 border-2 border-cosmic-darker"></div>
+                        <div className="h-6 w-6 rounded-full bg-cosmic-light/30 border-2 border-cosmic-darker"></div>
+                      </div>
+                      <span className="flex items-center gap-1 text-cosmic-muted text-xs">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M8 12H16M8 16H12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                        </svg>
+                        5/8
+                      </span>
+                    </div>
+                  </div>
+                  
+                  {/* New Task Card */}
+                  <div className="p-3 bg-cosmic-darker rounded-md border border-cosmic-light/10 shadow-sm">
+                    <div className="flex justify-between items-start mb-2">
+                      <span className="text-xs font-medium px-2 py-1 rounded-full bg-purple-400/20 text-purple-300">Design</span>
+                      <span className="text-cosmic-muted text-xs">May 17</span>
+                    </div>
+                    <h5 className="font-medium mb-1">Mobile responsive design</h5>
+                    <p className="text-xs text-cosmic-muted mb-3">Optimize UI for tablets and mobile devices</p>
+                    <div className="flex justify-between items-center">
+                      <div className="flex -space-x-1">
+                        <div className="h-6 w-6 rounded-full bg-cosmic-light/30 border-2 border-cosmic-darker"></div>
+                      </div>
+                      <span className="flex items-center gap-1 text-cosmic-muted text-xs">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M8 12H16M8 16H12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                        </svg>
+                        3/4
                       </span>
                     </div>
                   </div>
