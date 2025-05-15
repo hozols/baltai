@@ -117,5 +117,37 @@
   .collapsible-trigger:hover .icon-glow {
     filter: drop-shadow(0 0 10px rgba(203, 255, 77, 0.6));
   }
-}
 
+  /* Task card animations */
+  .task-card {
+    @apply transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-lg hover:border-cosmic-accent/30;
+  }
+  
+  .task-card.dragging {
+    @apply scale-105 shadow-lg border-cosmic-accent opacity-70 rotate-1 z-10;
+  }
+  
+  .task-card.dragged-over {
+    @apply border-cosmic-accent border-dashed;
+  }
+  
+  .task-card-enter {
+    @apply opacity-0 -translate-y-4;
+  }
+  
+  .task-card-enter-active {
+    @apply opacity-100 translate-y-0 transition-all duration-300 ease-out;
+  }
+  
+  .task-card-exit {
+    @apply opacity-100;
+  }
+  
+  .task-card-exit-active {
+    @apply opacity-0 translate-y-4 transition-all duration-300 ease-in;
+  }
+  
+  .column-highlight {
+    @apply bg-cosmic-light/10 transition-all duration-300;
+  }
+}
