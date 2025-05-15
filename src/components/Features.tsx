@@ -77,7 +77,7 @@ const Features = () => {
     <section id="features" className="w-full py-20 px-6 md:px-12">
       <div className="max-w-7xl mx-auto space-y-16">
         <div className="text-center space-y-4 max-w-3xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-medium tracking-tighter">
+          <h2 className="text-3xl md:text-4xl font-medium tracking-tighter py-3 px-6 rounded-xl backdrop-blur-md bg-cosmic-light/5 border border-cosmic-accent/20 shadow-[0_0_15px_rgba(203,255,77,0.15)] text-cosmic-accent">
             Everything your team needs
           </h2>
           <p className="text-cosmic-muted text-lg">
