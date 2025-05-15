@@ -2,6 +2,7 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import DashboardPreview from './DashboardPreview';
+import SketchArrow from './SketchArrow';
 
 const HeroSection = () => {
   return (
@@ -43,6 +44,9 @@ const HeroSection = () => {
           No credit card required • Free 14-day trial
         </div>
       </div>
+      
+      {/* Sketch Arrow pointing from header to UI */}
+      <SketchArrow className="right-1/4 top-44 md:right-1/3 md:top-40 lg:right-1/3 lg:top-36 hidden md:block" />
       
       {/* Task Manager UI integrated in hero section with glassmorphic effect */}
       <div className="w-full max-w-7xl mt-12 z-10">
