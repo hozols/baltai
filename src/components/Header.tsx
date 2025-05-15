@@ -19,7 +19,7 @@ const Header = () => {
     <header className="w-full py-6 px-6 md:px-12 flex items-center justify-between border-b border-cosmic-light/20">
       <Logo />
       
-      <nav className="hidden md:flex items-center">
+      <nav className="hidden md:flex items-center absolute left-1/2 transform -translate-x-1/2">
         <div className="rounded-full px-1.5 py-1.5 backdrop-blur-md bg-cosmic-darker/90 border border-white/5">
           <div className="flex items-center">
             <a 
