@@ -1,9 +1,19 @@
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import TaskBoard from './TaskBoard';
 
 const HeroSection = () => {
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsVisible(true);
+    }, 300);
+    
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <section className="relative w-full py-12 md:py-20 px-6 md:px-12 flex flex-col items-center justify-center overflow-hidden">
       {/* Cosmic particle effect (background dots) */}
@@ -14,7 +24,11 @@ const HeroSection = () => {
         <div className="w-full h-full opacity-10 bg-cosmic-accent blur-[120px]"></div>
       </div>
       
-      <div className="relative z-10 max-w-4xl text-center space-y-6">
+      <div 
+        className={`relative z-10 max-w-4xl text-center space-y-6 transition-all duration-700 transform ${
+          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+        }`}
+      >
         <div className="flex justify-center">
           <span className="inline-flex items-center gap-2 px-3 py-1 text-xs font-medium rounded-full bg-cosmic-light/20 text-cosmic-accent">
             <span className="flex h-2 w-2 rounded-full bg-cosmic-accent"></span>
@@ -45,7 +59,11 @@ const HeroSection = () => {
       </div>
       
       {/* Task Manager UI integrated in hero section with glassmorphic effect */}
-      <div className="w-full max-w-7xl mt-12 z-10">
+      <div 
+        className={`w-full max-w-7xl mt-12 z-10 transition-all duration-1000 delay-500 ${
+          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'
+        }`}
+      >
         <div className="cosmic-glow relative rounded-xl overflow-hidden border border-white/10 backdrop-blur-sm bg-cosmic-darker/70 shadow-[0_0_15px_rgba(203,255,77,0.15)]">
           {/* Dashboard Header */}
           <div className="bg-cosmic-darker/80 backdrop-blur-md w-full">
