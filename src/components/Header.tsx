@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import Logo from './Logo';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Star, LayoutDashboard, DollarSign } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group';
 
@@ -48,7 +48,7 @@ const Header = () => {
               )}
               onClick={handleNavClick('features')}
             >
-              Features
+              <Star size={16} className="inline-block mr-1.5" /> Features
             </ToggleGroupItem>
             <ToggleGroupItem 
               value="dashboard" 
@@ -58,7 +58,7 @@ const Header = () => {
               )}
               onClick={handleNavClick('dashboard')}
             >
-              Dashboard
+              <LayoutDashboard size={16} className="inline-block mr-1.5" /> Dashboard
             </ToggleGroupItem>
             <ToggleGroupItem 
               value="pricing" 
@@ -68,7 +68,7 @@ const Header = () => {
               )}
               onClick={handleNavClick('pricing')}
             >
-              Pricing
+              <DollarSign size={16} className="inline-block mr-1.5" /> Pricing
             </ToggleGroupItem>
           </ToggleGroup>
         </div>
@@ -85,7 +85,7 @@ const Header = () => {
               }`}
               onClick={handleNavClick('features')}
             >
-              Features
+              <Star size={16} className="inline-block mr-1.5" /> Features
             </a>
             <a 
               href="#dashboard" 
@@ -94,7 +94,7 @@ const Header = () => {
               }`}
               onClick={handleNavClick('dashboard')}
             >
-              Dashboard
+              <LayoutDashboard size={16} className="inline-block mr-1.5" /> Dashboard
             </a>
             <a 
               href="#pricing" 
@@ -103,7 +103,7 @@ const Header = () => {
               }`}
               onClick={handleNavClick('pricing')}
             >
-              Pricing
+              <DollarSign size={16} className="inline-block mr-1.5" /> Pricing
             </a>
           </div>
         </div>
