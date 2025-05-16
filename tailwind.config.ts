@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
@@ -26,9 +25,9 @@ export default {
 				background: 'hsl(var(--background))',
 				foreground: 'hsl(var(--foreground))',
 				cosmic: {
-					dark: '#1A1F2C',
-					darker: '#141822',
-					light: '#2A303E',
+					dark: '#151a24', // Darkened from #1A1F2C
+					darker: '#0f131b', // Darkened from #141822
+					light: '#252b38', // Slightly darkened from #2A303E
 					accent: '#CBFF4D', // Lime green accent
 					muted: '#8B8F9A',
 				},
