@@ -48,11 +48,9 @@ const TaskColumn: React.FC<TaskColumnProps> = ({
 
   return (
     <div 
-      className={`flex flex-col w-72 min-w-72 rounded-lg border transition-all duration-300 transform ${
-        isOver 
-          ? 'border-cosmic-accent/50 shadow-lg shadow-cosmic-accent/10 scale-[1.02]' 
-          : 'border-cosmic-light/10 hover:border-cosmic-light/20'
-      } backdrop-blur-sm bg-cosmic-light/5`}
+      className={`flex flex-col w-72 min-w-72 rounded-lg border border-cosmic-light/10 backdrop-blur-sm transition-all duration-300 ${
+        isOver ? 'column-highlight border-cosmic-accent/50' : 'bg-cosmic-light/5'
+      }`}
       onDragOver={handleDragOver}
       onDragLeave={handleDragLeave}
       onDrop={handleDrop}
@@ -72,7 +70,7 @@ const TaskColumn: React.FC<TaskColumnProps> = ({
         </div>
       </div>
       
-      <div className={`p-2 flex-1 space-y-2 overflow-auto transition-all ${isOver ? 'bg-cosmic-light/10' : ''}`}>
+      <div className="p-2 flex-1 space-y-2 overflow-auto">
         {column.tasks.map((task) => (
           <TaskCard
             key={task.id}
@@ -82,13 +80,6 @@ const TaskColumn: React.FC<TaskColumnProps> = ({
             onStatusChange={onStatusChange}
           />
         ))}
-
-        {/* Drop indicator shown when column is empty */}
-        {column.tasks.length === 0 && isOver && (
-          <div className="border-2 border-dashed border-cosmic-accent/30 rounded-md h-20 flex items-center justify-center animate-pulse">
-            <p className="text-cosmic-muted text-sm">Drop task here</p>
-          </div>
-        )}
       </div>
     </div>
   );

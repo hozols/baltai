@@ -38,13 +38,15 @@ const Header = () => {
       
       {/* Desktop navigation */}
       <nav className="hidden md:flex items-center absolute left-1/2 transform -translate-x-1/2">
-        <div className="rounded-full px-1 py-1 backdrop-blur-md bg-cosmic-darker/90 border border-white/5">
+        <div className="rounded-full px-1.5 py-1.5 backdrop-blur-md bg-cosmic-darker/90 border border-white/10 shadow-md">
           <ToggleGroup type="single" value={activePage} onValueChange={(value) => value && setActivePage(value)}>
             <ToggleGroupItem 
               value="features"
               className={cn(
-                "px-4 py-2 rounded-full transition-colors relative",
-                activePage === 'features' ? 'text-white bg-cosmic-light/10' : 'text-cosmic-muted hover:text-white hover:bg-cosmic-light/5'
+                "px-6 py-2.5 rounded-full transition-all duration-300 font-medium relative",
+                activePage === 'features' 
+                  ? 'text-white bg-[#8B5CF6]/40 shadow-[0_0_10px_rgba(139,92,246,0.3)]' 
+                  : 'text-cosmic-muted hover:text-white hover:bg-[#8B5CF6]/20'
               )}
               onClick={handleNavClick('features')}
             >
@@ -53,8 +55,10 @@ const Header = () => {
             <ToggleGroupItem 
               value="dashboard" 
               className={cn(
-                "px-4 py-2 rounded-full transition-colors relative",
-                activePage === 'dashboard' ? 'text-white bg-cosmic-light/10' : 'text-cosmic-muted hover:text-white hover:bg-cosmic-light/5'
+                "px-6 py-2.5 rounded-full transition-all duration-300 font-medium relative",
+                activePage === 'dashboard' 
+                  ? 'text-white bg-[#8B5CF6]/40 shadow-[0_0_10px_rgba(139,92,246,0.3)]' 
+                  : 'text-cosmic-muted hover:text-white hover:bg-[#8B5CF6]/20'
               )}
               onClick={handleNavClick('dashboard')}
             >
@@ -63,8 +67,10 @@ const Header = () => {
             <ToggleGroupItem 
               value="pricing" 
               className={cn(
-                "px-4 py-2 rounded-full transition-colors relative",
-                activePage === 'pricing' ? 'text-white bg-cosmic-light/10' : 'text-cosmic-muted hover:text-white hover:bg-cosmic-light/5'
+                "px-6 py-2.5 rounded-full transition-all duration-300 font-medium relative",
+                activePage === 'pricing' 
+                  ? 'text-white bg-[#8B5CF6]/40 shadow-[0_0_10px_rgba(139,92,246,0.3)]' 
+                  : 'text-cosmic-muted hover:text-white hover:bg-[#8B5CF6]/20'
               )}
               onClick={handleNavClick('pricing')}
             >
@@ -80,8 +86,10 @@ const Header = () => {
           <div className="flex flex-col gap-4">
             <a 
               href="#features" 
-              className={`px-3 py-2 text-sm rounded-md transition-colors ${
-                activePage === 'features' ? 'bg-cosmic-light/10 text-white' : 'text-cosmic-muted hover:text-white hover:bg-cosmic-light/5'
+              className={`px-4 py-3 text-sm rounded-md transition-colors ${
+                activePage === 'features' 
+                  ? 'bg-[#8B5CF6]/40 text-white shadow-[0_0_10px_rgba(139,92,246,0.3)]' 
+                  : 'text-cosmic-muted hover:text-white hover:bg-[#8B5CF6]/20'
               }`}
               onClick={handleNavClick('features')}
             >
@@ -89,8 +97,10 @@ const Header = () => {
             </a>
             <a 
               href="#dashboard" 
-              className={`px-3 py-2 text-sm rounded-md transition-colors ${
-                activePage === 'dashboard' ? 'bg-cosmic-light/10 text-white' : 'text-cosmic-muted hover:text-white hover:bg-cosmic-light/5'
+              className={`px-4 py-3 text-sm rounded-md transition-colors ${
+                activePage === 'dashboard' 
+                  ? 'bg-[#8B5CF6]/40 text-white shadow-[0_0_10px_rgba(139,92,246,0.3)]' 
+                  : 'text-cosmic-muted hover:text-white hover:bg-[#8B5CF6]/20'
               }`}
               onClick={handleNavClick('dashboard')}
             >
@@ -98,8 +108,10 @@ const Header = () => {
             </a>
             <a 
               href="#pricing" 
-              className={`px-3 py-2 text-sm rounded-md transition-colors ${
-                activePage === 'pricing' ? 'bg-cosmic-light/10 text-white' : 'text-cosmic-muted hover:text-white hover:bg-cosmic-light/5'
+              className={`px-4 py-3 text-sm rounded-md transition-colors ${
+                activePage === 'pricing' 
+                  ? 'bg-[#8B5CF6]/40 text-white shadow-[0_0_10px_rgba(139,92,246,0.3)]' 
+                  : 'text-cosmic-muted hover:text-white hover:bg-[#8B5CF6]/20'
               }`}
               onClick={handleNavClick('pricing')}
             >
