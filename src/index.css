@@ -78,13 +78,14 @@
     background-size: 30px 30px;
   }
 
-  /* Moving lines animation */
+  /* Moving lines animation - improved thickness and brightness */
   .moving-line {
     position: absolute;
-    height: 1px;
+    height: 3px; /* Increased from 1px to 3px for thickness */
     width: 100%;
-    background: linear-gradient(90deg, transparent, rgba(203, 255, 77, 0.2), transparent);
-    opacity: 0.3;
+    background: linear-gradient(90deg, transparent, rgba(203, 255, 77, 0.5), transparent); /* Increased opacity from 0.2 to 0.5 */
+    opacity: 0.6; /* Increased from 0.3 to 0.6 for overall brightness */
+    box-shadow: 0 0 8px rgba(203, 255, 77, 0.4); /* Added subtle glow effect */
   }
 
   .line-1 {
