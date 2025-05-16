@@ -1,3 +1,4 @@
+
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
 @tailwind base;
@@ -75,6 +76,53 @@
       linear-gradient(rgba(203, 255, 77, 0.05) 1px, transparent 1px),
       linear-gradient(90deg, rgba(203, 255, 77, 0.05) 1px, transparent 1px);
     background-size: 30px 30px;
+  }
+
+  /* Moving lines animation */
+  .moving-line {
+    position: absolute;
+    height: 1px;
+    width: 100%;
+    background: linear-gradient(90deg, transparent, rgba(203, 255, 77, 0.2), transparent);
+    opacity: 0.3;
+  }
+
+  .line-1 {
+    top: 15%;
+    animation: moveLine 15s linear infinite;
+  }
+
+  .line-2 {
+    top: 35%;
+    animation: moveLine 20s linear infinite;
+    animation-delay: -5s;
+  }
+
+  .line-3 {
+    top: 55%;
+    animation: moveLine 25s linear infinite;
+    animation-delay: -10s;
+  }
+
+  .line-4 {
+    top: 75%;
+    animation: moveLine 22s linear infinite;
+    animation-delay: -7s;
+  }
+
+  .line-5 {
+    top: 90%;
+    animation: moveLine 18s linear infinite;
+    animation-delay: -3s;
+  }
+
+  @keyframes moveLine {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(100%);
+    }
   }
 
   .text-balance {

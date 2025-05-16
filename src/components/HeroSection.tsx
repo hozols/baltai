@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import TaskBoard from './TaskBoard';
@@ -19,6 +18,15 @@ const HeroSection = () => {
     <section className="relative w-full py-12 md:py-20 px-6 md:px-12 flex flex-col items-center justify-center overflow-hidden">
       {/* Cosmic particle effect (background dots) */}
       <div className="absolute inset-0 cosmic-grid opacity-30"></div>
+      
+      {/* Moving lines background */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="moving-line line-1"></div>
+        <div className="moving-line line-2"></div>
+        <div className="moving-line line-3"></div>
+        <div className="moving-line line-4"></div>
+        <div className="moving-line line-5"></div>
+      </div>
       
       {/* Gradient glow effect */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full">
