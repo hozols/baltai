@@ -2,7 +2,6 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import TaskBoard from './TaskBoard';
-import SketchedArrow from './SketchedArrow';
 
 const HeroSection = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -24,9 +23,6 @@ const HeroSection = () => {
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full">
         <div className="w-full h-full opacity-10 bg-cosmic-accent blur-[120px]"></div>
       </div>
-      
-      {/* Sketched Arrow */}
-      <SketchedArrow className="top-0 left-0 w-full h-full" />
       
       <div 
         className={`relative z-10 max-w-4xl text-center space-y-6 transition-all duration-700 transform ${
