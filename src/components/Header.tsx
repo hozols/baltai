@@ -1,14 +1,22 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import Logo from './Logo';
-import { Menu, X, Star, LayoutDashboard, DollarSign } from 'lucide-react';
+import { Menu, X, Star, LayoutDashboard, DollarSign, Sun, Moon } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group';
+import { Switch } from '@/components/ui/switch';
 
 const Header = () => {
   const [activePage, setActivePage] = useState('features');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(true);
+  
+  useEffect(() => {
+    // Apply the theme to the document when it changes
+    document.documentElement.classList.toggle('dark-mode', isDarkMode);
+    document.documentElement.classList.toggle('light-mode', !isDarkMode);
+  }, [isDarkMode]);
   
   const handleNavClick = (page: string) => (e: React.MouseEvent) => {
     e.preventDefault();
@@ -22,6 +30,10 @@ const Header = () => {
 
   const toggleMobileMenu = () => {
     setMobileMenuOpen(!mobileMenuOpen);
+  };
+
+  const toggleTheme = () => {
+    setIsDarkMode(!isDarkMode);
   };
 
   return (
@@ -105,11 +117,35 @@ const Header = () => {
             >
               <DollarSign size={16} className="inline-block mr-1.5" /> Pricing
             </a>
+            
+            {/* Add theme toggle for mobile */}
+            <div className="flex items-center justify-between px-3 py-2">
+              <span className="text-sm text-cosmic-muted">Theme</span>
+              <div className="flex items-center gap-2">
+                <Moon size={16} className={`${isDarkMode ? 'text-cosmic-accent' : 'text-cosmic-muted'}`} />
+                <Switch 
+                  checked={!isDarkMode} 
+                  onCheckedChange={toggleTheme} 
+                  className="data-[state=checked]:bg-cosmic-accent"
+                />
+                <Sun size={16} className={`${!isDarkMode ? 'text-cosmic-accent' : 'text-cosmic-muted'}`} />
+              </div>
+            </div>
           </div>
         </div>
       )}
       
-      <div className="hidden md:flex items-center gap-2">
+      <div className="hidden md:flex items-center gap-4">
+        {/* Theme toggle for desktop */}
+        <div className="flex items-center gap-2 bg-cosmic-darker/90 border border-white/5 rounded-full px-2 py-1">
+          <Moon size={18} className={`${isDarkMode ? 'text-cosmic-accent' : 'text-cosmic-muted'}`} />
+          <Switch 
+            checked={!isDarkMode} 
+            onCheckedChange={toggleTheme} 
+            className="data-[state=checked]:bg-cosmic-accent"
+          />
+          <Sun size={18} className={`${!isDarkMode ? 'text-cosmic-accent' : 'text-cosmic-muted'}`} />
+        </div>
         <Button variant="ghost" className="text-cosmic-muted hover:text-white hover:bg-cosmic-light/10">Log in</Button>
       </div>
     </header>
