@@ -47,7 +47,7 @@ const HeroSection = () => {
         </p>
         
         <div className="flex flex-col sm:flex-row gap-4 justify-center pt-6">
-          <Button className="bg-cosmic-accent text-cosmic-darker hover:bg-cosmic-accent/90 text-base h-12 px-8">
+          <Button className="bg-cosmic-accent text-cosmic-darker hover:bg-cosmic-darker hover:text-cosmic-accent text-base h-12 px-8">
             Start for free
           </Button>
           <Button variant="outline" className="border-cosmic-light/20 text-white hover:bg-cosmic-light/10 text-base h-12 px-8">

@@ -109,7 +109,7 @@ const Pricing = () => {
               <Button 
                 className={
                   plan.buttonVariant === "default" 
-                    ? "w-full bg-cosmic-accent text-cosmic-darker hover:bg-cosmic-accent/90" 
+                    ? "w-full bg-cosmic-accent text-cosmic-darker hover:bg-cosmic-darker hover:text-cosmic-accent" 
                     : "w-full border-cosmic-light/20 text-white hover:bg-cosmic-light/10"
                 }
                 variant={plan.buttonVariant as "default" | "outline"}
