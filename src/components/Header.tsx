@@ -111,7 +111,6 @@ const Header = () => {
       
       <div className="hidden md:flex items-center gap-2">
         <Button variant="ghost" className="text-cosmic-muted hover:text-white hover:bg-cosmic-light/10">Log in</Button>
-        <Button className="bg-cosmic-accent text-cosmic-darker hover:bg-cosmic-darker hover:text-cosmic-accent hover:border hover:border-cosmic-accent">Start for free</Button>
       </div>
     </header>
   );
