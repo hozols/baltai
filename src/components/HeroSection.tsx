@@ -20,8 +20,8 @@ const HeroSection = () => {
       {/* Cosmic particle effect (background dots) */}
       <div className="absolute inset-0 cosmic-grid opacity-30"></div>
       
-      {/* Moving lines background - wrapped in a container with z-index */}
-      <div className="moving-lines-container">
+      {/* Moving lines background - added more lines for increased frequency */}
+      <div className="absolute inset-0 overflow-hidden">
         <div className="moving-line line-1"></div>
         <div className="moving-line line-2"></div>
         <div className="moving-line line-3"></div>
