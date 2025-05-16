@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import TaskBoard from './TaskBoard';
@@ -19,13 +20,16 @@ const HeroSection = () => {
       {/* Cosmic particle effect (background dots) */}
       <div className="absolute inset-0 cosmic-grid opacity-30"></div>
       
-      {/* Moving lines background */}
+      {/* Moving lines background - added more lines for increased frequency */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="moving-line line-1"></div>
         <div className="moving-line line-2"></div>
         <div className="moving-line line-3"></div>
         <div className="moving-line line-4"></div>
         <div className="moving-line line-5"></div>
+        <div className="moving-line line-6"></div>
+        <div className="moving-line line-7"></div>
+        <div className="moving-line line-8"></div>
       </div>
       
       {/* Gradient glow effect */}
