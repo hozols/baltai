@@ -78,6 +78,14 @@
     background-size: 30px 30px;
   }
 
+  /* Moving lines container - adding z-index and positioning to ensure it's below header */
+  .moving-lines-container {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    z-index: 0; /* Ensure lines stay below other content */
+  }
+
   /* Moving lines animation - improved speed, frequency and randomness */
   .moving-line {
     position: absolute;
@@ -216,5 +224,12 @@
   
   .column-highlight {
     @apply bg-cosmic-light/10 transition-all duration-300;
+  }
+  
+  /* Make header have a higher z-index to ensure it's above the moving lines */
+  header {
+    position: relative;
+    z-index: 10;
+    background-color: #10141b; /* Match the cosmic-dark background */
   }
 }
