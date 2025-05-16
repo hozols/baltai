@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import Logo from './Logo';
-import { Menu, X, Star, LayoutDashboard, DollarSign, Sun, Moon } from 'lucide-react';
+import { Menu, X, CircleDot, LayoutDashboard, DollarSign, Sun, Moon } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group';
 import { Switch } from '@/components/ui/switch';
@@ -60,7 +60,7 @@ const Header = () => {
               )}
               onClick={handleNavClick('features')}
             >
-              <Star size={16} className="inline-block mr-1.5" /> Features
+              <CircleDot size={16} className="inline-block mr-1.5" /> Features
             </ToggleGroupItem>
             <ToggleGroupItem 
               value="dashboard" 
@@ -97,7 +97,7 @@ const Header = () => {
               }`}
               onClick={handleNavClick('features')}
             >
-              <Star size={16} className="inline-block mr-1.5" /> Features
+              <CircleDot size={16} className="inline-block mr-1.5" /> Features
             </a>
             <a 
               href="#dashboard" 
