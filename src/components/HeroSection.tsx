@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import TaskBoard from './TaskBoard';
+import { Loader } from 'lucide-react';
 
 const HeroSection = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -33,6 +34,7 @@ const HeroSection = () => {
           <span className="inline-flex items-center gap-2 px-3 py-1 text-xs font-medium rounded-full bg-cosmic-light/20 text-cosmic-accent">
             <span className="flex h-2 w-2 rounded-full bg-cosmic-accent"></span>
             Launching new team features
+            <Loader className="h-3 w-3 animate-spin text-cosmic-accent" />
           </span>
         </div>
         
