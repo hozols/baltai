@@ -44,7 +44,7 @@ const Header = () => {
               value="features"
               className={cn(
                 "px-4 py-2 rounded-full transition-colors relative",
-                activePage === 'features' ? 'text-white bg-cosmic-light/10' : 'text-cosmic-muted hover:text-white hover:bg-cosmic-light/5'
+                activePage === 'features' ? 'text-white bg-white/10' : 'text-cosmic-muted hover:text-white hover:bg-white/5'
               )}
               onClick={handleNavClick('features')}
             >
@@ -54,7 +54,7 @@ const Header = () => {
               value="dashboard" 
               className={cn(
                 "px-4 py-2 rounded-full transition-colors relative",
-                activePage === 'dashboard' ? 'text-white bg-cosmic-light/10' : 'text-cosmic-muted hover:text-white hover:bg-cosmic-light/5'
+                activePage === 'dashboard' ? 'text-white bg-white/10' : 'text-cosmic-muted hover:text-white hover:bg-white/5'
               )}
               onClick={handleNavClick('dashboard')}
             >
@@ -64,7 +64,7 @@ const Header = () => {
               value="pricing" 
               className={cn(
                 "px-4 py-2 rounded-full transition-colors relative",
-                activePage === 'pricing' ? 'text-white bg-cosmic-light/10' : 'text-cosmic-muted hover:text-white hover:bg-cosmic-light/5'
+                activePage === 'pricing' ? 'text-white bg-white/10' : 'text-cosmic-muted hover:text-white hover:bg-white/5'
               )}
               onClick={handleNavClick('pricing')}
             >
@@ -81,7 +81,7 @@ const Header = () => {
             <a 
               href="#features" 
               className={`px-3 py-2 text-sm rounded-md transition-colors ${
-                activePage === 'features' ? 'bg-cosmic-light/10 text-white' : 'text-cosmic-muted hover:text-white hover:bg-cosmic-light/5'
+                activePage === 'features' ? 'bg-white/10 text-white' : 'text-cosmic-muted hover:text-white hover:bg-white/5'
               }`}
               onClick={handleNavClick('features')}
             >
@@ -90,7 +90,7 @@ const Header = () => {
             <a 
               href="#dashboard" 
               className={`px-3 py-2 text-sm rounded-md transition-colors ${
-                activePage === 'dashboard' ? 'bg-cosmic-light/10 text-white' : 'text-cosmic-muted hover:text-white hover:bg-cosmic-light/5'
+                activePage === 'dashboard' ? 'bg-white/10 text-white' : 'text-cosmic-muted hover:text-white hover:bg-white/5'
               }`}
               onClick={handleNavClick('dashboard')}
             >
@@ -99,7 +99,7 @@ const Header = () => {
             <a 
               href="#pricing" 
               className={`px-3 py-2 text-sm rounded-md transition-colors ${
-                activePage === 'pricing' ? 'bg-cosmic-light/10 text-white' : 'text-cosmic-muted hover:text-white hover:bg-cosmic-light/5'
+                activePage === 'pricing' ? 'bg-white/10 text-white' : 'text-cosmic-muted hover:text-white hover:bg-white/5'
               }`}
               onClick={handleNavClick('pricing')}
             >
