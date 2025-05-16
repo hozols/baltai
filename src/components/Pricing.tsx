@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card';
 
 const Pricing = () => {
   const plans = [
@@ -72,7 +73,7 @@ const Pricing = () => {
           {plans.map((plan, index) => (
             <div 
               key={index}
-              className={`p-6 rounded-xl border ${
+              className={`p-6 rounded-xl border flex flex-col h-full ${
                 plan.popular 
                   ? "border-cosmic-accent/50 cosmic-glow" 
                   : "border-cosmic-light/20 cosmic-gradient"
@@ -84,38 +85,42 @@ const Pricing = () => {
                 </div>
               )}
               
-              <h3 className="text-2xl font-medium tracking-tighter mb-1">{plan.name}</h3>
-              
-              <div className="mb-4">
-                <div className="text-3xl font-bold tracking-tighter">{plan.price}</div>
-                {plan.period && <div className="text-sm text-cosmic-muted">{plan.period}</div>}
-              </div>
-              
-              <p className="text-cosmic-muted mb-6">{plan.description}</p>
-              
-              <div className="space-y-3 mb-8">
-                {plan.features.map((feature, i) => (
-                  <div key={i} className="flex items-center gap-3">
-                    <div className="h-5 w-5 rounded-full bg-cosmic-accent/20 flex items-center justify-center text-cosmic-accent">
-                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M5 12L10 17L19 8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                      </svg>
+              <div className="mb-auto">
+                <h3 className="text-2xl font-medium tracking-tighter mb-1">{plan.name}</h3>
+                
+                <div className="mb-4">
+                  <div className="text-3xl font-bold tracking-tighter">{plan.price}</div>
+                  {plan.period && <div className="text-sm text-cosmic-muted">{plan.period}</div>}
+                </div>
+                
+                <p className="text-cosmic-muted mb-6">{plan.description}</p>
+                
+                <div className="space-y-3 mb-8">
+                  {plan.features.map((feature, i) => (
+                    <div key={i} className="flex items-center gap-3">
+                      <div className="h-5 w-5 rounded-full bg-cosmic-accent/20 flex items-center justify-center text-cosmic-accent">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M5 12L10 17L19 8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                        </svg>
+                      </div>
+                      <span className="text-sm">{feature}</span>
                     </div>
-                    <span className="text-sm">{feature}</span>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
               
-              <Button 
-                className={
-                  plan.buttonVariant === "default" 
-                    ? "w-full bg-cosmic-accent text-cosmic-darker hover:bg-cosmic-darker hover:text-cosmic-accent" 
-                    : "w-full border-cosmic-light/20 text-white hover:bg-cosmic-light/10"
-                }
-                variant={plan.buttonVariant as "default" | "outline"}
-              >
-                {plan.buttonText}
-              </Button>
+              <div className="mt-6">
+                <Button 
+                  className={
+                    plan.buttonVariant === "default" 
+                      ? "w-full bg-cosmic-accent text-cosmic-darker hover:bg-cosmic-darker hover:text-cosmic-accent" 
+                      : "w-full border-cosmic-light/20 text-white hover:bg-cosmic-light/10"
+                  }
+                  variant={plan.buttonVariant as "default" | "outline"}
+                >
+                  {plan.buttonText}
+                </Button>
+              </div>
             </div>
           ))}
         </div>
