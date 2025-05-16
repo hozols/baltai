@@ -25,9 +25,9 @@ export default {
 				background: 'hsl(var(--background))',
 				foreground: 'hsl(var(--foreground))',
 				cosmic: {
-					dark: '#151a24', // Darkened from #1A1F2C
-					darker: '#0f131b', // Darkened from #141822
-					light: '#252b38', // Slightly darkened from #2A303E
+					dark: '#10141b', // Further darkened from #151a24
+					darker: '#0a0d14', // Further darkened from #0f131b
+					light: '#1e2330', // Further darkened from #252b38
 					accent: '#CBFF4D', // Lime green accent
 					muted: '#8B8F9A',
 				},
