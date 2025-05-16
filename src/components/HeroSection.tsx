@@ -103,8 +103,8 @@ const HeroSection = () => {
               </div>
             </div>
             
-            {/* Dashboard Content - Increasing the height from 400px to 500px */}
-            <div className="flex h-[500px] overflow-hidden">
+            {/* Dashboard Content - Increasing the height from 500px to 600px */}
+            <div className="flex h-[600px] overflow-hidden">
               {/* Sidebar */}
               <div className="w-64 border-r border-cosmic-light/10 p-4 space-y-4 hidden md:block">
                 <div className="space-y-2">
