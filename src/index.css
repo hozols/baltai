@@ -1,4 +1,3 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
 @tailwind base;
@@ -90,7 +89,7 @@
   .moving-line {
     position: absolute;
     height: 2px; /* Slightly thinner than before */
-    width: 100%;
+    width: 60%; /* Changed from 100% to 60% to make lines shorter */
     background: linear-gradient(90deg, transparent, rgba(203, 255, 77, 0.5), transparent);
     opacity: 0.6;
     box-shadow: 0 0 8px rgba(203, 255, 77, 0.4);
@@ -99,47 +98,55 @@
   /* Added more lines for increased frequency */
   .line-1 {
     top: 10%;
+    left: 20%; /* Adding left offset to center the shorter line */
     animation: moveLine 8s linear infinite; /* Faster animation */
   }
 
   .line-2 {
     top: 25%;
+    left: 10%; /* Adding left offset to center the shorter line */
     animation: moveLine 12s linear infinite;
     animation-delay: -2s;
   }
 
   .line-3 {
     top: 40%;
+    left: 15%; /* Adding left offset to center the shorter line */
     animation: moveLine 9s linear infinite;
     animation-delay: -5s;
   }
 
   .line-4 {
     top: 55%;
+    left: 5%; /* Adding left offset to center the shorter line */
     animation: moveLine 11s linear infinite;
     animation-delay: -1s;
   }
 
   .line-5 {
     top: 70%;
+    left: 25%; /* Adding left offset to center the shorter line */
     animation: moveLine 7s linear infinite;
     animation-delay: -3s;
   }
   
   .line-6 {
     top: 85%;
+    left: 12%; /* Adding left offset to center the shorter line */
     animation: moveLine 10s linear infinite;
     animation-delay: -6s;
   }
   
   .line-7 {
     top: 18%;
+    left: 30%; /* Adding left offset to center the shorter line */
     animation: moveLine 13s linear infinite;
     animation-delay: -4s;
   }
   
   .line-8 {
     top: 62%;
+    left: 18%; /* Adding left offset to center the shorter line */
     animation: moveLine 6s linear infinite;
     animation-delay: -9s;
   }
