@@ -227,12 +227,13 @@ const TaskBoard: React.FC<TaskBoardProps> = ({ className }) => {
     
     setColumns(newColumns);
     
-    // Show a toast notification
+    // Show a toast notification with animation
     const targetColumn = columns.find(col => col.id === targetColumnId);
     if (targetColumn && draggedTask) {
       toast({
         title: "Task moved",
         description: `${draggedTask.title} moved to ${targetColumn.title}`,
+        variant: "success",
       });
     }
   };

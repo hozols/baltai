@@ -76,7 +76,9 @@ const TaskCard: React.FC<TaskCardProps> = ({ task, onDragStart, onDragEnd, onSta
       draggable
       onDragStart={handleDragStart}
       onDragEnd={handleDragEnd}
-      className={`task-card p-3 bg-cosmic-darker rounded-md border border-cosmic-light/10 shadow-sm ${isDragging ? 'dragging' : ''}`}
+      className={`task-card p-3 bg-cosmic-darker rounded-md border border-cosmic-light/10 shadow-sm transition-all duration-200 
+      ${isDragging ? 'opacity-50 scale-105 shadow-md rotate-2 border-cosmic-accent/40' : 'hover:border-cosmic-light/30 hover:shadow-md'}
+      transform-gpu`}
     >
       <div className="flex justify-between items-start mb-2">
         <span className={`text-xs font-medium px-2 py-1 rounded-full ${getTagClass()}`}>
