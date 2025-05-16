@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, Layers, Grid3x3, ListCheck, BookOpen, Star, LayoutDashboard } from "lucide-react";
 
 const Features = () => {
   const [openFeature, setOpenFeature] = useState<number | null>(null);
@@ -12,14 +12,7 @@ const Features = () => {
       description: "Automate repetitive tasks and workflows to save time and reduce human error.",
       expandedDescription: "Set up custom automation rules based on triggers and actions. Schedule recurring tasks, automate status updates, and create conditional workflows that respond to specific events. Reduce manual data entry and focus on what matters most.",
       icon: (
-        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="icon-glow">
-          <path d="M14 12C14 13.1046 13.1046 14 12 14C10.8954 14 10 13.1046 10 12C10 10.8954 10.8954 10 12 10C13.1046 10 14 10.8954 14 12Z" stroke="#CBFF4D" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-          <path d="M20 12C20 16.4183 16.4183 20 12 20C7.58172 20 4 16.4183 4 12C4 7.58172 7.58172 4 12 4C16.4183 4 20 7.58172 20 12Z" stroke="#CBFF4D" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-          <path d="M14.5355 9.46447L17.5355 6.46447" stroke="#CBFF4D" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-          <path d="M14.5355 14.5355L17.5355 17.5355" stroke="#CBFF4D" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-          <path d="M9.46447 14.5355L6.46447 17.5355" stroke="#CBFF4D" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-          <path d="M9.46447 9.46447L6.46447 6.46447" stroke="#CBFF4D" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-        </svg>
+        <Layers size={24} className="text-cosmic-accent" />
       )
     },
     {
@@ -27,11 +20,7 @@ const Features = () => {
       description: "Real-time collaboration with teammates for seamless project management.",
       expandedDescription: "Work together in real-time with team members across the globe. Comment on tasks, share files, and track changes with version history. Get notifications for mentions and task assignments, ensuring everyone stays in the loop.",
       icon: (
-        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="icon-glow">
-          <path d="M17 20H7C5.89543 20 5 19.1046 5 18V9C5 7.89543 5.89543 7 7 7H17C18.1046 7 19 7.89543 19 9V18C19 19.1046 18.1046 20 17 20Z" stroke="#CBFF4D" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-          <path d="M16 4H8C6.89543 4 6 4.89543 6 6H18C18 4.89543 17.1046 4 16 4Z" stroke="#CBFF4D" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-          <path d="M9 12L11 14L15 10" stroke="#CBFF4D" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-        </svg>
+        <Grid3x3 size={24} className="text-cosmic-accent" />
       )
     },
     {
@@ -39,11 +28,7 @@ const Features = () => {
       description: "Gain insights into team performance and project progress with visual analytics.",
       expandedDescription: "Visualize team productivity with customizable charts and graphs. Track key metrics like task completion rates, project velocity, and team member performance. Export reports for stakeholders and identify bottlenecks before they impact deadlines.",
       icon: (
-        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="icon-glow">
-          <path d="M12 20V10" stroke="#CBFF4D" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-          <path d="M18 20V4" stroke="#CBFF4D" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-          <path d="M6 20V16" stroke="#CBFF4D" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-        </svg>
+        <LayoutDashboard size={24} className="text-cosmic-accent" />
       )
     },
     {
@@ -51,10 +36,7 @@ const Features = () => {
       description: "Create and customize workflows that fit your team's unique processes.",
       expandedDescription: "Design workflows that match exactly how your team works. Create custom status columns, set up approval processes, and build multi-stage workflows with dependencies. Adapt the system to your needs, not the other way around.",
       icon: (
-        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="icon-glow">
-          <path d="M17 7L7 17" stroke="#CBFF4D" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-          <path d="M17 17H7V7" stroke="#CBFF4D" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-        </svg>
+        <ListCheck size={24} className="text-cosmic-accent" />
       )
     },
     {
@@ -62,12 +44,7 @@ const Features = () => {
       description: "Manage deadlines and schedules with our powerful calendar integration.",
       expandedDescription: "Sync tasks with your favorite calendar apps including Google Calendar and Outlook. View deadlines, milestones, and team member availability all in one place. Schedule meetings based on task dependencies and team capacity.",
       icon: (
-        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="icon-glow">
-          <path d="M19 4H5C3.89543 4 3 4.89543 3 6V20C3 21.1046 3.89543 22 5 22H19C20.1046 22 21 21.1046 21 20V6C21 4.89543 20.1046 4 19 4Z" stroke="#CBFF4D" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-          <path d="M16 2V6" stroke="#CBFF4D" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-          <path d="M8 2V6" stroke="#CBFF4D" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-          <path d="M3 10H21" stroke="#CBFF4D" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-        </svg>
+        <Star size={24} className="text-cosmic-accent" />
       )
     },
     {
@@ -75,10 +52,7 @@ const Features = () => {
       description: "Access your tasks and projects on the go with our responsive mobile app.",
       expandedDescription: "Stay productive even when you're away from your desk with our native mobile apps for iOS and Android. Create tasks, track time, and communicate with your team from anywhere. Offline mode ensures you can work even without an internet connection.",
       icon: (
-        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="icon-glow">
-          <path d="M17 2H7C5.89543 2 5 2.89543 5 4V20C5 21.1046 5.89543 22 7 22H17C18.1046 22 19 21.1046 19 20V4C19 2.89543 18.1046 2 17 2Z" stroke="#CBFF4D" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-          <path d="M12 18H12.01" stroke="#CBFF4D" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-        </svg>
+        <BookOpen size={24} className="text-cosmic-accent" />
       )
     }
   ];
