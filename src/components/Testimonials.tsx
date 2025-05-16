@@ -28,6 +28,9 @@ const Testimonials = () => {
       {/* Background grid */}
       <div className="absolute inset-0 cosmic-grid opacity-20"></div>
       
+      {/* Gradient streak */}
+      <div className="absolute -top-32 -left-32 w-[70%] h-[30rem] rotate-45 bg-gradient-to-r from-cosmic-accent/20 via-cosmic-accent/10 to-transparent blur-3xl"></div>
+      
       <div className="max-w-7xl mx-auto space-y-16 relative z-10">
         <div className="text-center space-y-4 max-w-3xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-medium tracking-tighter">
