@@ -59,14 +59,14 @@ const TaskCard: React.FC<TaskCardProps> = ({ task, onDragStart, onDragEnd, onSta
   const getTagClass = () => {
     switch (task.tag.color) {
       case 'purple':
-        return 'bg-purple-400/20 text-purple-300';
+        return 'bg-purple-100 text-purple-700 border border-purple-200';
       case 'blue':
-        return 'bg-blue-400/20 text-blue-300';
+        return 'bg-blue-100 text-blue-700 border border-blue-200';
       case 'green':
       case 'accent':
-        return 'bg-cosmic-accent/20 text-cosmic-accent';
+        return 'bg-accent/10 text-accent border border-accent/20';
       default:
-        return 'bg-cosmic-light/20 text-cosmic-muted';
+        return 'bg-muted/50 text-muted-foreground border border-border';
     }
   };
 
@@ -76,37 +76,40 @@ const TaskCard: React.FC<TaskCardProps> = ({ task, onDragStart, onDragEnd, onSta
       draggable
       onDragStart={handleDragStart}
       onDragEnd={handleDragEnd}
-      className={`task-card p-3 bg-cosmic-darker rounded-md border border-cosmic-light/10 shadow-sm ${isDragging ? 'dragging' : ''}`}
+      className={`task-card p-3 bg-card rounded-md border border-border shadow-sm hover:shadow-md transition-all duration-200 ${isDragging ? 'dragging' : ''}`}
     >
       <div className="flex justify-between items-start mb-2">
         <span className={`text-xs font-medium px-2 py-1 rounded-full ${getTagClass()}`}>
           {task.tag.label}
         </span>
-        <span className="text-cosmic-muted text-xs">{task.dueDate}</span>
+        <span className="text-muted-foreground text-xs">{task.dueDate}</span>
       </div>
       
-      <h5 className="font-medium mb-1">{task.title}</h5>
-      <p className="text-xs text-cosmic-muted mb-3">{task.description}</p>
+      <h5 className="font-medium mb-1 text-foreground">{task.title}</h5>
+      <p className="text-xs text-muted-foreground mb-3">{task.description}</p>
       
       <div className="flex justify-between items-center">
         <div className="flex -space-x-1">
           {[...Array(task.assignees)].map((_, i) => (
             <div 
               key={i}
-              className={`h-6 w-6 rounded-full bg-cosmic-light/${30 - i * 5} border-2 border-cosmic-darker`}
+              className="h-6 w-6 rounded-full bg-muted border-2 border-card"
+              style={{
+                backgroundColor: `hsl(var(--muted) / ${0.8 - i * 0.1})`
+              }}
             ></div>
           ))}
         </div>
         
         {task.progress.completed === task.progress.total ? (
-          <span className="flex items-center gap-1 text-cosmic-accent text-xs">
+          <span className="flex items-center gap-1 text-accent text-xs font-medium">
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M5 12L10 17L19 8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
             {task.progress.completed}/{task.progress.total}
           </span>
         ) : (
-          <span className="flex items-center gap-1 text-cosmic-muted text-xs">
+          <span className="flex items-center gap-1 text-muted-foreground text-xs">
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M8 12H16M8 16H12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
