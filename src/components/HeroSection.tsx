@@ -1,22 +1,16 @@
-
 import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import TaskBoard from './TaskBoard';
 import { Loader } from 'lucide-react';
-
 const HeroSection = () => {
   const [isVisible, setIsVisible] = useState(false);
-
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsVisible(true);
     }, 300);
-    
     return () => clearTimeout(timer);
   }, []);
-
-  return (
-    <section className="relative w-full py-12 md:py-20 px-6 md:px-12 flex flex-col items-center justify-center overflow-hidden bg-background">
+  return <section className="relative w-full py-12 md:py-20 px-6 md:px-12 flex flex-col items-center justify-center overflow-hidden bg-background">
       {/* Cosmic particle effect (background dots) */}
       <div className="absolute inset-0 cosmic-grid opacity-30"></div>
       
@@ -25,11 +19,7 @@ const HeroSection = () => {
         <div className="w-full h-full opacity-10 bg-primary blur-[120px]"></div>
       </div>
       
-      <div 
-        className={`relative z-10 max-w-4xl text-center space-y-6 transition-all duration-700 transform ${
-          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-        }`}
-      >
+      <div className={`relative z-10 max-w-4xl text-center space-y-6 transition-all duration-700 transform ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
         <div className="flex justify-center">
           <span className="inline-flex items-center gap-2 px-3 py-1 text-xs font-medium rounded-full bg-muted text-primary">
             <span className="flex h-2 w-2 rounded-full bg-primary"></span>
@@ -39,7 +29,7 @@ const HeroSection = () => {
         </div>
         
         <h1 className="text-4xl md:text-6xl lg:text-7xl font-medium tracking-tighter text-balance text-foreground">
-          Financial operations for <span className="text-primary">growth-focused</span> businesses
+          Financial operations for <span className="text-primary">growth</span> businesses
         </h1>
         
         <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto text-balance">
@@ -61,11 +51,7 @@ const HeroSection = () => {
       </div>
       
       {/* Task Manager UI integrated in hero section with glassmorphic effect */}
-      <div 
-        className={`w-full max-w-7xl mt-12 z-10 transition-all duration-1000 delay-500 ${
-          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'
-        }`}
-      >
+      <div className={`w-full max-w-7xl mt-12 z-10 transition-all duration-1000 delay-500 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'}`}>
         <div className="cosmic-glow relative rounded-xl overflow-hidden border border-border backdrop-blur-sm bg-card shadow-lg">
           {/* Dashboard Header */}
           <div className="bg-card backdrop-blur-md w-full">
@@ -148,14 +134,14 @@ const HeroSection = () => {
                   <div className="flex items-center gap-2">
                     <div className="h-8 w-8 rounded-md bg-muted flex items-center justify-center text-muted-foreground">
                       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M15 12H9" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
-                        <path d="M12 9L12 15" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                        <path d="M15 12H9" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                        <path d="M12 9L12 15" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
                       </svg>
                     </div>
                     <div className="h-8 w-8 rounded-md bg-muted flex items-center justify-center text-muted-foreground">
                       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M17 9L17 17H9" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                        <path d="M17 17L7 7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                        <path d="M17 9L17 17H9" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                        <path d="M17 17L7 7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                       </svg>
                     </div>
                     <div className="h-8 px-3 rounded-md bg-primary text-primary-foreground flex items-center justify-center text-sm font-medium">
@@ -171,8 +157,6 @@ const HeroSection = () => {
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default HeroSection;
