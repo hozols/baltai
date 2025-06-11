@@ -8,49 +8,49 @@ const Features = () => {
   
   const features = [
     {
-      title: "Task Automation",
-      description: "Automate repetitive tasks and workflows to save time and reduce human error.",
-      expandedDescription: "Set up custom automation rules based on triggers and actions. Schedule recurring tasks, automate status updates, and create conditional workflows that respond to specific events. Reduce manual data entry and focus on what matters most.",
+      title: "Payment Automation",
+      description: "Automate payment processing and reconciliation to reduce manual errors and improve efficiency.",
+      expandedDescription: "Set up automated payment workflows with custom approval chains. Schedule recurring payments, automate invoice processing, and create conditional rules for different transaction types. Reduce manual intervention and ensure compliance with financial regulations.",
       icon: (
         <Layers size={24} className="text-cosmic-accent" />
       )
     },
     {
-      title: "Team Collaboration",
-      description: "Real-time collaboration with teammates for seamless project management.",
-      expandedDescription: "Work together in real-time with team members across the globe. Comment on tasks, share files, and track changes with version history. Get notifications for mentions and task assignments, ensuring everyone stays in the loop.",
+      title: "Real-time Analytics",
+      description: "Monitor financial performance with real-time dashboards and comprehensive reporting.",
+      expandedDescription: "Track key financial metrics with customizable dashboards. Monitor cash flow, payment volumes, and transaction success rates in real-time. Generate detailed reports for stakeholders and identify trends before they impact your business.",
       icon: (
         <Grid3x3 size={24} className="text-cosmic-accent" />
       )
     },
     {
-      title: "Analytics Dashboard",
-      description: "Gain insights into team performance and project progress with visual analytics.",
-      expandedDescription: "Visualize team productivity with customizable charts and graphs. Track key metrics like task completion rates, project velocity, and team member performance. Export reports for stakeholders and identify bottlenecks before they impact deadlines.",
+      title: "Risk Management",
+      description: "Advanced fraud detection and risk assessment tools to protect your business.",
+      expandedDescription: "Utilize machine learning algorithms to detect suspicious transactions and prevent fraud. Set up custom risk rules, monitor transaction patterns, and receive instant alerts for unusual activity. Protect your business with enterprise-grade security measures.",
       icon: (
         <LayoutDashboard size={24} className="text-cosmic-accent" />
       )
     },
     {
-      title: "Custom Workflows",
-      description: "Create and customize workflows that fit your team's unique processes.",
-      expandedDescription: "Design workflows that match exactly how your team works. Create custom status columns, set up approval processes, and build multi-stage workflows with dependencies. Adapt the system to your needs, not the other way around.",
+      title: "Compliance Tools",
+      description: "Built-in compliance features to meet regulatory requirements effortlessly.",
+      expandedDescription: "Stay compliant with financial regulations across multiple jurisdictions. Automated KYC/AML checks, transaction monitoring, and regulatory reporting. Generate audit trails and maintain documentation to meet compliance standards.",
       icon: (
         <ListCheck size={24} className="text-cosmic-accent" />
       )
     },
     {
-      title: "Integrated Calendar",
-      description: "Manage deadlines and schedules with our powerful calendar integration.",
-      expandedDescription: "Sync tasks with your favorite calendar apps including Google Calendar and Outlook. View deadlines, milestones, and team member availability all in one place. Schedule meetings based on task dependencies and team capacity.",
+      title: "Multi-currency Support",
+      description: "Process payments in multiple currencies with real-time exchange rates.",
+      expandedDescription: "Accept and process payments in over 150 currencies with competitive exchange rates. Automatic currency conversion, hedging tools, and multi-currency accounting. Expand your business globally with seamless international payment processing.",
       icon: (
         <Star size={24} className="text-cosmic-accent" />
       )
     },
     {
-      title: "Mobile Access",
-      description: "Access your tasks and projects on the go with our responsive mobile app.",
-      expandedDescription: "Stay productive even when you're away from your desk with our native mobile apps for iOS and Android. Create tasks, track time, and communicate with your team from anywhere. Offline mode ensures you can work even without an internet connection.",
+      title: "API Integration",
+      description: "Powerful APIs for seamless integration with your existing financial systems.",
+      expandedDescription: "Connect with your ERP, accounting software, and banking systems through our comprehensive APIs. Real-time webhooks, detailed documentation, and SDKs for popular programming languages. Build custom integrations that fit your unique business needs.",
       icon: (
         <BookOpen size={24} className="text-cosmic-accent" />
       )
@@ -66,10 +66,10 @@ const Features = () => {
       <div className="max-w-7xl mx-auto space-y-12">
         <div className="text-center space-y-3 max-w-3xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-medium tracking-tighter">
-            Everything your team needs
+            Everything your business needs
           </h2>
           <p className="text-cosmic-muted text-lg">
-            Powerful features to streamline your workflow and boost productivity
+            Comprehensive fintech solutions to streamline your financial operations and drive growth
           </p>
         </div>
         

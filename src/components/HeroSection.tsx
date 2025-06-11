@@ -33,17 +33,17 @@ const HeroSection = () => {
         <div className="flex justify-center">
           <span className="inline-flex items-center gap-2 px-3 py-1 text-xs font-medium rounded-full bg-muted text-primary">
             <span className="flex h-2 w-2 rounded-full bg-primary"></span>
-            Launching new team features
+            Launching new payment features
             <Loader className="h-3 w-3 animate-spin text-primary" />
           </span>
         </div>
         
         <h1 className="text-4xl md:text-6xl lg:text-7xl font-medium tracking-tighter text-balance text-foreground">
-          Task management for <span className="text-primary">high-performing</span> teams
+          Financial operations for <span className="text-primary">growth-focused</span> businesses
         </h1>
         
         <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto text-balance">
-          Streamline your workflow with our intuitive task management platform. Designed for modern teams who value clarity, focus, and results.
+          Streamline your financial workflows with our comprehensive fintech platform. Built for modern businesses who value efficiency, compliance, and scalable growth.
         </p>
         
         <div className="flex flex-col sm:flex-row gap-4 justify-center pt-6">
@@ -74,7 +74,7 @@ const HeroSection = () => {
                 <div className="h-8 w-8 rounded-md bg-muted flex items-center justify-center">
                   <div className="h-3 w-3 rounded-sm bg-primary"></div>
                 </div>
-                <span className="text-foreground font-medium">Marketing Campaign Q2</span>
+                <span className="text-foreground font-medium">Payment Processing Pipeline</span>
               </div>
               
               <div className="flex items-center gap-3">
@@ -100,37 +100,37 @@ const HeroSection = () => {
                   <div className="space-y-1">
                     <div className="flex items-center gap-3 px-3 py-2 rounded-md bg-muted text-foreground">
                       <div className="h-3 w-3 rounded-sm bg-primary"></div>
-                      <span>Board</span>
+                      <span>Payments</span>
                     </div>
                     <div className="flex items-center gap-3 px-3 py-2 rounded-md text-muted-foreground hover:bg-muted/50">
                       <div className="h-3 w-3 rounded-sm bg-muted-foreground/30"></div>
-                      <span>Timeline</span>
+                      <span>Analytics</span>
                     </div>
                     <div className="flex items-center gap-3 px-3 py-2 rounded-md text-muted-foreground hover:bg-muted/50">
                       <div className="h-3 w-3 rounded-sm bg-muted-foreground/30"></div>
-                      <span>Calendar</span>
+                      <span>Compliance</span>
                     </div>
                     <div className="flex items-center gap-3 px-3 py-2 rounded-md text-muted-foreground hover:bg-muted/50">
                       <div className="h-3 w-3 rounded-sm bg-muted-foreground/30"></div>
-                      <span>Files</span>
+                      <span>Reports</span>
                     </div>
                   </div>
                 </div>
                 
                 <div className="space-y-2 pt-4">
-                  <div className="text-xs text-muted-foreground uppercase">Teams</div>
+                  <div className="text-xs text-muted-foreground uppercase">Departments</div>
                   <div className="space-y-1">
                     <div className="flex items-center gap-3 px-3 py-2 rounded-md text-muted-foreground hover:bg-muted/50">
                       <div className="h-3 w-3 rounded-full bg-primary/80"></div>
-                      <span>Marketing</span>
+                      <span>Treasury</span>
                     </div>
                     <div className="flex items-center gap-3 px-3 py-2 rounded-md text-muted-foreground hover:bg-muted/50">
                       <div className="h-3 w-3 rounded-full bg-purple-400/80"></div>
-                      <span>Design</span>
+                      <span>Risk</span>
                     </div>
                     <div className="flex items-center gap-3 px-3 py-2 rounded-md text-muted-foreground hover:bg-muted/50">
                       <div className="h-3 w-3 rounded-full bg-blue-400/80"></div>
-                      <span>Development</span>
+                      <span>Operations</span>
                     </div>
                   </div>
                 </div>
@@ -141,7 +141,7 @@ const HeroSection = () => {
                 {/* Board Header */}
                 <div className="flex items-center justify-between mb-6">
                   <div className="flex items-center gap-2">
-                    <h3 className="font-medium text-foreground">Tasks</h3>
+                    <h3 className="font-medium text-foreground">Transactions</h3>
                     <span className="text-xs bg-muted px-2 py-1 rounded-full text-muted-foreground">23</span>
                   </div>
                   
@@ -159,7 +159,7 @@ const HeroSection = () => {
                       </svg>
                     </div>
                     <div className="h-8 px-3 rounded-md bg-primary text-primary-foreground flex items-center justify-center text-sm font-medium">
-                      New Task
+                      New Transaction
                     </div>
                   </div>
                 </div>

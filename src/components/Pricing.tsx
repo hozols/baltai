@@ -8,30 +8,30 @@ const Pricing = () => {
     {
       name: "Starter",
       price: "Free",
-      description: "Perfect for individuals and small projects",
+      description: "Perfect for small businesses starting their fintech journey",
       features: [
-        "Up to 5 team members",
-        "Basic task management",
-        "5 boards",
-        "1GB storage",
-        "Basic integrations"
+        "Up to 100 transactions/month",
+        "Basic payment processing",
+        "Standard reporting",
+        "Email support",
+        "Basic fraud protection"
       ],
       buttonText: "Get Started",
       buttonVariant: "outline",
       popular: false
     },
     {
-      name: "Pro",
-      price: "$12",
-      period: "per user/month",
-      description: "Ideal for growing teams and businesses",
+      name: "Professional",
+      price: "$99",
+      period: "per month",
+      description: "Ideal for growing businesses with higher transaction volumes",
       features: [
-        "Unlimited team members",
-        "Advanced task management",
-        "Unlimited boards",
-        "10GB storage",
-        "Advanced integrations",
-        "Analytics & reporting",
+        "Up to 10,000 transactions/month",
+        "Advanced payment processing",
+        "Real-time analytics",
+        "Multi-currency support",
+        "Advanced fraud protection",
+        "API access",
         "Priority support"
       ],
       buttonText: "Start 14-day trial",
@@ -41,13 +41,13 @@ const Pricing = () => {
     {
       name: "Enterprise",
       price: "Custom",
-      description: "For large organizations with complex needs",
+      description: "For large organizations with complex financial operations",
       features: [
-        "Unlimited everything",
-        "Custom workflows",
-        "Advanced security",
-        "API access",
-        "White-labeling",
+        "Unlimited transactions",
+        "Custom payment workflows",
+        "Advanced compliance tools",
+        "Dedicated infrastructure",
+        "White-label solutions",
         "Dedicated account manager",
         "24/7 premium support"
       ],
@@ -62,10 +62,10 @@ const Pricing = () => {
       <div className="max-w-7xl mx-auto space-y-16">
         <div className="text-center space-y-4 max-w-3xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-medium tracking-tighter text-foreground">
-            Simple, transparent pricing
+            Transparent pricing for every stage
           </h2>
           <p className="text-muted-foreground text-lg">
-            Choose the plan that fits your team's needs
+            Scale your financial operations with plans that grow with your business
           </p>
         </div>
         
