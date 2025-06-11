@@ -26,11 +26,11 @@ export default {
 				background: 'hsl(var(--background))',
 				foreground: 'hsl(var(--foreground))',
 				cosmic: {
-					dark: '#141414', /* Dark charcoal */
-					darker: '#0a0a0a', /* Darker charcoal */
-					light: '#1f1f1f', /* Medium charcoal */
-					accent: '#d9d9d9', /* Light grey */
-					muted: '#8a8a8a', /* Medium grey */
+					dark: '#404040', /* Medium grey for light mode */
+					darker: '#303030', /* Darker grey for light mode */
+					light: '#f0f0f0', /* Light grey for light mode */
+					accent: '#606060', /* Medium-dark grey accent */
+					muted: '#909090', /* Medium grey */
 				},
 				primary: {
 					DEFAULT: 'hsl(var(--primary))',
