@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -25,11 +26,11 @@ export default {
 				background: 'hsl(var(--background))',
 				foreground: 'hsl(var(--foreground))',
 				cosmic: {
-					dark: '#10141b', // Further darkened from #151a24
-					darker: '#0a0d14', // Further darkened from #0f131b
-					light: '#1e2330', // Further darkened from #252b38
-					accent: '#CBFF4D', // Lime green accent
-					muted: '#8B8F9A',
+					dark: '#141414', /* Dark charcoal */
+					darker: '#0a0a0a', /* Darker charcoal */
+					light: '#1f1f1f', /* Medium charcoal */
+					accent: '#d9d9d9', /* Light grey */
+					muted: '#8a8a8a', /* Medium grey */
 				},
 				primary: {
 					DEFAULT: 'hsl(var(--primary))',

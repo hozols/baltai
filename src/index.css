@@ -7,33 +7,33 @@
 
 @layer base {
   :root {
-    --background: 222 40% 8%; /* Further darkened from 222 38% 10% */
-    --foreground: 0 0% 100%;
+    --background: 0 0% 8%; /* Dark charcoal */
+    --foreground: 0 0% 95%; /* Light grey/white */
 
-    --card: 222 40% 8%; /* Darkened to match background */
-    --card-foreground: 0 0% 100%;
+    --card: 0 0% 12%; /* Slightly lighter charcoal */
+    --card-foreground: 0 0% 95%;
 
-    --popover: 222 40% 8%; /* Darkened to match background */
-    --popover-foreground: 0 0% 100%;
+    --popover: 0 0% 12%;
+    --popover-foreground: 0 0% 95%;
 
-    --primary: 84 100% 65%;
-    --primary-foreground: 222 40% 8%; /* Darkened to match background */
+    --primary: 0 0% 85%; /* Light grey */
+    --primary-foreground: 0 0% 15%; /* Dark charcoal */
 
-    --secondary: 222 32% 16%; /* Further darkened */
-    --secondary-foreground: 0 0% 100%;
+    --secondary: 0 0% 18%; /* Medium charcoal */
+    --secondary-foreground: 0 0% 95%;
 
-    --muted: 223 27% 18%; /* Further darkened */
-    --muted-foreground: 215 16% 70%;
+    --muted: 0 0% 22%; /* Lighter charcoal */
+    --muted-foreground: 0 0% 70%; /* Medium grey */
 
-    --accent: 84 100% 65%;
-    --accent-foreground: 222 40% 8%; /* Darkened to match background */
+    --accent: 0 0% 85%; /* Light grey accent */
+    --accent-foreground: 0 0% 15%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 223 27% 18%; /* Further darkened */
-    --input: 223 27% 18%; /* Further darkened */
-    --ring: 84 100% 65%;
+    --border: 0 0% 22%; /* Medium charcoal border */
+    --input: 0 0% 22%;
+    --ring: 0 0% 85%; /* Light grey ring */
 
     --radius: 0.5rem;
   }
@@ -43,16 +43,16 @@
   }
 
   body {
-    @apply bg-cosmic-dark font-inter text-foreground antialiased;
+    @apply bg-background font-inter text-foreground antialiased;
     letter-spacing: -0.025em;
   }
   
   ::selection {
-    @apply bg-cosmic-accent text-cosmic-darker;
+    @apply bg-primary text-primary-foreground;
   }
 
   .cosmic-gradient {
-    background: linear-gradient(135deg, rgba(75, 85, 115, 0.2) 0%, rgba(30, 35, 45, 0.4) 100%);
+    background: linear-gradient(135deg, rgba(64, 64, 64, 0.2) 0%, rgba(32, 32, 32, 0.4) 100%);
   }
 
   .cosmic-glow {
@@ -66,15 +66,15 @@
     left: -20px;
     right: -20px;
     bottom: -20px;
-    background: radial-gradient(circle at center, rgba(203, 255, 77, 0.15) 0%, transparent 70%);
+    background: radial-gradient(circle at center, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
     z-index: -1;
     border-radius: inherit;
   }
 
   .cosmic-grid {
     background-image: 
-      linear-gradient(rgba(203, 255, 77, 0.05) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(203, 255, 77, 0.05) 1px, transparent 1px);
+      linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
     background-size: 30px 30px;
   }
 
@@ -82,18 +82,16 @@
     text-wrap: balance;
   }
   
-  /* New glassmorphic utilities */
   .cosmic-glass {
-    @apply backdrop-blur-sm bg-cosmic-darker/70 border border-white/10 shadow-[0_0_15px_rgba(203,255,77,0.15)];
+    @apply backdrop-blur-sm bg-card border border-white/10 shadow-[0_0_15px_rgba(255,255,255,0.1)];
   }
   
   .cosmic-card {
-    @apply bg-cosmic-light/5 border border-cosmic-light/10 backdrop-blur-sm;
+    @apply bg-card border border-border backdrop-blur-sm;
   }
   
-  /* Navigation pill styles */
   .nav-pill {
-    @apply backdrop-blur-md bg-cosmic-darker/90 border border-white/5 rounded-full;
+    @apply backdrop-blur-md bg-card border border-border rounded-full;
   }
   
   .nav-pill-item {
@@ -101,34 +99,32 @@
   }
   
   .nav-pill-item:hover {
-    @apply bg-cosmic-light/10 text-white;
+    @apply bg-accent text-accent-foreground;
   }
   
   .nav-pill-item.active {
-    @apply bg-cosmic-light/10 text-white;
+    @apply bg-accent text-accent-foreground;
   }
   
-  /* Icon glow effect for feature cards */
   .icon-glow {
-    filter: drop-shadow(0 0 6px rgba(203, 255, 77, 0.4));
+    filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.3));
     transition: filter 0.3s ease;
   }
   
   .collapsible-trigger:hover .icon-glow {
-    filter: drop-shadow(0 0 10px rgba(203, 255, 77, 0.6));
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.5));
   }
 
-  /* Task card animations */
   .task-card {
-    @apply transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-lg hover:border-cosmic-accent/30;
+    @apply transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-lg hover:border-primary/30;
   }
   
   .task-card.dragging {
-    @apply scale-105 shadow-lg border-cosmic-accent opacity-70 rotate-1 z-10;
+    @apply scale-105 shadow-lg border-primary opacity-70 rotate-1 z-10;
   }
   
   .task-card.dragged-over {
-    @apply border-cosmic-accent border-dashed;
+    @apply border-primary border-dashed;
   }
   
   .task-card-enter {
@@ -148,6 +144,6 @@
   }
   
   .column-highlight {
-    @apply bg-cosmic-light/10 transition-all duration-300;
+    @apply bg-accent/20 transition-all duration-300;
   }
 }
