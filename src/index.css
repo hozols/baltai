@@ -124,11 +124,11 @@
   }
   
   .cosmic-glass {
-    @apply backdrop-blur-sm bg-card border border-white/10 shadow-[0_0_15px_rgba(255,255,255,0.1)];
+    @apply backdrop-blur-sm bg-card border border-border/20 shadow-[0_0_15px_rgba(255,255,255,0.1)];
   }
 
   .light-mode .cosmic-glass {
-    @apply backdrop-blur-sm bg-card border border-black/10 shadow-[0_0_15px_rgba(0,0,0,0.1)];
+    @apply backdrop-blur-sm bg-card border border-border/20 shadow-[0_0_15px_rgba(0,0,0,0.1)];
   }
   
   .cosmic-card {
@@ -157,7 +157,7 @@
   }
 
   .light-mode .icon-glow {
-    filter: drop-shadow(0 0 6px rgba(0, 0, 0, 0.3));
+    filter: drop-shadow(0 0 6px rgba(0, 0, 0, 0.2));
   }
   
   .collapsible-trigger:hover .icon-glow {
@@ -165,7 +165,7 @@
   }
 
   .light-mode .collapsible-trigger:hover .icon-glow {
-    filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.5));
+    filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.3));
   }
 
   .task-card {
