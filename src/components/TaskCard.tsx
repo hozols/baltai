@@ -66,22 +66,26 @@ const TaskCard: React.FC<TaskCardProps> = ({ task, onDragStart, onDragEnd, onSta
       draggable
       onDragStart={handleDragStart}
       onDragEnd={handleDragEnd}
-      className={`task-card p-4 bg-card rounded-md border border-border shadow-sm hover:shadow-md transition-all duration-200 h-40 flex flex-col justify-between ${isDragging ? 'dragging' : ''}`}
+      className={`task-card p-4 bg-card rounded-md border border-border shadow-sm hover:shadow-md transition-all duration-200 h-44 flex flex-col ${isDragging ? 'dragging' : ''}`}
     >
-      <div className="flex justify-between items-start mb-3">
+      {/* Header with tag and due date */}
+      <div className="flex justify-between items-start mb-3 flex-shrink-0">
         <span className={`text-xs font-medium px-2 py-1 rounded-full ${getTagClass()}`}>
           {task.tag.label}
         </span>
         <span className="text-muted-foreground text-xs">{task.dueDate}</span>
       </div>
       
-      <div className="flex-1 flex flex-col justify-between min-h-0">
-        <div className="mb-3">
-          <h5 className="font-medium mb-2 text-foreground text-sm leading-tight">{task.title}</h5>
-          <p className="text-xs text-muted-foreground line-clamp-2 leading-relaxed">{task.description}</p>
+      {/* Main content area */}
+      <div className="flex-1 flex flex-col min-h-0">
+        {/* Title and description */}
+        <div className="flex-1 mb-3">
+          <h5 className="font-medium mb-2 text-foreground text-sm leading-tight line-clamp-2">{task.title}</h5>
+          <p className="text-xs text-muted-foreground line-clamp-3 leading-relaxed">{task.description}</p>
         </div>
         
-        <div className="flex justify-between items-center">
+        {/* Footer with assignees and progress */}
+        <div className="flex justify-between items-center flex-shrink-0 mt-auto">
           <div className="flex -space-x-1">
             {[...Array(task.assignees)].map((_, i) => (
               <div 
