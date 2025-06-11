@@ -1,17 +1,21 @@
-
 import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import TaskBoard from './TaskBoard';
 import { Loader } from 'lucide-react';
+
 const HeroSection = () => {
   const [isVisible, setIsVisible] = useState(false);
+
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsVisible(true);
     }, 300);
+
     return () => clearTimeout(timer);
   }, []);
-  return <section className="relative w-full py-12 md:py-20 px-6 md:px-12 flex flex-col items-center justify-center overflow-hidden bg-background">
+
+  return (
+    <section className="relative w-full py-12 md:py-20 px-6 md:px-12 flex flex-col items-center justify-center overflow-hidden bg-background">
       {/* Cosmic particle effect (background dots) */}
       <div className="absolute inset-0 cosmic-grid opacity-30"></div>
       
@@ -124,15 +128,15 @@ const HeroSection = () => {
               </div>
               
               {/* Main Content */}
-              <div className="flex-1 p-4 bg-background">
+              <div className="flex-1 p-4 bg-background overflow-hidden">
                 {/* Board Header */}
-                <div className="flex items-center justify-between mb-6">
-                  <div className="flex items-center gap-2">
+                <div className="flex items-center justify-between mb-6 min-w-0">
+                  <div className="flex items-center gap-2 flex-shrink-0">
                     <h3 className="font-medium text-foreground">Transactions</h3>
                     <span className="text-xs bg-muted px-2 py-1 rounded-full text-muted-foreground">23</span>
                   </div>
                   
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-2 flex-shrink-0">
                     <div className="h-8 w-8 rounded-md bg-muted flex items-center justify-center text-muted-foreground">
                       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M15 12H9" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
@@ -145,19 +149,23 @@ const HeroSection = () => {
                         <path d="M17 17L7 7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                       </svg>
                     </div>
-                    <div className="h-8 px-3 rounded-md bg-foreground text-background flex items-center justify-center text-sm font-medium">
+                    <div className="h-8 px-3 rounded-md bg-foreground text-background flex items-center justify-center text-sm font-medium whitespace-nowrap">
                       New Transaction
                     </div>
                   </div>
                 </div>
                 
                 {/* Kanban Board */}
-                <TaskBoard />
+                <div className="overflow-hidden">
+                  <TaskBoard />
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </section>;
+    </section>
+  );
 };
+
 export default HeroSection;
