@@ -14,8 +14,13 @@ const Header = () => {
   
   useEffect(() => {
     // Apply the theme to the document when it changes
-    document.documentElement.classList.toggle('dark-mode', isDarkMode);
-    document.documentElement.classList.toggle('light-mode', !isDarkMode);
+    if (isDarkMode) {
+      document.documentElement.classList.remove('light-mode');
+      document.documentElement.classList.add('dark-mode');
+    } else {
+      document.documentElement.classList.remove('dark-mode');
+      document.documentElement.classList.add('light-mode');
+    }
   }, [isDarkMode]);
   
   const handleNavClick = (page: string) => (e: React.MouseEvent) => {

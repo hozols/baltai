@@ -38,6 +38,33 @@
     --radius: 0.5rem;
   }
 
+  .light-mode {
+    --background: 0 0% 100%; /* White */
+    --foreground: 0 0% 15%; /* Dark charcoal */
+
+    --card: 0 0% 98%; /* Light grey */
+    --card-foreground: 0 0% 15%;
+
+    --popover: 0 0% 98%;
+    --popover-foreground: 0 0% 15%;
+
+    --primary: 0 0% 15%; /* Dark charcoal */
+    --primary-foreground: 0 0% 100%; /* White */
+
+    --secondary: 0 0% 95%; /* Light grey */
+    --secondary-foreground: 0 0% 15%;
+
+    --muted: 0 0% 92%; /* Very light grey */
+    --muted-foreground: 0 0% 45%; /* Medium grey */
+
+    --accent: 0 0% 15%; /* Dark charcoal accent */
+    --accent-foreground: 0 0% 100%;
+
+    --border: 0 0% 85%; /* Light grey border */
+    --input: 0 0% 90%;
+    --ring: 0 0% 15%; /* Dark charcoal ring */
+  }
+
   * {
     @apply border-border;
   }
@@ -53,6 +80,10 @@
 
   .cosmic-gradient {
     background: linear-gradient(135deg, rgba(64, 64, 64, 0.2) 0%, rgba(32, 32, 32, 0.4) 100%);
+  }
+
+  .light-mode .cosmic-gradient {
+    background: linear-gradient(135deg, rgba(240, 240, 240, 0.8) 0%, rgba(200, 200, 200, 0.6) 100%);
   }
 
   .cosmic-glow {
@@ -71,11 +102,21 @@
     border-radius: inherit;
   }
 
+  .light-mode .cosmic-glow::before {
+    background: radial-gradient(circle at center, rgba(0, 0, 0, 0.05) 0%, transparent 70%);
+  }
+
   .cosmic-grid {
     background-image: 
       linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
       linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
     background-size: 30px 30px;
+  }
+
+  .light-mode .cosmic-grid {
+    background-image: 
+      linear-gradient(rgba(0, 0, 0, 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
   }
 
   .text-balance {
@@ -84,6 +125,10 @@
   
   .cosmic-glass {
     @apply backdrop-blur-sm bg-card border border-white/10 shadow-[0_0_15px_rgba(255,255,255,0.1)];
+  }
+
+  .light-mode .cosmic-glass {
+    @apply backdrop-blur-sm bg-card border border-black/10 shadow-[0_0_15px_rgba(0,0,0,0.1)];
   }
   
   .cosmic-card {
@@ -110,9 +155,17 @@
     filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.3));
     transition: filter 0.3s ease;
   }
+
+  .light-mode .icon-glow {
+    filter: drop-shadow(0 0 6px rgba(0, 0, 0, 0.3));
+  }
   
   .collapsible-trigger:hover .icon-glow {
     filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.5));
+  }
+
+  .light-mode .collapsible-trigger:hover .icon-glow {
+    filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.5));
   }
 
   .task-card {
