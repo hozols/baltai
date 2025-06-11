@@ -48,22 +48,22 @@ const TaskColumn: React.FC<TaskColumnProps> = ({
 
   return (
     <div 
-      className={`flex flex-col w-72 min-w-72 rounded-lg border border-cosmic-light/10 backdrop-blur-sm transition-all duration-300 ${
-        isOver ? 'column-highlight border-cosmic-accent/50' : 'bg-cosmic-light/5'
+      className={`flex flex-col w-72 min-w-72 rounded-lg border border-border backdrop-blur-sm transition-all duration-300 ${
+        isOver ? 'column-highlight border-muted/50' : 'bg-card/50'
       }`}
       onDragOver={handleDragOver}
       onDragLeave={handleDragLeave}
       onDrop={handleDrop}
     >
-      <div className="p-3 border-b border-cosmic-light/10 flex items-center justify-between">
+      <div className="p-3 border-b border-border flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <span className={`h-3 w-3 rounded-full ${getColorClass(column.color)}`}></span>
-          <h4 className="font-medium text-sm">{column.title}</h4>
-          <span className="text-xs bg-cosmic-light/20 px-2 py-0.5 rounded-full text-cosmic-muted">
+          <span className="h-3 w-3 rounded-full bg-muted"></span>
+          <h4 className="font-medium text-sm text-foreground">{column.title}</h4>
+          <span className="text-xs bg-muted/50 px-2 py-0.5 rounded-full text-muted-foreground">
             {column.tasks.length}
           </span>
         </div>
-        <div className="text-cosmic-muted">
+        <div className="text-muted-foreground">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M12 12V12.01M8 12V12.01M16 12V12.01" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
           </svg>
@@ -84,23 +84,5 @@ const TaskColumn: React.FC<TaskColumnProps> = ({
     </div>
   );
 };
-
-// Helper function to get the appropriate color class
-function getColorClass(color: string): string {
-  switch (color) {
-    case 'muted':
-      return 'bg-cosmic-muted/50';
-    case 'blue':
-      return 'bg-blue-400';
-    case 'amber':
-      return 'bg-amber-400';
-    case 'accent':
-      return 'bg-cosmic-accent';
-    case 'purple':
-      return 'bg-purple-400';
-    default:
-      return 'bg-cosmic-muted';
-  }
-}
 
 export default TaskColumn;
