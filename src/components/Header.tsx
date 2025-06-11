@@ -44,13 +44,13 @@ const Header = () => {
   return (
     <div className="sticky top-0 z-50 pt-8 px-4">
       <header className="w-full max-w-7xl mx-auto py-3 px-6 md:px-8 flex items-center justify-between">
-        <div className="bg-background/80 backdrop-blur-md border border-border rounded-2xl shadow-lg p-3">
+        <div className="p-3">
           <Logo />
         </div>
         
         {/* Mobile menu button */}
         <button 
-          className="md:hidden p-3 rounded-2xl text-muted-foreground hover:text-foreground bg-background/80 backdrop-blur-md border border-border shadow-lg"
+          className="md:hidden p-3 rounded-2xl text-muted-foreground hover:text-foreground"
           onClick={toggleMobileMenu}
         >
           {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -145,7 +145,7 @@ const Header = () => {
         
         <div className="hidden md:flex items-center gap-4">
           {/* Theme toggle for desktop */}
-          <div className="flex items-center gap-2 bg-background/80 backdrop-blur-md border border-border rounded-full px-3 py-2 shadow-lg">
+          <div className="flex items-center gap-2 rounded-full px-3 py-2">
             <Moon size={18} className={`${isDarkMode ? 'text-primary' : 'text-muted-foreground'}`} />
             <Switch 
               checked={!isDarkMode} 
@@ -154,7 +154,7 @@ const Header = () => {
             />
             <Sun size={18} className={`${!isDarkMode ? 'text-primary' : 'text-muted-foreground'}`} />
           </div>
-          <div className="bg-background/80 backdrop-blur-md border border-border rounded-2xl shadow-lg">
+          <div className="rounded-2xl">
             <Button variant="ghost" className="text-muted-foreground hover:text-foreground hover:bg-muted">Log in</Button>
           </div>
         </div>
