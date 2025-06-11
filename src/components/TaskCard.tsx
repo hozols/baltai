@@ -55,19 +55,9 @@ const TaskCard: React.FC<TaskCardProps> = ({ task, onDragStart, onDragEnd, onSta
     onDragEnd();
   };
   
-  // Generate tag background class based on tag color
+  // Generate tag background class using only grey/white colors
   const getTagClass = () => {
-    switch (task.tag.color) {
-      case 'purple':
-        return 'bg-purple-100 text-purple-700 border border-purple-200';
-      case 'blue':
-        return 'bg-blue-100 text-blue-700 border border-blue-200';
-      case 'green':
-      case 'accent':
-        return 'bg-accent/10 text-accent border border-accent/20';
-      default:
-        return 'bg-muted/50 text-muted-foreground border border-border';
-    }
+    return 'bg-muted/50 text-muted-foreground border border-border';
   };
 
   return (
