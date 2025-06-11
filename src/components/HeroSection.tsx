@@ -66,7 +66,7 @@ const HeroSection = () => {
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'
         }`}
       >
-        <div className="cosmic-glow relative rounded-xl overflow-hidden border border-border/30 cosmic-glass">
+        <div className="cosmic-glow relative rounded-xl overflow-hidden border border-border/30 cosmic-glass shadow-[0_0_15px_rgba(203,255,77,0.15)]">
           {/* Dashboard Header */}
           <div className="bg-card/80 backdrop-blur-md w-full">
             <div className="flex items-center justify-between p-4 border-b border-border">
@@ -94,7 +94,7 @@ const HeroSection = () => {
             {/* Dashboard Content */}
             <div className="flex h-[600px] overflow-hidden">
               {/* Sidebar */}
-              <div className="w-64 border-r border-border p-4 space-y-4 hidden md:block bg-card/50">
+              <div className="w-64 border-r border-border p-4 space-y-4 hidden md:block">
                 <div className="space-y-2">
                   <div className="text-xs text-muted-foreground uppercase">Navigation</div>
                   <div className="space-y-1">
@@ -137,7 +137,7 @@ const HeroSection = () => {
               </div>
               
               {/* Main Content */}
-              <div className="flex-1 p-4 bg-background/50">
+              <div className="flex-1 p-4">
                 {/* Board Header */}
                 <div className="flex items-center justify-between mb-6">
                   <div className="flex items-center gap-2">

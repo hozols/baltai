@@ -55,7 +55,7 @@ const Header = () => {
       
       {/* Desktop navigation */}
       <nav className="hidden md:flex items-center absolute left-1/2 transform -translate-x-1/2">
-        <div className="backdrop-blur-md bg-card border border-border rounded-full">
+        <div className="nav-pill">
           <ToggleGroup type="single" value={activePage} onValueChange={(value) => value && setActivePage(value)}>
             <ToggleGroupItem 
               value="features"
