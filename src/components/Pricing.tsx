@@ -1,57 +1,57 @@
 
 import React from 'react';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card';
 
 const Pricing = () => {
   const plans = [
     {
-      name: "Starter",
-      price: "Free",
-      description: "Perfect for small businesses starting their fintech journey",
+      name: "Sākuma",
+      price: "€299",
+      period: "mēnesī",
+      description: "Ideāls maziem uzņēmumiem, kas sāk AI automatizācijas ceļu",
       features: [
-        "Up to 100 transactions/month",
-        "Basic payment processing",
-        "Standard reporting",
-        "Email support",
-        "Basic fraud protection"
+        "1 AI darbinieks",
+        "Pamata čatbots",
+        "Līdz 1000 uzdevumiem mēnesī",
+        "E-pasta atbalsts",
+        "Pamata analītika"
       ],
-      buttonText: "Get Started",
+      buttonText: "Sākt tagad",
       buttonVariant: "outline",
       popular: false
     },
     {
-      name: "Professional",
-      price: "$99",
-      period: "per month",
-      description: "Ideal for growing businesses with higher transaction volumes",
+      name: "Profesionālais",
+      price: "€699",
+      period: "mēnesī",
+      description: "Augošiem uzņēmumiem ar lielāku automatizācijas vajadzību",
       features: [
-        "Up to 10,000 transactions/month",
-        "Advanced payment processing",
-        "Real-time analytics",
-        "Multi-currency support",
-        "Advanced fraud protection",
-        "API access",
-        "Priority support"
+        "5 AI darbinieki",
+        "Uzlaboti čatboti",
+        "Līdz 10,000 uzdevumiem mēnesī",
+        "Dokumentu apstrāde",
+        "Reāllaika analītika",
+        "API piekļuve",
+        "Prioritārs atbalsts"
       ],
-      buttonText: "Start 14-day trial",
+      buttonText: "14 dienu izmēģinājums",
       buttonVariant: "default",
       popular: true
     },
     {
-      name: "Enterprise",
-      price: "Custom",
-      description: "For large organizations with complex financial operations",
+      name: "Uzņēmuma",
+      price: "Pēc pieprasījuma",
+      description: "Lieliem uzņēmumiem ar sarežģītām automatizācijas vajadzībām",
       features: [
-        "Unlimited transactions",
-        "Custom payment workflows",
-        "Advanced compliance tools",
-        "Dedicated infrastructure",
-        "White-label solutions",
-        "Dedicated account manager",
-        "24/7 premium support"
+        "Neierobežoti AI darbinieki",
+        "Pielāgoti risinājumi",
+        "Neierobežoti uzdevumi",
+        "Dedicated infrastruktūra",
+        "Apmācības un ieviešana",
+        "Personīgais menedžeris",
+        "24/7 premium atbalsts"
       ],
-      buttonText: "Contact Sales",
+      buttonText: "Sazināties ar mums",
       buttonVariant: "outline",
       popular: false
     }
@@ -62,10 +62,10 @@ const Pricing = () => {
       <div className="max-w-7xl mx-auto space-y-16">
         <div className="text-center space-y-4 max-w-3xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-medium tracking-tighter text-foreground">
-            Transparent pricing for every stage
+            Caurspīdīgas cenas katram posmam
           </h2>
           <p className="text-muted-foreground text-lg">
-            Scale your financial operations with plans that grow with your business
+            Mērogojiet savu AI automatizāciju ar plāniem, kas aug līdzi jūsu biznesam
           </p>
         </div>
         
@@ -81,7 +81,7 @@ const Pricing = () => {
             >
               {plan.popular && (
                 <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1 bg-primary text-primary-foreground text-sm rounded-full font-medium">
-                  Most Popular
+                  Populārākais
                 </div>
               )}
               
@@ -126,7 +126,7 @@ const Pricing = () => {
         </div>
         
         <div className="text-center text-muted-foreground">
-          Have questions? <a href="#" className="text-primary hover:underline">Contact our sales team</a>
+          Ir jautājumi? <a href="#" className="text-primary hover:underline">Sazinieties ar mūsu komandu</a>
         </div>
       </div>
     </section>
