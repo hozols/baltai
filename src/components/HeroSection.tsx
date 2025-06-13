@@ -1,22 +1,16 @@
-
 import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import TaskBoard from './TaskBoard';
 import { Loader } from 'lucide-react';
-
 const HeroSection = () => {
   const [isVisible, setIsVisible] = useState(false);
-
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsVisible(true);
     }, 300);
-
     return () => clearTimeout(timer);
   }, []);
-
-  return (
-    <section className="relative w-full py-12 md:py-20 px-6 md:px-12 flex flex-col items-center justify-center overflow-hidden bg-background">
+  return <section className="relative w-full py-12 md:py-20 px-6 md:px-12 flex flex-col items-center justify-center overflow-hidden bg-background">
       {/* Cosmic particle effect (background dots) */}
       <div className="absolute inset-0 cosmic-grid opacity-30"></div>
       
@@ -51,9 +45,7 @@ const HeroSection = () => {
           </Button>
         </div>
         
-        <div className="pt-6 text-sm text-muted-foreground">
-          Nav nepieciešama kredītkarte • Bezmaksas 14 dienu izmēģinājums
-        </div>
+        <div className="pt-6 text-sm text-muted-foreground"> Bezmaksas 14 dienu izmēģinājums</div>
       </div>
       
       {/* Task Manager UI integrated in hero section with glassmorphic effect */}
@@ -165,8 +157,6 @@ const HeroSection = () => {
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default HeroSection;
