@@ -10,10 +10,9 @@ import { Switch } from '@/components/ui/switch';
 const Header = () => {
   const [activePage, setActivePage] = useState('features');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [isDarkMode, setIsDarkMode] = useState(false); // Default to light mode
+  const [isDarkMode, setIsDarkMode] = useState(false);
   
   useEffect(() => {
-    // Apply the theme to the document when it changes
     if (isDarkMode) {
       document.documentElement.classList.remove('light-mode');
       document.documentElement.classList.add('dark-mode');
@@ -25,11 +24,23 @@ const Header = () => {
   
   const handleNavClick = (page: string) => (e: React.MouseEvent) => {
     e.preventDefault();
+    console.log(`Attempting to scroll to: ${page}`);
     setActivePage(page);
-    const element = document.getElementById(page);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
+    
+    // Small delay to ensure the page has rendered
+    setTimeout(() => {
+      const element = document.getElementById(page);
+      console.log(`Found element for ${page}:`, element);
+      if (element) {
+        element.scrollIntoView({ 
+          behavior: 'smooth',
+          block: 'start'
+        });
+      } else {
+        console.warn(`Element with id '${page}' not found`);
+      }
+    }, 100);
+    
     setMobileMenuOpen(false);
   };
 
@@ -48,7 +59,6 @@ const Header = () => {
           <Logo />
         </div>
         
-        {/* Mobile menu button */}
         <button 
           className="md:hidden p-3 rounded-2xl text-muted-foreground hover:text-foreground"
           onClick={toggleMobileMenu}
@@ -56,7 +66,6 @@ const Header = () => {
           {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
         
-        {/* Desktop navigation */}
         <nav className="hidden md:flex items-center absolute left-1/2 transform -translate-x-1/2">
           <div className="rounded-full px-1 py-1 backdrop-blur-md bg-background/80 border border-border shadow-lg">
             <ToggleGroup type="single" value={activePage} onValueChange={(value) => value && setActivePage(value)}>
@@ -78,7 +87,7 @@ const Header = () => {
                 )}
                 onClick={handleNavClick('dashboard')}
               >
-                <LayoutDashboard size={16} className="inline-block mr-1.5" /> Pārskats
+                <LayoutDashboard size={16} className="inline-block mr-1.5" /> Risinājumi
               </ToggleGroupItem>
               <ToggleGroupItem 
                 value="pricing" 
@@ -94,7 +103,6 @@ const Header = () => {
           </div>
         </nav>
         
-        {/* Mobile navigation */}
         {mobileMenuOpen && (
           <div className="md:hidden absolute top-20 left-4 right-4 bg-background/95 backdrop-blur-md py-4 px-6 border border-border rounded-2xl shadow-lg z-50">
             <div className="flex flex-col gap-4">
@@ -114,7 +122,7 @@ const Header = () => {
                 }`}
                 onClick={handleNavClick('dashboard')}
               >
-                <LayoutDashboard size={16} className="inline-block mr-1.5" /> Pārskats
+                <LayoutDashboard size={16} className="inline-block mr-1.5" /> Risinājumi
               </a>
               <a 
                 href="#pricing" 
@@ -126,7 +134,6 @@ const Header = () => {
                 <DollarSign size={16} className="inline-block mr-1.5" /> Cenas
               </a>
               
-              {/* Add theme toggle for mobile */}
               <div className="flex items-center justify-between px-3 py-2">
                 <span className="text-sm text-muted-foreground">Tēma</span>
                 <div className="flex items-center gap-2">
@@ -144,7 +151,6 @@ const Header = () => {
         )}
         
         <div className="hidden md:flex items-center gap-4">
-          {/* Theme toggle for desktop */}
           <div className="flex items-center gap-2 rounded-full px-3 py-2">
             <Moon size={18} className={`${isDarkMode ? 'text-primary' : 'text-muted-foreground'}`} />
             <Switch 
