@@ -2,8 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import TaskBoard from './TaskBoard';
 import { Loader } from 'lucide-react';
+import { useLanguage } from '@/contexts/LanguageContext';
+import { useNavigate } from 'react-router-dom';
 const HeroSection = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const { t } = useLanguage();
+  const navigate = useNavigate();
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsVisible(true);
@@ -23,27 +27,31 @@ const HeroSection = () => {
         <div className="flex justify-center">
           <span className="inline-flex items-center gap-2 px-3 py-1 text-xs font-medium rounded-full bg-muted text-primary">
             <span className="flex h-2 w-2 rounded-full bg-primary"></span>
-            Jauni AI risinājumi
+{t('hero.badge')}
             <Loader className="h-3 w-3 animate-spin text-primary" />
           </span>
         </div>
         
         <h1 className="text-4xl md:text-6xl lg:text-7xl font-medium tracking-tighter text-balance text-foreground">
-          AI automatizācija <span className="text-primary">augošiem</span> uzņēmumiem
+          AI automatizācija <span className="text-primary">{t('hero.title.highlight')}</span> uzņēmumiem
         </h1>
         
         <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto text-balance">
-          Optimizējiet savus biznesa procesus ar mūsu visaptverošajiem AI risinājumiem. Radīts moderniem uzņēmumiem, kas novērtē efektivitāti, precizitāti un mērogojamu izaugsmi.
+          {t('hero.description')}
         </p>
         
         <div className="flex flex-col sm:flex-row gap-4 justify-center pt-6 items-center">
           
-          <Button variant="outline" className="border-border text-foreground hover:bg-accent hover:text-accent-foreground text-base h-12 px-8 transition-all duration-200 min-h-[48px]">
-            Rezervēt demonstrāciju
+          <Button 
+            variant="outline" 
+            className="border-border text-foreground hover:bg-accent hover:text-accent-foreground text-base h-12 px-8 transition-all duration-200 min-h-[48px]"
+            onClick={() => navigate('/contact')}
+          >
+            {t('hero.cta.demo')}
           </Button>
         </div>
         
-        <div className="pt-6 text-sm text-muted-foreground"> Bezmaksas 14 dienu izmēģinājums</div>
+        <div className="pt-6 text-sm text-muted-foreground">{t("hero.trial")}</div>
       </div>
       
       {/* Task Manager UI integrated in hero section with glassmorphic effect */}
@@ -56,7 +64,7 @@ const HeroSection = () => {
                 <div className="h-8 w-8 rounded-md bg-muted flex items-center justify-center">
                   <div className="h-3 w-3 rounded-sm bg-foreground"></div>
                 </div>
-                <span className="text-foreground font-medium">AI Automatizācijas Panelis</span>
+                <span className="text-foreground font-medium">{t('hero.dashboard.title')}</span>
               </div>
               
               <div className="flex items-center gap-3">
@@ -68,7 +76,7 @@ const HeroSection = () => {
                 </div>
                 
                 <div className="h-8 px-3 rounded-md bg-muted flex items-center justify-center text-foreground text-sm">
-                  Dalīties
+                  {t('hero.dashboard.share')}
                 </div>
               </div>
             </div>
@@ -82,19 +90,19 @@ const HeroSection = () => {
                   <div className="space-y-1">
                     <div className="flex items-center gap-3 px-3 py-2 rounded-md bg-muted text-foreground">
                       <div className="h-3 w-3 rounded-sm bg-foreground"></div>
-                      <span>AI Darbinieki</span>
+                      <span>{t('hero.dashboard.nav.workers')}</span>
                     </div>
                     <div className="flex items-center gap-3 px-3 py-2 rounded-md text-muted-foreground hover:bg-muted/50">
                       <div className="h-3 w-3 rounded-sm bg-muted-foreground/30"></div>
-                      <span>Analītika</span>
+                      <span>{t('hero.dashboard.nav.analytics')}</span>
                     </div>
                     <div className="flex items-center gap-3 px-3 py-2 rounded-md text-muted-foreground hover:bg-muted/50">
                       <div className="h-3 w-3 rounded-sm bg-muted-foreground/30"></div>
-                      <span>Automatizācija</span>
+                      <span>{t('hero.dashboard.nav.automation')}</span>
                     </div>
                     <div className="flex items-center gap-3 px-3 py-2 rounded-md text-muted-foreground hover:bg-muted/50">
                       <div className="h-3 w-3 rounded-sm bg-muted-foreground/30"></div>
-                      <span>Atskaites</span>
+                      <span>{t('hero.dashboard.nav.reports')}</span>
                     </div>
                   </div>
                 </div>
@@ -104,15 +112,15 @@ const HeroSection = () => {
                   <div className="space-y-1">
                     <div className="flex items-center gap-3 px-3 py-2 rounded-md text-muted-foreground hover:bg-muted/50">
                       <div className="h-3 w-3 rounded-full bg-muted-foreground/60"></div>
-                      <span>Čatboti</span>
+                      <span>{t('hero.dashboard.departments.chatbots')}</span>
                     </div>
                     <div className="flex items-center gap-3 px-3 py-2 rounded-md text-muted-foreground hover:bg-muted/50">
                       <div className="h-3 w-3 rounded-full bg-muted-foreground/50"></div>
-                      <span>Dokumenti</span>
+                      <span>{t('hero.dashboard.departments.documents')}</span>
                     </div>
                     <div className="flex items-center gap-3 px-3 py-2 rounded-md text-muted-foreground hover:bg-muted/50">
                       <div className="h-3 w-3 rounded-full bg-muted-foreground/40"></div>
-                      <span>Procesi</span>
+                      <span>{t('hero.dashboard.departments.processes')}</span>
                     </div>
                   </div>
                 </div>
@@ -123,7 +131,7 @@ const HeroSection = () => {
                 {/* Board Header */}
                 <div className="flex items-center justify-between mb-6 min-w-0">
                   <div className="flex items-center gap-2 flex-shrink-0">
-                    <h3 className="font-medium text-foreground">AI Uzdevumi</h3>
+                    <h3 className="font-medium text-foreground">{t('hero.dashboard.tasks')}</h3>
                     <span className="text-xs bg-muted px-2 py-1 rounded-full text-muted-foreground">23</span>
                   </div>
                   
@@ -141,7 +149,7 @@ const HeroSection = () => {
                       </svg>
                     </div>
                     <div className="h-8 px-3 rounded-md bg-foreground text-background flex items-center justify-center text-sm font-medium whitespace-nowrap">
-                      Jauns AI Uzdevums
+                      {t('hero.dashboard.new_task')}
                     </div>
                   </div>
                 </div>

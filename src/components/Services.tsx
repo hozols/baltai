@@ -3,50 +3,55 @@ import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Bot, MessageSquare, Zap, FileText, BarChart3, Lightbulb } from 'lucide-react';
+import { useLanguage } from '@/contexts/LanguageContext';
+import { useNavigate } from 'react-router-dom';
 
 const Services = () => {
+  const { t } = useLanguage();
+  const navigate = useNavigate();
+  
   const services = [
     {
       icon: <Bot className="h-8 w-8 text-primary" />,
-      title: "AI Darbinieki",
-      subtitle: "Gatavi izmantošanai AI darbinieki, kas nevainojami integrējas jūsu komandā",
-      description: "Pielāgoti apmācīti AI darbinieki, kas var veikt specifiskus uzdevumus un darba plūsmas, ar iebūvētām zināšanām un pielāgojamām prasmēm. Sākot no €350.",
-      price: "Sākot no €350"
+      title: t('services.workers.title'),
+      subtitle: t('services.workers.subtitle'),
+      description: t('services.workers.description'),
+      price: t('services.workers.price')
     },
     {
       icon: <MessageSquare className="h-8 w-8 text-primary" />,
-      title: "AI Čatboti",
-      subtitle: "Inteliģenti sarunu aģenti 24/7 klientu atbalstam",
-      description: "Moderni čatboti, kas darbojas ar jaunāko AI tehnoloģiju, nodrošinot tūlītēju atbalstu un uzlabojot klientu apmierinātību. Sākot no €300.",
-      price: "Sākot no €300"
+      title: t('services.chatbots.title'),
+      subtitle: t('services.chatbots.subtitle'),
+      description: t('services.chatbots.description'),
+      price: t('services.chatbots.price')
     },
     {
       icon: <Zap className="h-8 w-8 text-primary" />,
-      title: "Procesu Automatizācija",
-      subtitle: "Optimizējiet darbības ar inteliģento automatizāciju",
-      description: "Pilnīgi automatizācijas risinājumi, kas optimizē darba plūsmas, samazina izmaksas un uzlabo efektivitāti. Sākot no €300.",
-      price: "Sākot no €300"
+      title: t('services.automation.title'),
+      subtitle: t('services.automation.subtitle'),
+      description: t('services.automation.description'),
+      price: t('services.automation.price')
     },
     {
       icon: <FileText className="h-8 w-8 text-primary" />,
-      title: "Dokumentu Apstrāde",
-      subtitle: "Automatizēta dokumentu ģenerēšana un analīze",
-      description: "Inteliģentas sistēmas dokumentu veidošanai, apstrādei un analīzei, samazinot manuālo darbu un kļūdas.",
-      price: "Pēc pieprasījuma"
+      title: t('services.documents.title'),
+      subtitle: t('services.documents.subtitle'),
+      description: t('services.documents.description'),
+      price: t('services.documents.price')
     },
     {
       icon: <BarChart3 className="h-8 w-8 text-primary" />,
-      title: "Datu Intelekts",
-      subtitle: "Pārvērtiet savus datus rīcībspējīgos ieskatos",
-      description: "Moderna datu analītika un AI veidoti ieskati labāku biznesa lēmumu pieņemšanai un iespēju identificēšanai.",
-      price: "Pēc pieprasījuma"
+      title: t('services.intelligence.title'),
+      subtitle: t('services.intelligence.subtitle'),
+      description: t('services.intelligence.description'),
+      price: t('services.intelligence.price')
     },
     {
       icon: <Lightbulb className="h-8 w-8 text-primary" />,
-      title: "Pielāgoti AI Risinājumi",
-      subtitle: "Individuāli AI risinājumi unikāliem izaicinājumiem",
-      description: "Īpaši izstrādāti AI risinājumi, kas veidoti atbilstoši jūsu biznesa vajadzībām un nozares prasībām.",
-      price: "Pēc pieprasījuma"
+      title: t('services.custom.title'),
+      subtitle: t('services.custom.subtitle'),
+      description: t('services.custom.description'),
+      price: t('services.custom.price')
     }
   ];
 
@@ -55,10 +60,10 @@ const Services = () => {
       <div className="max-w-7xl mx-auto space-y-16">
         <div className="text-center space-y-4 max-w-3xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-medium tracking-tighter text-foreground">
-            Mūsu AI Pakalpojumi
+            {t('services.title')}
           </h2>
           <p className="text-muted-foreground text-lg">
-            Visaptveroši AI risinājumi, kas transformē jūsu biznesa procesus un uzlabo efektivitāti
+            {t('services.description')}
           </p>
         </div>
         
@@ -89,8 +94,11 @@ const Services = () => {
                   <div className="text-lg font-semibold text-foreground">
                     {service.price}
                   </div>
-                  <Button className="w-full bg-primary text-primary-foreground hover:bg-primary/90">
-                    Uzzināt vairāk
+                  <Button 
+                    className="w-full bg-primary text-primary-foreground hover:bg-primary/90"
+                    onClick={() => navigate('/contact')}
+                  >
+                    {t('services.learn_more')}
                   </Button>
                 </div>
               </CardContent>
@@ -101,17 +109,24 @@ const Services = () => {
         <div className="text-center">
           <div className="space-y-4">
             <h3 className="text-2xl font-medium tracking-tighter text-foreground">
-              Gatavi sākt?
+              {t('services.cta.title')}
             </h3>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              Sazinieties ar mums, lai apspriestu, kā AI var transformēt jūsu biznesu un palīdzēt sasniegt jaunos mērķus.
+              {t('services.cta.description')}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
-              <Button className="bg-primary text-primary-foreground hover:bg-primary/90 px-8">
-                Sazinaties ar mums
+              <Button 
+                className="bg-primary text-primary-foreground hover:bg-primary/90 px-8"
+                onClick={() => navigate('/contact')}
+              >
+                {t('services.cta.contact')}
               </Button>
-              <Button variant="outline" className="border-border text-foreground hover:bg-muted px-8">
-                Bezmaksas konsultācija
+              <Button 
+                variant="outline" 
+                className="border-border text-foreground hover:bg-muted px-8"
+                onClick={() => navigate('/contact')}
+              >
+                {t('services.cta.consultation')}
               </Button>
             </div>
           </div>

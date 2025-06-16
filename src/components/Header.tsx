@@ -2,15 +2,20 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import Logo from './Logo';
-import { Menu, X, CircleDot, LayoutDashboard, DollarSign, Sun, Moon } from 'lucide-react';
+import { Menu, X, CircleDot, LayoutDashboard, DollarSign, Sun, Moon, Globe, MessageCircle } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group';
 import { Switch } from '@/components/ui/switch';
+import { useLanguage } from '@/contexts/LanguageContext';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 const Header = () => {
   const [activePage, setActivePage] = useState('features');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
+  const { language, setLanguage, t } = useLanguage();
+  const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     if (isDarkMode) {
@@ -22,25 +27,48 @@ const Header = () => {
     }
   }, [isDarkMode]);
 
+  useEffect(() => {
+    // Set active page based on current route
+    if (location.pathname === '/contact') {
+      setActivePage('contact');
+    } else {
+      setActivePage('features'); // Default for home page
+    }
+  }, [location.pathname]);
+
   const handleNavClick = (page: string) => (e: React.MouseEvent) => {
     e.preventDefault();
-    console.log(`Attempting to scroll to: ${page}`);
     setActivePage(page);
-
-    // Small delay to ensure the page has rendered
-    setTimeout(() => {
-      const element = document.getElementById(page);
-      console.log(`Found element for ${page}:`, element);
-      if (element) {
-        element.scrollIntoView({
-          behavior: 'smooth',
-          block: 'start'
-        });
-      } else {
-        console.warn(`Element with id '${page}' not found`);
-      }
-    }, 100);
     setMobileMenuOpen(false);
+
+    if (page === 'contact') {
+      // Navigate to contact page
+      navigate('/contact');
+    } else {
+      // For home page sections, first navigate to home if not already there
+      if (location.pathname !== '/') {
+        navigate('/');
+        // Wait for navigation then scroll
+        setTimeout(() => {
+          const element = document.getElementById(page);
+          if (element) {
+            element.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start'
+            });
+          }
+        }, 100);
+      } else {
+        // Already on home page, just scroll
+        const element = document.getElementById(page);
+        if (element) {
+          element.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      }
+    }
   };
 
   const toggleMobileMenu = () => {
@@ -49,6 +77,10 @@ const Header = () => {
 
   const toggleTheme = () => {
     setIsDarkMode(!isDarkMode);
+  };
+
+  const toggleLanguage = () => {
+    setLanguage(language === 'lv' ? 'en' : 'lv');
   };
 
   return (
@@ -70,21 +102,28 @@ const Header = () => {
                 className={cn("px-4 py-2 rounded-full transition-colors relative", activePage === 'features' ? 'text-accent-foreground bg-accent' : 'text-muted-foreground hover:text-foreground hover:bg-muted')} 
                 onClick={handleNavClick('features')}
               >
-                <CircleDot size={16} className="inline-block mr-1.5" /> Iespējas
+                <CircleDot size={16} className="inline-block mr-1.5" /> {t('nav.features')}
               </ToggleGroupItem>
               <ToggleGroupItem 
                 value="risinājumi" 
                 className={cn("px-4 py-2 rounded-full transition-colors relative", activePage === 'risinājumi' ? 'text-accent-foreground bg-accent' : 'text-muted-foreground hover:text-foreground hover:bg-muted')} 
                 onClick={handleNavClick('features')}
               >
-                <LayoutDashboard size={16} className="inline-block mr-1.5" /> Risinājumi
+                <LayoutDashboard size={16} className="inline-block mr-1.5" /> {t('nav.solutions')}
               </ToggleGroupItem>
               <ToggleGroupItem 
                 value="pricing" 
                 className={cn("px-4 py-2 rounded-full transition-colors relative", activePage === 'pricing' ? 'text-accent-foreground bg-accent' : 'text-muted-foreground hover:text-foreground hover:bg-muted')} 
                 onClick={handleNavClick('pricing')}
               >
-                <DollarSign size={16} className="inline-block mr-1.5" /> Cenas
+                <DollarSign size={16} className="inline-block mr-1.5" /> {t('nav.pricing')}
+              </ToggleGroupItem>
+              <ToggleGroupItem 
+                value="contact" 
+                className={cn("px-4 py-2 rounded-full transition-colors relative", activePage === 'contact' ? 'text-accent-foreground bg-accent' : 'text-muted-foreground hover:text-foreground hover:bg-muted')} 
+                onClick={handleNavClick('contact')}
+              >
+                <MessageCircle size={16} className="inline-block mr-1.5" /> {t('nav.contact')}
               </ToggleGroupItem>
             </ToggleGroup>
           </div>
@@ -98,30 +137,48 @@ const Header = () => {
                 className={`px-3 py-2 text-sm rounded-md transition-colors ${activePage === 'features' ? 'bg-accent text-accent-foreground' : 'text-muted-foreground hover:text-foreground hover:bg-muted'}`} 
                 onClick={handleNavClick('features')}
               >
-                <CircleDot size={16} className="inline-block mr-1.5" /> Iespējas
+                <CircleDot size={16} className="inline-block mr-1.5" /> {t('nav.features')}
               </a>
               <a 
                 href="#features" 
                 className={`px-3 py-2 text-sm rounded-md transition-colors ${activePage === 'risinājumi' ? 'bg-accent text-accent-foreground' : 'text-muted-foreground hover:text-foreground hover:bg-muted'}`} 
                 onClick={handleNavClick('features')}
               >
-                <LayoutDashboard size={16} className="inline-block mr-1.5" /> Risinājumi
+                <LayoutDashboard size={16} className="inline-block mr-1.5" /> {t('nav.solutions')}
               </a>
               <a 
                 href="#pricing" 
                 className={`px-3 py-2 text-sm rounded-md transition-colors ${activePage === 'pricing' ? 'bg-accent text-accent-foreground' : 'text-muted-foreground hover:text-foreground hover:bg-muted'}`} 
                 onClick={handleNavClick('pricing')}
               >
-                <DollarSign size={16} className="inline-block mr-1.5" /> Cenas
+                <DollarSign size={16} className="inline-block mr-1.5" /> {t('nav.pricing')}
+              </a>
+              <a 
+                href="/contact" 
+                className={`px-3 py-2 text-sm rounded-md transition-colors ${activePage === 'contact' ? 'bg-accent text-accent-foreground' : 'text-muted-foreground hover:text-foreground hover:bg-muted'}`} 
+                onClick={handleNavClick('contact')}
+              >
+                <MessageCircle size={16} className="inline-block mr-1.5" /> {t('nav.contact')}
               </a>
               
               <div className="flex items-center justify-between px-3 py-2">
-                <span className="text-sm text-muted-foreground">Tēma</span>
+                <span className="text-sm text-muted-foreground">{t('nav.theme')}</span>
                 <div className="flex items-center gap-2">
                   <Moon size={16} className={`${isDarkMode ? 'text-primary' : 'text-muted-foreground'}`} />
                   <Switch checked={!isDarkMode} onCheckedChange={toggleTheme} className="data-[state=checked]:bg-primary" />
                   <Sun size={16} className={`${!isDarkMode ? 'text-primary' : 'text-muted-foreground'}`} />
                 </div>
+              </div>
+              
+              <div className="flex items-center justify-between px-3 py-2">
+                <span className="text-sm text-muted-foreground">Language</span>
+                <button 
+                  onClick={toggleLanguage}
+                  className="flex items-center gap-2 px-2 py-1 rounded-md hover:bg-muted transition-colors"
+                >
+                  <Globe size={16} className="text-primary" />
+                  <span className="text-sm font-medium text-foreground">{language.toUpperCase()}</span>
+                </button>
               </div>
             </div>
           </div>
@@ -133,9 +190,13 @@ const Header = () => {
             <Switch checked={!isDarkMode} onCheckedChange={toggleTheme} className="data-[state=checked]:bg-primary" />
             <Sun size={18} className={`${!isDarkMode ? 'text-primary' : 'text-muted-foreground'}`} />
           </div>
-          <div className="rounded-2xl">
-            
-          </div>
+          <button 
+            onClick={toggleLanguage}
+            className="flex items-center gap-2 px-3 py-2 rounded-full border border-border hover:bg-accent hover:text-accent-foreground transition-colors"
+          >
+            <Globe size={18} className="text-primary" />
+            <span className="text-sm font-medium">{language.toUpperCase()}</span>
+          </button>
         </div>
       </header>
     </div>
