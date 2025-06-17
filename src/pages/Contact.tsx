@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
+import emailjs from '@emailjs/browser';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -47,12 +48,28 @@ const Contact = () => {
   const onSubmit = async (data: ContactFormData) => {
     setIsSubmitting(true);
     
-    // Simulate form submission
     try {
-      // In a real app, you would send this to your backend
-      await new Promise(resolve => setTimeout(resolve, 2000));
+      // EmailJS configuration
+      const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID || 'service_baltai';
+      const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID || 'template_contact';
+      const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY || 'YOUR_EMAILJS_PUBLIC_KEY';
       
-      console.log('Form submitted:', data);
+      // Prepare email parameters
+      const emailParams = {
+        to_email: 'h11ozols@gmail.com',
+        from_name: data.name,
+        from_email: data.email,
+        company: data.company || 'Not provided',
+        phone: data.phone || 'Not provided',
+        service: data.service,
+        message: data.message,
+        reply_to: data.email,
+      };
+      
+      // Send email via EmailJS
+      await emailjs.send(serviceId, templateId, emailParams, publicKey);
+      
+      console.log('Email sent successfully:', data);
       setIsSubmitted(true);
       reset();
       
@@ -62,6 +79,7 @@ const Contact = () => {
         variant: "default",
       });
     } catch (error) {
+      console.error('EmailJS error:', error);
       toast({
         title: "Error",
         description: t('contact.form.error'),

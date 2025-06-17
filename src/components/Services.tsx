@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Bot, MessageSquare, Zap, FileText, BarChart3, Lightbulb } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useNavigate } from 'react-router-dom';
+import PricingTiers from './PricingTiers';
 
 const Services = () => {
   const { t } = useLanguage();
@@ -16,42 +17,36 @@ const Services = () => {
       title: t('services.workers.title'),
       subtitle: t('services.workers.subtitle'),
       description: t('services.workers.description'),
-      price: t('services.workers.price')
     },
     {
       icon: <MessageSquare className="h-8 w-8 text-primary" />,
       title: t('services.chatbots.title'),
       subtitle: t('services.chatbots.subtitle'),
       description: t('services.chatbots.description'),
-      price: t('services.chatbots.price')
     },
     {
       icon: <Zap className="h-8 w-8 text-primary" />,
       title: t('services.automation.title'),
       subtitle: t('services.automation.subtitle'),
       description: t('services.automation.description'),
-      price: t('services.automation.price')
     },
     {
       icon: <FileText className="h-8 w-8 text-primary" />,
       title: t('services.documents.title'),
       subtitle: t('services.documents.subtitle'),
       description: t('services.documents.description'),
-      price: t('services.documents.price')
     },
     {
       icon: <BarChart3 className="h-8 w-8 text-primary" />,
       title: t('services.intelligence.title'),
       subtitle: t('services.intelligence.subtitle'),
       description: t('services.intelligence.description'),
-      price: t('services.intelligence.price')
     },
     {
       icon: <Lightbulb className="h-8 w-8 text-primary" />,
       title: t('services.custom.title'),
       subtitle: t('services.custom.subtitle'),
       description: t('services.custom.description'),
-      price: t('services.custom.price')
     }
   ];
 
@@ -90,10 +85,7 @@ const Services = () => {
                   {service.description}
                 </p>
                 
-                <div className="space-y-4">
-                  <div className="text-lg font-semibold text-foreground">
-                    {service.price}
-                  </div>
+                <div>
                   <Button 
                     className="w-full bg-primary text-primary-foreground hover:bg-primary/90"
                     onClick={() => navigate('/contact')}
@@ -105,6 +97,8 @@ const Services = () => {
             </Card>
           ))}
         </div>
+        
+        <PricingTiers />
         
         <div className="text-center">
           <div className="space-y-4">
