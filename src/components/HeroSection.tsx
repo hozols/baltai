@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
-import { Loader } from 'lucide-react';
+import { Loader, Sparkles, Zap } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { useNavigate } from 'react-router-dom';
+import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 const HeroSection = () => {
   const [isVisible, setIsVisible] = useState(false);
   const { t } = useLanguage();
-  const navigate = useNavigate();
+  const { ref: heroRef, isVisible: isHeroVisible } = useScrollAnimation({ threshold: 0.1 });
+  const { ref: showcaseRef, isVisible: isShowcaseVisible } = useScrollAnimation({ threshold: 0.2 });
+  
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsVisible(true);
@@ -19,43 +21,75 @@ const HeroSection = () => {
       
       {/* Gradient glow effect */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full">
-        <div className="w-full h-full opacity-10 bg-primary blur-[120px]"></div>
+        <div className="w-full h-full opacity-10 bg-primary blur-[120px] animate-pulse-glow"></div>
+      </div>
+      
+      {/* Floating particles animation */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute top-1/4 left-1/4 w-2 h-2 bg-primary/30 rounded-full animate-bounce-subtle"></div>
+        <div className="absolute top-1/3 right-1/4 w-1 h-1 bg-primary/40 rounded-full animate-bounce-subtle animate-delay-200"></div>
+        <div className="absolute bottom-1/3 left-1/3 w-1.5 h-1.5 bg-primary/20 rounded-full animate-bounce-subtle animate-delay-400"></div>
+        <div className="absolute top-2/3 right-1/3 w-1 h-1 bg-primary/30 rounded-full animate-bounce-subtle animate-delay-600"></div>
       </div>
       
       <div className={`relative z-10 max-w-4xl text-center space-y-6 transition-all duration-700 transform ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
         <div className="flex justify-center">
-          <span className="inline-flex items-center gap-2 px-3 py-1 text-xs font-medium rounded-full bg-muted text-primary">
-            <span className="flex h-2 w-2 rounded-full bg-primary"></span>
-{t('hero.badge')}
+          <span className="inline-flex items-center gap-2 px-3 py-1 text-xs font-medium rounded-full bg-muted text-primary hover-glow animate-fade-in-up">
+            <span className="flex h-2 w-2 rounded-full bg-primary animate-pulse"></span>
+            <Sparkles className="h-3 w-3 text-primary animate-pulse-glow" />
+            {t('hero.badge')}
             <Loader className="h-3 w-3 animate-spin text-primary" />
           </span>
         </div>
         
-        <h1 className="text-4xl md:text-6xl lg:text-7xl font-medium tracking-tighter text-balance text-foreground">
-          AI automatizācija <span className="text-primary">{t('hero.title.highlight')}</span> uzņēmumiem
+        <h1 className="text-4xl md:text-6xl lg:text-7xl font-medium tracking-tighter text-balance text-foreground animate-fade-in-up animate-delay-200">
+          AI automatizācija <span className="text-primary animate-shimmer bg-gradient-to-r from-primary via-primary to-primary bg-clip-text">{t('hero.title.highlight')}</span> uzņēmumiem
         </h1>
         
-        <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto text-balance">
+        <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto text-balance animate-fade-in-up animate-delay-400">
           {t('hero.description')}
         </p>
         
-        <div className="flex flex-col sm:flex-row gap-4 justify-center pt-6 items-center">
-          
+        <div className="flex flex-col sm:flex-row gap-4 justify-center pt-6 items-center animate-fade-in-up animate-delay-600">
+          <Button 
+            variant="default" 
+            className="btn-magnetic hover-glow bg-primary text-primary-foreground text-base h-12 px-8 transition-all duration-200 min-h-[48px] group"
+            onClick={() => {
+              const element = document.getElementById('contact');
+              if (element) {
+                element.scrollIntoView({
+                  behavior: 'smooth',
+                  block: 'start'
+                });
+              }
+            }}
+          >
+            <Zap className="h-4 w-4 mr-2 group-hover:animate-pulse" />
+            {t('hero.cta.demo')}
+          </Button>
           <Button 
             variant="outline" 
-            className="border-border text-foreground hover:bg-accent hover:text-accent-foreground text-base h-12 px-8 transition-all duration-200 min-h-[48px]"
-            onClick={() => navigate('/contact')}
+            className="border-border text-foreground hover:bg-accent hover:text-accent-foreground text-base h-12 px-8 hover-lift min-h-[48px]"
+            onClick={() => {
+              const element = document.getElementById('contact');
+              if (element) {
+                element.scrollIntoView({
+                  behavior: 'smooth',
+                  block: 'start'
+                });
+              }
+            }}
           >
             {t('hero.cta.demo')}
           </Button>
         </div>
         
-        <div className="pt-6 text-sm text-muted-foreground">{t("hero.trial")}</div>
+        <div className="pt-6 text-sm text-muted-foreground animate-fade-in-up animate-delay-800">{t("hero.trial")}</div>
       </div>
       
       {/* Service Showcase integrated in hero section with glassmorphic effect */}
-      <div className={`w-full max-w-7xl mt-12 z-10 transition-all duration-1000 delay-500 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'}`}>
-        <div className="cosmic-glow relative rounded-xl overflow-hidden border border-border backdrop-blur-sm bg-card shadow-lg">
+      <div ref={showcaseRef} className={`w-full max-w-7xl mt-12 z-10 scroll-fade-in ${isShowcaseVisible ? 'animate-in' : ''}`}>
+        <div className="cosmic-glow relative rounded-xl overflow-hidden border border-border backdrop-blur-sm bg-card shadow-lg hover-lift">
           {/* Showcase Header */}
           <div className="bg-card backdrop-blur-md w-full">
             <div className="flex items-center justify-between p-4 border-b border-border">
@@ -146,7 +180,7 @@ const HeroSection = () => {
                 {/* Service Cards Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 overflow-hidden">
                   {/* AI Workers Service */}
-                  <div className="bg-card border border-border rounded-lg p-4 hover:shadow-md transition-shadow cursor-pointer">
+                  <div className="bg-card border border-border rounded-lg p-4 hover:shadow-md transition-all duration-300 cursor-pointer hover-lift hover-glow group">
                     <div className="flex items-center gap-3 mb-3">
                       <div className="h-8 w-8 rounded-md bg-primary/20 flex items-center justify-center">
                         <div className="h-4 w-4 rounded-sm bg-primary"></div>

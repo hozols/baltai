@@ -6,21 +6,26 @@ import Services from '@/components/Services';
 import Features from '@/components/Features';
 import Testimonials from '@/components/Testimonials';
 import Pricing from '@/components/Pricing';
+import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
+import PageTransition from '@/components/PageTransition';
 
 const Index = () => {
   return (
-    <div className="min-h-screen flex flex-col bg-background text-foreground">
-      <Header />
-      <main>
-        <HeroSection />
-        <Services />
-        <Features />
-        <Testimonials />
-        <Pricing />
-      </main>
-      <Footer />
-    </div>
+    <PageTransition>
+      <div className="min-h-screen flex flex-col bg-background text-foreground">
+        <Header />
+        <main>
+          <HeroSection />
+          <Services />
+          <Features />
+          <Testimonials />
+          <Pricing />
+          <Contact />
+        </main>
+        <Footer />
+      </div>
+    </PageTransition>
   );
 };
 
