@@ -25,7 +25,7 @@ const translations = {
     'hero.title': 'AI automatizācija augošiem uzņēmumiem',
     'hero.title.highlight': 'augošiem',
     'hero.description': 'Optimizējiet savus biznesa procesus ar mūsu visaptverošajiem AI risinājumiem. Radīts moderniem uzņēmumiem, kas novērtē efektivitāti, precizitāti un mērogojamu izaugsmi.',
-    'hero.cta.demo': 'Rezervēt demonstrāciju',
+    'hero.cta.demo': 'Rezervēt bezmaksas konsultāciju',
     'hero.trial': 'Bezmaksas 14 dienu izmēģinājums',
     'hero.showcase.title': 'Mūsu AI Risinājumi',
     'hero.showcase.view_all': 'Skatīt visus',

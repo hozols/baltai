@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import Logo from './Logo';
 import { Menu, X, CircleDot, LayoutDashboard, DollarSign, Sun, Moon, Globe, MessageCircle } from 'lucide-react';
@@ -8,11 +8,19 @@ import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group';
 import { Switch } from '@/components/ui/switch';
 import { useLanguage } from '@/contexts/LanguageContext';
 
+const NAV_SECTIONS = [
+  { id: 'services', icon: LayoutDashboard, labelKey: 'nav.solutions' },
+  { id: 'features', icon: CircleDot, labelKey: 'nav.features' },
+  { id: 'pricing', icon: DollarSign, labelKey: 'nav.pricing' },
+  { id: 'contact', icon: MessageCircle, labelKey: 'nav.contact' },
+];
+
 const Header = () => {
-  const [activePage, setActivePage] = useState('features');
+  const [activePage, setActivePage] = useState();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(true);
   const { language, setLanguage, t } = useLanguage();
+  const scrollTimeout = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     if (isDarkMode) {
@@ -23,6 +31,45 @@ const Header = () => {
       document.documentElement.classList.add('light-mode');
     }
   }, [isDarkMode]);
+
+  // --- SCROLL SPY LOGIC ---
+  useEffect(() => {
+    const handleScroll = () => {
+      // Debounce for performance
+      if (scrollTimeout.current) clearTimeout(scrollTimeout.current);
+      scrollTimeout.current = setTimeout(() => {
+        let found = false;
+        // Get current scroll position
+        const scrollY = window.scrollY || window.pageYOffset;
+        // Find the section closest to the top (with some offset for header)
+        let closestSection = NAV_SECTIONS[0].id;
+        let minDistance = Infinity;
+        for (const section of NAV_SECTIONS) {
+          const el = document.getElementById(section.id);
+          if (el) {
+            const rect = el.getBoundingClientRect();
+            const offset = rect.top + window.scrollY;
+            // 120px offset for sticky header, adjust as needed
+            const distance = Math.abs(offset - scrollY - 120);
+            if (distance < minDistance && offset - 120 <= scrollY + 10) {
+              minDistance = distance;
+              closestSection = section.id;
+              found = true;
+            }
+          }
+        }
+        setActivePage(closestSection as typeof activePage);
+      }, 50);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    // Initial check
+    handleScroll();
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      if (scrollTimeout.current) clearTimeout(scrollTimeout.current);
+    };
+  }, []);
 
   const handleNavClick = (page: string) => (e: React.MouseEvent) => {
     e.preventDefault();
@@ -65,34 +112,21 @@ const Header = () => {
         <nav className="hidden md:flex items-center absolute left-1/2 transform -translate-x-1/2">
           <div className="rounded-full px-1 py-1 backdrop-blur-md bg-background/80 border border-border shadow-lg hover-glow transition-all duration-300">
             <ToggleGroup type="single" value={activePage} onValueChange={value => value && setActivePage(value)}>
-              <ToggleGroupItem 
-                value="features" 
-                className={cn("px-4 py-2 rounded-full transition-all duration-300 relative hover-scale group", activePage === 'features' ? 'text-accent-foreground bg-accent' : 'text-muted-foreground hover:text-foreground hover:bg-muted')} 
-                onClick={handleNavClick('features')}
-              >
-                <CircleDot size={16} className="inline-block mr-1.5 group-hover:animate-pulse" /> {t('nav.features')}
-              </ToggleGroupItem>
-              <ToggleGroupItem 
-                value="services" 
-                className={cn("px-4 py-2 rounded-full transition-all duration-300 relative hover-scale group", activePage === 'services' ? 'text-accent-foreground bg-accent' : 'text-muted-foreground hover:text-foreground hover:bg-muted')} 
-                onClick={handleNavClick('services')}
-              >
-                <LayoutDashboard size={16} className="inline-block mr-1.5 group-hover:animate-pulse" /> {t('nav.solutions')}
-              </ToggleGroupItem>
-              <ToggleGroupItem 
-                value="pricing" 
-                className={cn("px-4 py-2 rounded-full transition-all duration-300 relative hover-scale group", activePage === 'pricing' ? 'text-accent-foreground bg-accent' : 'text-muted-foreground hover:text-foreground hover:bg-muted')} 
-                onClick={handleNavClick('pricing')}
-              >
-                <DollarSign size={16} className="inline-block mr-1.5 group-hover:animate-pulse" /> {t('nav.pricing')}
-              </ToggleGroupItem>
-              <ToggleGroupItem 
-                value="contact" 
-                className={cn("px-4 py-2 rounded-full transition-all duration-300 relative hover-scale group", activePage === 'contact' ? 'text-accent-foreground bg-accent' : 'text-muted-foreground hover:text-foreground hover:bg-muted')} 
-                onClick={handleNavClick('contact')}
-              >
-                <MessageCircle size={16} className="inline-block mr-1.5 group-hover:animate-pulse" /> {t('nav.contact')}
-              </ToggleGroupItem>
+              {NAV_SECTIONS.map(({ id, icon: Icon, labelKey }) => (
+                <ToggleGroupItem
+                  key={id}
+                  value={id}
+                  className={cn(
+                    "px-4 py-2 rounded-full transition-all duration-300 relative hover-scale group",
+                    activePage === id
+                      ? 'text-accent-foreground bg-accent'
+                      : 'text-muted-foreground hover:text-foreground hover:bg-muted'
+                  )}
+                  onClick={handleNavClick(id)}
+                >
+                  <Icon size={16} className="inline-block mr-1.5 group-hover:animate-pulse" /> {t(labelKey)}
+                </ToggleGroupItem>
+              ))}
             </ToggleGroup>
           </div>
         </nav>
@@ -103,34 +137,16 @@ const Header = () => {
             : 'opacity-0 -translate-y-4 pointer-events-none'
         }`}>
             <div className="flex flex-col gap-4">
-              <a 
-                href="#features" 
-                className={`px-3 py-2 text-sm rounded-md transition-all duration-300 hover-lift animate-fade-in-left animate-delay-100 ${activePage === 'features' ? 'bg-accent text-accent-foreground' : 'text-muted-foreground hover:text-foreground hover:bg-muted'}`} 
-                onClick={handleNavClick('features')}
-              >
-                <CircleDot size={16} className="inline-block mr-1.5 animate-pulse" /> {t('nav.features')}
-              </a>
-              <a 
-                href="#services" 
-                className={`px-3 py-2 text-sm rounded-md transition-all duration-300 hover-lift animate-fade-in-left animate-delay-200 ${activePage === 'services' ? 'bg-accent text-accent-foreground' : 'text-muted-foreground hover:text-foreground hover:bg-muted'}`} 
-                onClick={handleNavClick('services')}
-              >
-                <LayoutDashboard size={16} className="inline-block mr-1.5 animate-pulse" /> {t('nav.solutions')}
-              </a>
-              <a 
-                href="#pricing" 
-                className={`px-3 py-2 text-sm rounded-md transition-all duration-300 hover-lift animate-fade-in-left animate-delay-300 ${activePage === 'pricing' ? 'bg-accent text-accent-foreground' : 'text-muted-foreground hover:text-foreground hover:bg-muted'}`} 
-                onClick={handleNavClick('pricing')}
-              >
-                <DollarSign size={16} className="inline-block mr-1.5 animate-pulse" /> {t('nav.pricing')}
-              </a>
-              <a 
-                href="#contact" 
-                className={`px-3 py-2 text-sm rounded-md transition-all duration-300 hover-lift animate-fade-in-left animate-delay-400 ${activePage === 'contact' ? 'bg-accent text-accent-foreground' : 'text-muted-foreground hover:text-foreground hover:bg-muted'}`} 
-                onClick={handleNavClick('contact')}
-              >
-                <MessageCircle size={16} className="inline-block mr-1.5 animate-pulse" /> {t('nav.contact')}
-              </a>
+              {NAV_SECTIONS.map(({ id, icon: Icon, labelKey }, idx) => (
+                <a
+                  key={id}
+                  href={`#${id}`}
+                  className={`px-3 py-2 text-sm rounded-md transition-all duration-300 hover-lift animate-fade-in-left animate-delay-${(idx + 1) * 100} ${activePage === id ? 'bg-accent text-accent-foreground' : 'text-muted-foreground hover:text-foreground hover:bg-muted'}`}
+                  onClick={handleNavClick(id)}
+                >
+                  <Icon size={16} className="inline-block mr-1.5 animate-pulse" /> {t(labelKey)}
+                </a>
+              ))}
               
               <div className="flex items-center justify-between px-3 py-2">
                 <span className="text-sm text-muted-foreground">{t('nav.theme')}</span>

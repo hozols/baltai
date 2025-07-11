@@ -67,21 +67,6 @@ const HeroSection = () => {
             <Zap className="h-4 w-4 mr-2 group-hover:animate-pulse" />
             {t('hero.cta.demo')}
           </Button>
-          <Button 
-            variant="outline" 
-            className="border-border text-foreground hover:bg-accent hover:text-accent-foreground text-base h-12 px-8 hover-lift min-h-[48px]"
-            onClick={() => {
-              const element = document.getElementById('contact');
-              if (element) {
-                element.scrollIntoView({
-                  behavior: 'smooth',
-                  block: 'start'
-                });
-              }
-            }}
-          >
-            {t('hero.cta.demo')}
-          </Button>
         </div>
         
         <div className="pt-6 text-sm text-muted-foreground animate-fade-in-up animate-delay-800">{t("hero.trial")}</div>

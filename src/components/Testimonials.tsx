@@ -4,9 +4,9 @@ import React from 'react';
 const Testimonials = () => {
   const testimonials = [
     {
-      quote: "Mūsu produktivitāte palielinājās par 60% pēc AI darbinieku ieviešanas. Tagad mēs varam fokusēties uz stratēģiskajiem uzdevumiem.",
-      author: "Laura Bērziņa",
-      position: "Direktore, TechLatvia",
+      quote: "Pasūtījām datu analīzes risinājumu publiskajiem iepirkumiem saules paneļu nozarē, un šis risinājums mums ļoti palīdzēja tāmejot dažādus objektus un prognozējot konkurentu cenu piedāvājumus.",
+      author: "Dāvids Krastiņš",
+      position: "Direktors, BN Darbi",
       avatar: "bg-primary/30"
     },
     {
@@ -16,9 +16,9 @@ const Testimonials = () => {
       avatar: "bg-primary/20"
     },
     {
-      quote: "Dokumentu apstrāde, kas agrāk aizņēma stundas, tagad tiek pabeigta minūtēs. AI risinājumi mainīja mūsu darba veidu.",
-      author: "Ieva Ozoliņa",
-      position: "Operāciju menedžere, AutomateLatvia",
+      quote: "Dokumentu apstrāde, kas agrāk aizņēma stundas, tagad tiek pabeigti ievērojami ātrāk.",
+      author: "Juris Ozols",
+      position: "Vadītājs, Dalton Nekustamie Īpašumi",
       avatar: "bg-primary/40"
     }
   ];

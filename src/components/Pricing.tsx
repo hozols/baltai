@@ -3,57 +3,54 @@ import React from 'react';
 import { Button } from '@/components/ui/button';
 
 const Pricing = () => {
-  const plans = [
+  const services = [
     {
-      name: "Sākuma",
-      price: "€299",
-      period: "mēnesī",
-      description: "Ideāls maziem uzņēmumiem, kas sāk AI automatizācijas ceļu",
+      title: "AI Čatboti",
+      price: "€300",
+      period: "sākot no",
+      description: "Inteliģenti sarunu aģenti 24/7 klientu atbalstam un pārdošanai",
       features: [
-        "1 AI darbinieks",
-        "Pamata čatbots",
-        "Līdz 1000 uzdevumiem mēnesī",
-        "E-pasta atbalsts",
-        "Pamata analītika"
+        "Daudzvalodu atbalsts",
+        "Integrācija ar esoša\u0161ajām sistēmām",
+        "Reāllaika mācīšanās",
+        "Analītika un pārskati",
+        "Pielāgojams dizains"
       ],
-      buttonText: "Sākt tagad",
-      buttonVariant: "outline",
-      popular: false
+      icon: "💬",
+      highlight: false,
+      buttonText: "Sākt ar čatbotu"
     },
     {
-      name: "Profesionālais",
-      price: "€699",
-      period: "mēnesī",
-      description: "Augošiem uzņēmumiem ar lielāku automatizācijas vajadzību",
+      title: "AI Aģenti",
+      price: "€500",
+      period: "sākot no",
+      description: "Automatizēti AI darbinieki specifiskām darba plūsmām",
       features: [
-        "5 AI darbinieki",
-        "Uzlaboti čatboti",
-        "Līdz 10,000 uzdevumiem mēnesī",
+        "Procesu automatizācija",
         "Dokumentu apstrāde",
-        "Reāllaika analītika",
-        "API piekļuve",
-        "Prioritārs atbalsts"
+        "Datu analīze",
+        "Uzdevumu plānošana",
+        "API integrācijas"
       ],
-      buttonText: "14 dienu izmēģinājums",
-      buttonVariant: "default",
-      popular: true
+      icon: "🤖",
+      highlight: true,
+      buttonText: "Izveidot aģentu"
     },
     {
-      name: "Uzņēmuma",
+      title: "Pielāgoti Risinājumi",
       price: "Pēc pieprasījuma",
-      description: "Lieliem uzņēmumiem ar sarežģītām automatizācijas vajadzībām",
+      period: "",
+      description: "Pilnīgi pielāgoti AI risinājumi sarežģītām vajadzībām",
       features: [
-        "Neierobežoti AI darbinieki",
-        "Pielāgoti risinājumi",
-        "Neierobežoti uzdevumi",
-        "Dedicated infrastruktūra",
+        "Pilna sistēmas integrācija",
         "Apmācības un ieviešana",
-        "Personīgais menedžeris",
-        "24/7 premium atbalsts"
+        "Dedicated atbalsts",
+        "Skalējamas arhitektūras",
+        "Personīgais menedžeris"
       ],
-      buttonText: "Sazināties ar mums",
-      buttonVariant: "outline",
-      popular: false
+      icon: "⚡",
+      highlight: false,
+      buttonText: "Apspriest projektu"
     }
   ];
   
@@ -62,48 +59,49 @@ const Pricing = () => {
       <div className="max-w-7xl mx-auto space-y-16">
         <div className="text-center space-y-4 max-w-3xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-medium tracking-tighter text-foreground">
-            Caurspīdīgas cenas katram posmam
+            AI risinājumi katram budžetam
           </h2>
           <p className="text-muted-foreground text-lg">
-            Mērogojiet savu AI automatizāciju ar plāniem, kas aug līdzi jūsu biznesam
+            Sāciet savu AI ceļojumu ar cenām, kas pieejamas katram uzņēmumam
           </p>
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {plans.map((plan, index) => (
+          {services.map((service, index) => (
             <div 
               key={index}
-              className={`p-6 rounded-xl border flex flex-col h-full ${
-                plan.popular 
+              className={`p-8 rounded-xl border flex flex-col h-full ${
+                service.highlight 
                   ? "border-primary/50 cosmic-glow bg-card" 
                   : "border-border cosmic-gradient bg-card"
-              } transition-all duration-300 relative`}
+              } transition-all duration-300 relative hover:border-primary/30 hover:shadow-lg`}
             >
-              {plan.popular && (
+              {service.highlight && (
                 <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1 bg-primary text-primary-foreground text-sm rounded-full font-medium">
                   Populārākais
                 </div>
               )}
               
               <div className="mb-auto">
-                <h3 className="text-2xl font-medium tracking-tighter mb-1 text-foreground">{plan.name}</h3>
+                <div className="text-4xl mb-4">{service.icon}</div>
+                <h3 className="text-2xl font-medium tracking-tighter mb-3 text-foreground">{service.title}</h3>
                 
                 <div className="mb-4">
-                  <div className="text-3xl font-bold tracking-tighter text-foreground">{plan.price}</div>
-                  {plan.period && <div className="text-sm text-muted-foreground">{plan.period}</div>}
+                  <div className="text-3xl font-bold tracking-tighter text-foreground">{service.price}</div>
+                  {service.period && <div className="text-sm text-muted-foreground">{service.period}</div>}
                 </div>
                 
-                <p className="text-muted-foreground mb-6">{plan.description}</p>
+                <p className="text-muted-foreground mb-6">{service.description}</p>
                 
                 <div className="space-y-3 mb-8">
-                  {plan.features.map((feature, i) => (
-                    <div key={i} className="flex items-center gap-3">
-                      <div className="h-5 w-5 rounded-full bg-primary/20 flex items-center justify-center text-primary">
+                  {service.features.map((item, i) => (
+                    <div key={i} className="flex items-start gap-3">
+                      <div className="h-5 w-5 rounded-full bg-primary/20 flex items-center justify-center text-primary mt-0.5">
                         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                           <path d="M5 12L10 17L19 8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                         </svg>
                       </div>
-                      <span className="text-sm text-foreground">{feature}</span>
+                      <span className="text-sm text-foreground leading-relaxed">{item}</span>
                     </div>
                   ))}
                 </div>
@@ -111,14 +109,15 @@ const Pricing = () => {
               
               <div className="mt-6">
                 <Button 
-                  className={
-                    plan.buttonVariant === "default" 
-                      ? "w-full bg-primary text-primary-foreground hover:bg-primary/90" 
-                      : "w-full border-border text-foreground hover:bg-muted"
-                  }
-                  variant={plan.buttonVariant as "default" | "outline"}
+                  className="w-full bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-300"
+                  onClick={() => {
+                    const element = document.getElementById('contact');
+                    if (element) {
+                      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                  }}
                 >
-                  {plan.buttonText}
+                  {service.buttonText}
                 </Button>
               </div>
             </div>
@@ -126,7 +125,7 @@ const Pricing = () => {
         </div>
         
         <div className="text-center text-muted-foreground">
-          Ir jautājumi? <a href="#" className="text-primary hover:underline">Sazinieties ar mūsu komandu</a>
+          Vēlaties redzēt darbībā? <a href="#contact" className="text-primary hover:underline">Rezervējiet bezmaksas konsultāciju</a>
         </div>
       </div>
     </section>

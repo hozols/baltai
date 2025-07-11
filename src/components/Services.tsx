@@ -110,48 +110,6 @@ const Services = () => {
             </Card>
           ))}
         </div>
-        
-        <div ref={ctaRef} className={`text-center scroll-fade-in ${ctaVisible ? 'animate-in' : ''}`}>
-          <div className="space-y-4">
-            <h3 className="text-2xl font-medium tracking-tighter text-foreground">
-              {t('services.cta.title')}
-            </h3>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
-              {t('services.cta.description')}
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
-              <Button 
-                className="btn-magnetic bg-primary text-primary-foreground hover:bg-primary/90 px-8 hover-glow"
-                onClick={() => {
-                  const element = document.getElementById('contact');
-                  if (element) {
-                    element.scrollIntoView({
-                      behavior: 'smooth',
-                      block: 'start'
-                    });
-                  }
-                }}
-              >
-                {t('services.cta.contact')}
-              </Button>
-              <Button 
-                variant="outline" 
-                className="border-border text-foreground hover:bg-muted px-8 hover-lift"
-                onClick={() => {
-                  const element = document.getElementById('contact');
-                  if (element) {
-                    element.scrollIntoView({
-                      behavior: 'smooth',
-                      block: 'start'
-                    });
-                  }
-                }}
-              >
-                {t('services.cta.consultation')}
-              </Button>
-            </div>
-          </div>
-        </div>
       </div>
     </section>
   );
