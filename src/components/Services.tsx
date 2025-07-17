@@ -1,8 +1,7 @@
 
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Bot, MessageSquare, Zap, FileText, BarChart3, Lightbulb, ArrowRight } from 'lucide-react';
+import { Bot, MessageSquare, Zap, FileText, BarChart3, Lightbulb } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useScrollAnimation, useStaggeredAnimation } from '@/hooks/useScrollAnimation';
 
@@ -87,25 +86,6 @@ const Services = () => {
                   {service.description}
                 </p>
                 
-                <div>
-                  <Button 
-                    className="w-full btn-magnetic bg-primary text-primary-foreground hover:bg-primary/90 group-hover:shadow-lg"
-                    onClick={() => {
-                      const element = document.getElementById('contact');
-                      if (element) {
-                        element.scrollIntoView({
-                          behavior: 'smooth',
-                          block: 'start'
-                        });
-                      }
-                    }}
-                  >
-                    <span className="flex items-center justify-center gap-2">
-                      {t('services.learn_more')}
-                      <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                    </span>
-                  </Button>
-                </div>
               </CardContent>
             </Card>
           ))}

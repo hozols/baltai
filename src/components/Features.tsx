@@ -75,13 +75,7 @@ const Features = () => {
                 <h3 className="text-xl font-medium tracking-tighter mb-3">{feature.title}</h3>
                 <p className="text-muted-foreground mb-4">{feature.description}</p>
                 <div className="pt-3 border-t border-border/10">
-                  <p className="text-muted-foreground text-sm mb-4">{feature.expandedDescription}</p>
-                  <div className="flex justify-end">
-                    <button className="text-primary hover:text-primary/80 text-sm font-medium transition-all duration-300 hover-scale group flex items-center gap-2">
-                      {t('features.learn_more')}
-                      <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
-                    </button>
-                  </div>
+                  <p className="text-muted-foreground text-sm">{feature.expandedDescription}</p>
                 </div>
               </div>
             </div>

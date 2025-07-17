@@ -7,13 +7,13 @@ const Testimonials = () => {
       quote: "Pasūtījām datu analīzes risinājumu publiskajiem iepirkumiem saules paneļu nozarē, un šis risinājums mums ļoti palīdzēja tāmejot dažādus objektus un prognozējot konkurentu cenu piedāvājumus.",
       author: "Dāvids Krastiņš",
       position: "Direktors, BN Darbi",
-      avatar: "bg-primary/30"
+      avatar: "/bndarbi.png"
     },
     {
-      quote: "AI čatbots revolucionizēja mūsu klientu apkalpošanu. Klientu apmierinātība pieauga par 40% un atbildes laiks samazinājās uz sekundēm.",
-      author: "Mārtiņš Kalniņš",
-      position: "IT vadītājs, DigitalFlow",
-      avatar: "bg-primary/20"
+      quote: "Working with Maris from Sula Labs was a pleasure. He's not only a knowledgable professional, but more importantly great to communicate with, so I felt part of the project and knew what was happening at each stage. Enjoyed the creativity of coming up with solutions and drive to make them work. Top automtion specialist I can wholeheartedly recommend",
+      author: "Filip Łysikowski",
+      position: "signingclients.com",
+      avatar: "/filip.png"
     },
     {
       quote: "Dokumentu apstrāde, kas agrāk aizņēma stundas, tagad tiek pabeigti ievērojami ātrāk.",
@@ -51,7 +51,15 @@ const Testimonials = () => {
               </div>
               <p className="text-lg mb-8 text-foreground/90 italic">"{testimonial.quote}"</p>
               <div className="flex items-center gap-4">
-                <div className={`h-12 w-12 rounded-full ${testimonial.avatar} bg-muted`}></div>
+                {testimonial.avatar.startsWith('/') ? (
+                  <img 
+                    src={testimonial.avatar} 
+                    alt={testimonial.author}
+                    className="h-12 w-12 rounded-full object-cover bg-muted"
+                  />
+                ) : (
+                  <div className={`h-12 w-12 rounded-full ${testimonial.avatar} bg-muted`}></div>
+                )}
                 <div>
                   <h4 className="font-medium text-foreground">{testimonial.author}</h4>
                   <p className="text-sm text-muted-foreground">{testimonial.position}</p>

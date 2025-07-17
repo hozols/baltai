@@ -9,6 +9,7 @@ import Pricing from '@/components/Pricing';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
 import PageTransition from '@/components/PageTransition';
+import PortfolioShowcase from '@/components/PortfolioCarousel';
 
 const Index = () => {
   return (
@@ -20,6 +21,7 @@ const Index = () => {
           <Services />
           <Testimonials />
           <Features />
+          <PortfolioShowcase />
           <Pricing />
           <Contact />
         </main>

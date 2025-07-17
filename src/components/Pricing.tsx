@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { Button } from '@/components/ui/button';
+import PortfolioShowcase from './PortfolioCarousel';
 
 const Pricing = () => {
   const services = [
@@ -55,7 +56,7 @@ const Pricing = () => {
   ];
   
   return (
-    <section id="pricing" className="w-full py-20 px-6 md:px-12 bg-background">
+    <section id="pricing" className="w-full py-20 pb-24 px-6 md:px-12 bg-background">
       <div className="max-w-7xl mx-auto space-y-16">
         <div className="text-center space-y-4 max-w-3xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-medium tracking-tighter text-foreground">
@@ -124,7 +125,7 @@ const Pricing = () => {
           ))}
         </div>
         
-        <div className="text-center text-muted-foreground">
+        <div className="text-center text-muted-foreground mb-12">
           Vēlaties redzēt darbībā? <a href="#contact" className="text-primary hover:underline">Rezervējiet bezmaksas konsultāciju</a>
         </div>
       </div>
