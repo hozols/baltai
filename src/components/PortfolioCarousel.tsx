@@ -18,14 +18,14 @@ const PortfolioShowcase = () => {
         { icon: Users, value: "150+", label: "Apkalpoti klienti" },
         { icon: Clock, value: "60+", label: "Ietaupītas stundas" }
       ],
-      gradient: "from-blue-500 to-purple-600"
+      gradient: "from-blue-300 to-blue-400"
     },
     {
       id: 2,
       title: "LinkedIn satura ģenerēšanas automatizācija",
       description: "Tika izveidota sistēma, kura veido unikālu saturu balstoties uz dažādām personalitātēm / emocijām un profesionālajiem parametriem, saturs ir balstīts no 50+ veidnēm, MI pats izvēlas veidni balstoties no teksta formāta un ģenerē atbilstošu Linkedin rakstu.",
       category: "AI Automatizācija",
-      image: "https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=800&h=600&fit=crop&q=80",
+      image: "/linkedin.png",
       client: "Signingclients.com",
       year: "2024",
       tags: ["Mārketings", "Personīgais brendings", "Automatizācija"],
@@ -34,7 +34,7 @@ const PortfolioShowcase = () => {
         { icon: Clock, value: "20+", label: "Ietaupītas stundas" },
         { icon: Users, value: "50+", label: "Veidnes" }
       ],
-      gradient: "from-green-500 to-emerald-600"
+      gradient: "from-blue-300 to-blue-400"
     },
     {
       id: 3,
@@ -50,14 +50,14 @@ const PortfolioShowcase = () => {
         { icon: Clock, value: "5+", label: "Ietaupītas stundas nedēļā" },
         { icon: Users, value: "∞", label: "Klienti" }
       ],
-      gradient: "from-red-500 to-pink-600"
+      gradient: "from-blue-300 to-blue-400"
     },
     {
       id: 4,
       title: "Portfolio lapa komercīpašumu aģentūrai",
       description: "Portfolio lapa aģentūrai, ko izmanto lead ģenerēšanai un brenda reklāmai.",
       category: "Portfolio",
-      image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&h=600&fit=crop&q=80",
+      image: "/rigami.png",
       client: "Rigami",
       year: "2024",
       tags: ["Real Estate", "Commercial"],
@@ -66,14 +66,14 @@ const PortfolioShowcase = () => {
         { icon: Users, value: "Brand", label: "Reklāma" },
         { icon: Clock, value: "24/7", label: "Pieejamība" }
       ],
-      gradient: "from-orange-500 to-red-600"
+      gradient: "from-blue-300 to-blue-400"
     },
     {
       id: 5,
       title: "BN Darbi - Saules paneļu uzstādīšanas mājaslapa",
       description: "Informatīva mājaslapa saules paneļu uzstādīšanas uzņēmumam ar e-komercijas risinājumu, kas ļauj klientiem ērti uzzināt par pakalpojumiem un veikt pasūtījumus tiešsaistē.",
       category: "Web izstrāde",
-      image: "https://images.unsplash.com/photo-1509391366360-2e959784a276?w=800&h=600&fit=crop&q=80",
+      image: "/bndarbi.png",
       client: "BN Darbi",
       year: "2024",
       tags: ["Saules paneļi", "E-komercija", "Informatīvā lapa"],
@@ -82,7 +82,7 @@ const PortfolioShowcase = () => {
         { icon: Users, value: "E-com", label: "Platforma" },
         { icon: Clock, value: "24/7", label: "Pieejamība" }
       ],
-      gradient: "from-purple-500 to-indigo-600"
+      gradient: "from-blue-300 to-blue-400"
     },
     {
       id: 6,
@@ -98,7 +98,7 @@ const PortfolioShowcase = () => {
         { icon: Users, value: "100+", label: "Dalībnieki" },
         { icon: TrendingUp, value: "24/7", label: "Pieejamība" }
       ],
-      gradient: "from-purple-500 to-indigo-600"
+      gradient: "from-blue-300 to-blue-400"
     }
   ];
 

@@ -91,9 +91,6 @@ const HeroSection = () => {
                   <span className="text-xs text-muted-foreground">6 {t('hero.showcase.services')}</span>
                 </div>
                 
-                <div className="h-8 px-3 rounded-md bg-primary/10 hover:bg-primary/20 transition-colors flex items-center justify-center text-primary text-sm font-medium cursor-pointer">
-                  {t('hero.showcase.view_all')}
-                </div>
               </div>
             </div>
             
@@ -155,11 +152,6 @@ const HeroSection = () => {
                     <span className="text-xs bg-primary/10 text-primary px-2 py-1 rounded-full font-medium">Aktīvs</span>
                   </div>
                   
-                  <div className="flex items-center gap-2 flex-shrink-0">
-                    <div className="h-8 px-3 rounded-md bg-primary text-primary-foreground flex items-center justify-center text-sm font-medium whitespace-nowrap cursor-pointer hover:bg-primary/90 transition-colors">
-                      {t('hero.showcase.explore')}
-                    </div>
-                  </div>
                 </div>
                 
                 {/* Service Cards Grid */}
