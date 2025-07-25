@@ -1,14 +1,14 @@
 
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Bot, MessageSquare, Zap, FileText, BarChart3, Lightbulb } from 'lucide-react';
+import { Bot, MessageSquare, Zap, FileText, BarChart3, Lightbulb, Code } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useScrollAnimation, useStaggeredAnimation } from '@/hooks/useScrollAnimation';
 
 const Services = () => {
   const { t } = useLanguage();
   const { ref: titleRef, isVisible: titleVisible } = useScrollAnimation();
-  const { ref: cardsRef, visibleItems } = useStaggeredAnimation(6, 150);
+  const { ref: cardsRef, visibleItems } = useStaggeredAnimation(7, 150);
   const { ref: ctaRef, isVisible: ctaVisible } = useScrollAnimation();
   
   const services = [
@@ -41,6 +41,12 @@ const Services = () => {
       title: t('services.intelligence.title'),
       subtitle: t('services.intelligence.subtitle'),
       description: t('services.intelligence.description'),
+    },
+    {
+      icon: <Code className="h-8 w-8 text-primary" />,
+      title: t('services.development.title'),
+      subtitle: t('services.development.subtitle'),
+      description: t('services.development.description'),
     },
     {
       icon: <Lightbulb className="h-8 w-8 text-primary" />,

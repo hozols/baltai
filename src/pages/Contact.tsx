@@ -14,6 +14,7 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import { Mail, Phone, MapPin, Clock, Send, CheckCircle, AlertCircle } from 'lucide-react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import PageTransition from '@/components/PageTransition';
 
 const contactFormSchema = z.object({
   name: z.string().min(2, 'Name must be at least 2 characters'),
@@ -101,8 +102,9 @@ const Contact = () => {
   ];
 
   return (
-    <div className="min-h-screen flex flex-col bg-background text-foreground">
-      <Header />
+    <PageTransition>
+      <div className="min-h-screen flex flex-col bg-background text-foreground">
+        <Header />
       
       <main className="flex-1">
         {/* Hero Section */}
@@ -341,8 +343,9 @@ const Contact = () => {
         </section>
       </main>
 
-      <Footer />
-    </div>
+        <Footer />
+      </div>
+    </PageTransition>
   );
 };
 
