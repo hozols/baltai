@@ -1,26 +1,28 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { Button } from '@/components/ui/button';
+import { Link, useLocation } from 'react-router-dom';
 import Logo from './Logo';
-import { Menu, X, CircleDot, LayoutDashboard, DollarSign, Sun, Moon, Globe, MessageCircle } from 'lucide-react';
+import { Menu, X, CircleDot, LayoutDashboard, DollarSign, Sun, Moon, Globe, MessageCircle, Home, Briefcase, GraduationCap } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group';
 import { Switch } from '@/components/ui/switch';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 const NAV_SECTIONS = [
-  { id: 'services', icon: LayoutDashboard, labelKey: 'nav.solutions' },
-  { id: 'features', icon: CircleDot, labelKey: 'nav.features' },
-  { id: 'pricing', icon: DollarSign, labelKey: 'nav.pricing' },
-  { id: 'contact', icon: MessageCircle, labelKey: 'nav.contact' },
+  { id: '/', icon: Home, labelKey: 'nav.home', path: '/' },
+  { id: 'services', icon: LayoutDashboard, labelKey: 'nav.solutions', path: '/services' },
+  { id: 'portfolio', icon: Briefcase, labelKey: 'nav.portfolio', path: '/portfolio' },
+  { id: 'training', icon: GraduationCap, labelKey: 'nav.training', path: '/training' },
+  { id: 'pricing', icon: DollarSign, labelKey: 'nav.pricing', path: '/pricing' },
+  { id: 'contact', icon: MessageCircle, labelKey: 'nav.contact', path: '/contact' },
 ];
 
 const Header = () => {
-  const [activePage, setActivePage] = useState();
+  const location = useLocation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(true);
   const { language, setLanguage, t } = useLanguage();
-  const scrollTimeout = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     if (isDarkMode) {
@@ -32,58 +34,10 @@ const Header = () => {
     }
   }, [isDarkMode]);
 
-  // --- SCROLL SPY LOGIC ---
-  useEffect(() => {
-    const handleScroll = () => {
-      // Debounce for performance
-      if (scrollTimeout.current) clearTimeout(scrollTimeout.current);
-      scrollTimeout.current = setTimeout(() => {
-        let found = false;
-        // Get current scroll position
-        const scrollY = window.scrollY || window.pageYOffset;
-        // Find the section closest to the top (with some offset for header)
-        let closestSection = NAV_SECTIONS[0].id;
-        let minDistance = Infinity;
-        for (const section of NAV_SECTIONS) {
-          const el = document.getElementById(section.id);
-          if (el) {
-            const rect = el.getBoundingClientRect();
-            const offset = rect.top + window.scrollY;
-            // 120px offset for sticky header, adjust as needed
-            const distance = Math.abs(offset - scrollY - 120);
-            if (distance < minDistance && offset - 120 <= scrollY + 10) {
-              minDistance = distance;
-              closestSection = section.id;
-              found = true;
-            }
-          }
-        }
-        setActivePage(closestSection as typeof activePage);
-      }, 50);
-    };
+  const activePage = location.pathname;
 
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    // Initial check
-    handleScroll();
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-      if (scrollTimeout.current) clearTimeout(scrollTimeout.current);
-    };
-  }, []);
-
-  const handleNavClick = (page: string) => (e: React.MouseEvent) => {
-    e.preventDefault();
-    setActivePage(page);
+  const handleMobileNavClick = () => {
     setMobileMenuOpen(false);
-
-    // Scroll to section
-    const element = document.getElementById(page);
-    if (element) {
-      element.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start'
-      });
-    }
   };
 
   const toggleMobileMenu = () => {
@@ -110,24 +64,21 @@ const Header = () => {
         </button>
         
         <nav className="hidden md:flex items-center absolute left-1/2 transform -translate-x-1/2">
-          <div className="rounded-full px-1 py-1 backdrop-blur-md bg-background/80 border border-border shadow-lg hover-glow transition-all duration-300">
-            <ToggleGroup type="single" value={activePage} onValueChange={value => value && setActivePage(value)}>
-              {NAV_SECTIONS.map(({ id, icon: Icon, labelKey }) => (
-                <ToggleGroupItem
-                  key={id}
-                  value={id}
-                  className={cn(
-                    "px-4 py-2 rounded-full transition-all duration-300 relative hover-scale group",
-                    activePage === id
-                      ? 'text-accent-foreground bg-accent'
-                      : 'text-muted-foreground hover:text-foreground hover:bg-muted'
-                  )}
-                  onClick={handleNavClick(id)}
-                >
-                  <Icon size={16} className="inline-block mr-1.5 group-hover:animate-pulse" /> {t(labelKey)}
-                </ToggleGroupItem>
-              ))}
-            </ToggleGroup>
+          <div className="rounded-full px-1 py-1 backdrop-blur-md bg-background/80 border border-border shadow-lg hover-glow transition-all duration-300 flex gap-1">
+            {NAV_SECTIONS.map(({ id, icon: Icon, labelKey, path }) => (
+              <Link
+                key={id}
+                to={path}
+                className={cn(
+                  "px-4 py-2 rounded-full transition-all duration-300 relative hover-scale group",
+                  activePage === path
+                    ? 'text-accent-foreground bg-accent'
+                    : 'text-muted-foreground hover:text-foreground hover:bg-muted'
+                )}
+              >
+                <Icon size={16} className="inline-block mr-1.5 group-hover:animate-pulse" /> {t(labelKey)}
+              </Link>
+            ))}
           </div>
         </nav>
         
@@ -137,15 +88,15 @@ const Header = () => {
             : 'opacity-0 -translate-y-4 pointer-events-none'
         }`}>
             <div className="flex flex-col gap-4">
-              {NAV_SECTIONS.map(({ id, icon: Icon, labelKey }, idx) => (
-                <a
+              {NAV_SECTIONS.map(({ id, icon: Icon, labelKey, path }, idx) => (
+                <Link
                   key={id}
-                  href={`#${id}`}
-                  className={`px-3 py-2 text-sm rounded-md transition-all duration-300 hover-lift animate-fade-in-left animate-delay-${(idx + 1) * 100} ${activePage === id ? 'bg-accent text-accent-foreground' : 'text-muted-foreground hover:text-foreground hover:bg-muted'}`}
-                  onClick={handleNavClick(id)}
+                  to={path}
+                  className={`px-3 py-2 text-sm rounded-md transition-all duration-300 hover-lift animate-fade-in-left animate-delay-${(idx + 1) * 100} ${activePage === path ? 'bg-accent text-accent-foreground' : 'text-muted-foreground hover:text-foreground hover:bg-muted'}`}
+                  onClick={handleMobileNavClick}
                 >
                   <Icon size={16} className="inline-block mr-1.5 animate-pulse" /> {t(labelKey)}
-                </a>
+                </Link>
               ))}
               
               <div className="flex items-center justify-between px-3 py-2">
