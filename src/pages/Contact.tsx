@@ -71,8 +71,8 @@ const Contact = () => {
         reset();
         
         toast({
-          title: "Message Sent!",
-          description: "Thank you for your message. We'll get back to you soon.",
+          title: t('contact.form.success.title'),
+          description: t('contact.form.success.message'),
           variant: "default",
         });
       } else {
@@ -81,8 +81,8 @@ const Contact = () => {
     } catch (error) {
       console.error('Form submission error:', error);
       toast({
-        title: "Error",
-        description: "Failed to send message. Please try again.",
+        title: t('contact.form.error.title'),
+        description: t('contact.form.error.message'),
         variant: "destructive",
       });
     } finally {
@@ -137,14 +137,14 @@ const Contact = () => {
                     <div className="text-center space-y-6 py-8">
                       <CheckCircle className="h-16 w-16 text-green-500 mx-auto" />
                       <div className="space-y-2">
-                        <h3 className="text-xl font-medium text-foreground">Thank you!</h3>
-                        <p className="text-muted-foreground">Thank you for your message. We'll get back to you soon.</p>
+                        <h3 className="text-xl font-medium text-foreground">{t('contact.form.success.title')}</h3>
+                        <p className="text-muted-foreground">{t('contact.form.success.message')}</p>
                       </div>
                       <Button 
                         onClick={() => setIsSubmitted(false)}
                         variant="outline"
                       >
-                        Send Another Message
+                        {t('contact.form.send_another')}
                       </Button>
                     </div>
                   ) : (
