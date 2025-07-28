@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
-import emailjs from '@emailjs/browser';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -50,40 +49,40 @@ const Contact = () => {
     setIsSubmitting(true);
     
     try {
-      // EmailJS configuration
-      const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID || 'service_baltai';
-      const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID || 'template_contact';
-      const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY || 'YOUR_EMAILJS_PUBLIC_KEY';
-      
-      // Prepare email parameters
-      const emailParams = {
-        to_email: 'h11ozols@gmail.com',
-        from_name: data.name,
-        from_email: data.email,
-        company: data.company || 'Not provided',
-        phone: data.phone || 'Not provided',
-        service: data.service,
-        message: data.message,
-        reply_to: data.email,
-      };
-      
-      // Send email via EmailJS
-      await emailjs.send(serviceId, templateId, emailParams, publicKey);
-      
-      console.log('Email sent successfully:', data);
-      setIsSubmitted(true);
-      reset();
-      
-      toast({
-        title: "Message Sent!",
-        description: t('contact.form.success'),
-        variant: "default",
+      const formData = new FormData();
+      formData.append('name', data.name);
+      formData.append('email', data.email);
+      formData.append('company', data.company || 'Not provided');
+      formData.append('phone', data.phone || 'Not provided');
+      formData.append('service', data.service);
+      formData.append('message', data.message);
+
+      const response = await fetch("https://formspree.io/f/mqalbdra", {
+        method: "POST",
+        body: formData,
+        headers: {
+          Accept: "application/json",
+        },
       });
+
+      if (response.ok) {
+        console.log('Form submitted successfully:', data);
+        setIsSubmitted(true);
+        reset();
+        
+        toast({
+          title: "Message Sent!",
+          description: "Thank you for your message. We'll get back to you soon.",
+          variant: "default",
+        });
+      } else {
+        throw new Error('Form submission failed');
+      }
     } catch (error) {
-      console.error('EmailJS error:', error);
+      console.error('Form submission error:', error);
       toast({
         title: "Error",
-        description: t('contact.form.error'),
+        description: "Failed to send message. Please try again.",
         variant: "destructive",
       });
     } finally {
@@ -139,7 +138,7 @@ const Contact = () => {
                       <CheckCircle className="h-16 w-16 text-green-500 mx-auto" />
                       <div className="space-y-2">
                         <h3 className="text-xl font-medium text-foreground">Thank you!</h3>
-                        <p className="text-muted-foreground">{t('contact.form.success')}</p>
+                        <p className="text-muted-foreground">Thank you for your message. We'll get back to you soon.</p>
                       </div>
                       <Button 
                         onClick={() => setIsSubmitted(false)}
