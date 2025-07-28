@@ -299,13 +299,8 @@ const Contact = () => {
                     <div>
                       <h3 className="font-medium text-foreground mb-1">{t('contact.info.phone')}</h3>
                       <p className="text-muted-foreground">
-                        <a href="tel:+37120000000" className="hover:text-primary transition-colors">
-                          +371 20 000 000
-                        </a>
-                      </p>
-                      <p className="text-muted-foreground">
-                        <a href="tel:+37120000001" className="hover:text-primary transition-colors">
-                          +371 20 000 001
+                        <a href="tel:+37128600401" className="hover:text-primary transition-colors">
+                          +371 28 600 401
                         </a>
                       </p>
                     </div>

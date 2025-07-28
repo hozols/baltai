@@ -16,8 +16,6 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Architecture
 
-This is a React TypeScript application built with Vite and deployed via Lovable platform.
-
 ### Tech Stack
 - **Frontend**: React 18 + TypeScript
 - **Build Tool**: Vite with SWC
@@ -48,6 +46,5 @@ This is a React TypeScript application built with Vite and deployed via Lovable 
 - Responsive design with container queries
 
 ### Development Integration
-- Lovable platform integration with automatic deployments
 - Component tagging for development mode
 - ESLint configuration with React hooks plugin
