@@ -2,8 +2,10 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import PortfolioShowcase from './PortfolioCarousel';
+import { useNavigate } from 'react-router-dom';
 
 const Pricing = () => {
+  const navigate = useNavigate();
   const services = [
     {
       title: "AI Čatboti",
@@ -111,12 +113,7 @@ const Pricing = () => {
               <div className="mt-6">
                 <Button 
                   className="w-full bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-300"
-                  onClick={() => {
-                    const element = document.getElementById('contact');
-                    if (element) {
-                      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    }
-                  }}
+                  onClick={() => navigate('/contact')}
                 >
                   {service.buttonText}
                 </Button>
@@ -126,7 +123,7 @@ const Pricing = () => {
         </div>
         
         <div className="text-center text-muted-foreground mb-12">
-          Vēlaties redzēt darbībā? <a href="#contact" className="text-primary hover:underline">Rezervējiet bezmaksas konsultāciju</a>
+          Vēlaties redzēt darbībā? <button onClick={() => navigate('/contact')} className="text-primary hover:underline">Rezervējiet bezmaksas konsultāciju</button>
         </div>
       </div>
     </section>

@@ -1,17 +1,18 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Bot, MessageSquare, Zap, FileText, BarChart3, Lightbulb, Code } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Bot, MessageSquare, Zap, FileText, BarChart3, Lightbulb, Settings, GraduationCap, Wrench, Code, Globe, Smartphone } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useScrollAnimation, useStaggeredAnimation } from '@/hooks/useScrollAnimation';
 
 const Services = () => {
   const { t } = useLanguage();
+  const [activeTab, setActiveTab] = useState('ai');
   const { ref: titleRef, isVisible: titleVisible } = useScrollAnimation();
-  const { ref: cardsRef, visibleItems } = useStaggeredAnimation(7, 150);
-  const { ref: ctaRef, isVisible: ctaVisible } = useScrollAnimation();
+  const { ref: cardsRef, visibleItems } = useStaggeredAnimation(6, 150);
   
-  const services = [
+  const aiServices = [
     {
       icon: <Bot className="h-8 w-8 text-primary" />,
       title: t('services.workers.title'),
@@ -43,18 +44,35 @@ const Services = () => {
       description: t('services.intelligence.description'),
     },
     {
-      icon: <Code className="h-8 w-8 text-primary" />,
-      title: t('services.development.title'),
-      subtitle: t('services.development.subtitle'),
-      description: t('services.development.description'),
-    },
-    {
       icon: <Lightbulb className="h-8 w-8 text-primary" />,
       title: t('services.custom.title'),
       subtitle: t('services.custom.subtitle'),
       description: t('services.custom.description'),
     }
   ];
+
+  const webDevServices = [
+    {
+      icon: <Code className="h-8 w-8 text-primary" />,
+      title: t('services.webdev.title'),
+      subtitle: t('services.webdev.subtitle'),
+      description: t('services.webdev.description'),
+    },
+    {
+      icon: <Globe className="h-8 w-8 text-primary" />,
+      title: t('services.ecommerce.title'),
+      subtitle: t('services.ecommerce.subtitle'),
+      description: t('services.ecommerce.description'),
+    },
+    {
+      icon: <Smartphone className="h-8 w-8 text-primary" />,
+      title: t('services.mobile.title'),
+      subtitle: t('services.mobile.subtitle'),
+      description: t('services.mobile.description'),
+    }
+  ];
+
+  const currentServices = activeTab === 'ai' ? aiServices : webDevServices;
 
   return (
     <section id="services" className="w-full py-20 px-6 md:px-12 bg-background">
@@ -68,8 +86,28 @@ const Services = () => {
           </p>
         </div>
         
+        {/* Tabs */}
+        <div className="flex justify-center">
+          <div className="flex bg-muted rounded-lg p-1">
+            <Button
+              variant={activeTab === 'ai' ? 'default' : 'ghost'}
+              onClick={() => setActiveTab('ai')}
+              className="px-6 py-2"
+            >
+              AI Pakalpojumi
+            </Button>
+            <Button
+              variant={activeTab === 'webdev' ? 'default' : 'ghost'}
+              onClick={() => setActiveTab('webdev')}
+              className="px-6 py-2"
+            >
+              Web Dev
+            </Button>
+          </div>
+        </div>
+        
         <div ref={cardsRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {services.map((service, index) => (
+          {currentServices.map((service, index) => (
             <Card 
               key={index}
               className={`p-6 border border-border hover:border-primary/30 transition-all duration-500 cosmic-gradient bg-card h-full flex flex-col hover-lift hover-glow group scroll-fade-in ${visibleItems.has(index) ? 'animate-in' : ''}`}
@@ -91,7 +129,6 @@ const Services = () => {
                 <p className="text-muted-foreground mb-6 flex-1">
                   {service.description}
                 </p>
-                
               </CardContent>
             </Card>
           ))}
