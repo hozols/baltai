@@ -3,9 +3,11 @@ import { Button } from '@/components/ui/button';
 import { Loader, Sparkles, Zap } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
+import { useNavigate } from 'react-router-dom';
 const HeroSection = () => {
   const [isVisible, setIsVisible] = useState(false);
   const { t } = useLanguage();
+  const navigate = useNavigate();
   const { ref: heroRef, isVisible: isHeroVisible } = useScrollAnimation({ threshold: 0.1 });
   const { ref: showcaseRef, isVisible: isShowcaseVisible } = useScrollAnimation({ threshold: 0.2 });
   
@@ -54,15 +56,7 @@ const HeroSection = () => {
           <Button 
             variant="default" 
             className="btn-magnetic hover-glow bg-primary text-primary-foreground text-base h-12 px-8 transition-all duration-200 min-h-[48px] group"
-            onClick={() => {
-              const element = document.getElementById('contact');
-              if (element) {
-                element.scrollIntoView({
-                  behavior: 'smooth',
-                  block: 'start'
-                });
-              }
-            }}
+            onClick={() => navigate('/contact')}
           >
             <Zap className="h-4 w-4 mr-2 group-hover:animate-pulse" />
             {t('hero.cta.demo')}

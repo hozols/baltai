@@ -21,16 +21,21 @@ const NAV_SECTIONS = [
 const Header = () => {
   const location = useLocation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [isDarkMode, setIsDarkMode] = useState(true);
+  const [isDarkMode, setIsDarkMode] = useState(() => {
+    const saved = localStorage.getItem('theme');
+    return saved ? saved === 'dark' : true; // Default to dark mode
+  });
   const { language, setLanguage, t } = useLanguage();
 
   useEffect(() => {
     if (isDarkMode) {
       document.documentElement.classList.remove('light-mode');
       document.documentElement.classList.add('dark-mode');
+      localStorage.setItem('theme', 'dark');
     } else {
       document.documentElement.classList.remove('dark-mode');
       document.documentElement.classList.add('light-mode');
+      localStorage.setItem('theme', 'light');
     }
   }, [isDarkMode]);
 
