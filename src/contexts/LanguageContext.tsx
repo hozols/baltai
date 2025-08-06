@@ -77,7 +77,7 @@ const translations = {
     'services.maintenance.description': 'Profesionāls tehniskais atbalsts un sistēmu uzturēšana 24/7 režīmā.',
     
     // Web Development Services
-    'services.webdev.title': 'Mājaslapi un Aplikāciju Izstrāde',
+    'services.webdev.title': 'Mājaslapu un lietotņu izstrāde',
     'services.webdev.subtitle': 'Moderni web risinājumi un MVP izstrāde',
     'services.webdev.description': 'Izveidojam profesionālas mājaslapas, web aplikācijas un MVP risinājumus.',
     'services.ecommerce.title': 'E-komercija',
