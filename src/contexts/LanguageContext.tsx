@@ -63,7 +63,7 @@ const translations = {
     'services.custom.title': 'Pielāgoti AI Risinājumi',
     'services.custom.subtitle': 'Individuāli AI risinājumi unikāliem izaicinājumiem',
     'services.custom.description': 'Īpaši izstrādāti AI risinājumi, kas veidoti atbilstoši jūsu biznesa vajadzībām un nozares prasībām.',
-    'services.development.title': 'Mājaslapi un Aplikāciju Izstrāde',
+    'services.development.title': 'Mājaslapu un lietotņu izstrāde',
     'services.development.subtitle': 'Moderni web risinājumi un MVP izstrāde',
     'services.development.description': 'Izveidojam profesionālas mājaslapas, web aplikācijas un MVP risinājumus, kas palīdz jūsu biznesam augt un attīstīties digitālajā vidē.',
     'services.cta.title': 'Gatavi sākt?',
