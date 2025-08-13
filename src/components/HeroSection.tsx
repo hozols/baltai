@@ -1,20 +1,94 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { Loader, Sparkles, Zap } from 'lucide-react';
+import { Loader, Sparkles, Zap, Bot, MessageSquare, Zap as ZapIcon, FileText, BarChart3, Lightbulb } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useNavigate } from 'react-router-dom';
+import ServiceModal from './ServiceModal';
 
 const HeroSection = () => {
-  const [isVisible, setIsVisible] = useState(false);
   const { t } = useLanguage();
   const navigate = useNavigate();
-  
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsVisible(true);
-    }, 300);
-    return () => clearTimeout(timer);
-  }, []);
+  const [selectedService, setSelectedService] = useState<any>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const services = [
+    {
+      id: 'workers',
+      title: t('services.workers.title'),
+      subtitle: t('services.workers.subtitle'),
+      description: t('services.workers.description'),
+      icon: <div className="h-4 w-4 rounded-sm bg-primary"></div>,
+      status: 'Aktīvs',
+      statusColor: 'bg-green-500',
+      iconColor: 'bg-primary/20',
+      iconBg: 'bg-primary'
+    },
+    {
+      id: 'chatbots',
+      title: t('services.chatbots.title'),
+      subtitle: t('services.chatbots.subtitle'),
+      description: t('services.chatbots.description'),
+      icon: <div className="h-4 w-4 rounded-sm bg-primary"></div>,
+      status: 'Aktīvs',
+      statusColor: 'bg-green-500',
+      iconColor: 'bg-primary/20',
+      iconBg: 'bg-primary'
+    },
+    {
+      id: 'automation',
+      title: t('services.automation.title'),
+      subtitle: t('services.automation.subtitle'),
+      description: t('services.automation.description'),
+      icon: <div className="h-4 w-4 rounded-sm bg-green-500"></div>,
+      status: 'Izstrādē',
+      statusColor: 'bg-yellow-500',
+      iconColor: 'bg-green-500/20',
+      iconBg: 'bg-green-500'
+    },
+    {
+      id: 'documents',
+      title: t('services.documents.title'),
+      subtitle: t('services.documents.subtitle'),
+      description: t('services.documents.description'),
+      icon: <div className="h-4 w-4 rounded-sm bg-purple-500"></div>,
+      status: 'Aktīvs',
+      statusColor: 'bg-green-500',
+      iconColor: 'bg-purple-500/20',
+      iconBg: 'bg-purple-500'
+    },
+    {
+      id: 'intelligence',
+      title: t('services.intelligence.title'),
+      subtitle: t('services.intelligence.subtitle'),
+      description: t('services.intelligence.description'),
+      icon: <div className="h-4 w-4 rounded-sm bg-cyan-500"></div>,
+      status: 'Aktīvs',
+      statusColor: 'bg-green-500',
+      iconColor: 'bg-cyan-500/20',
+      iconBg: 'bg-cyan-500'
+    },
+    {
+      id: 'custom',
+      title: t('services.custom.title'),
+      subtitle: t('services.custom.subtitle'),
+      description: t('services.custom.description'),
+      icon: <div className="h-4 w-4 rounded-sm bg-orange-500"></div>,
+      status: 'Pieejams',
+      statusColor: 'bg-primary',
+      iconColor: 'bg-orange-500/20',
+      iconBg: 'bg-orange-500'
+    }
+  ];
+
+  const handleServiceClick = (service: any) => {
+    setSelectedService(service);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setSelectedService(null);
+  };
 
   return (
     <section className="relative w-full py-8 sm:py-12 md:py-16 lg:py-20 px-4 sm:px-6 md:px-8 lg:px-12 flex flex-col items-center justify-center overflow-hidden bg-background">
@@ -34,7 +108,7 @@ const HeroSection = () => {
         <div className="absolute top-2/3 right-1/3 w-1 h-1 bg-primary/30 rounded-full animate-bounce-subtle animate-delay-600"></div>
       </div>
       
-      <div className={`relative z-10 max-w-4xl text-center space-y-4 sm:space-y-6 transition-all duration-700 transform ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+      <div className="relative z-10 max-w-4xl text-center space-y-4 sm:space-y-6">
         <div className="flex justify-center">
           <span className="inline-flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3 py-1 text-xs sm:text-sm font-medium rounded-full bg-muted text-primary hover-glow animate-fade-in-up">
             <span className="flex h-1.5 sm:h-2 w-1.5 sm:w-2 rounded-full bg-primary animate-pulse"></span>
@@ -58,7 +132,7 @@ const HeroSection = () => {
             className="btn-magnetic hover-glow bg-primary text-primary-foreground text-sm sm:text-base h-10 sm:h-12 px-6 sm:px-8 transition-all duration-200 min-h-[40px] sm:min-h-[48px] group w-full sm:w-auto"
             onClick={() => navigate('/contact')}
           >
-            <Zap className="h-3.5 sm:h-4 w-3.5 sm:w-4 mr-1.5 sm:mr-2 group-hover:animate-pulse" />
+            <Zap className="h-3.5 sm:h-4 w-3.5 sm:h-4 mr-1.5 sm:mr-2 group-hover:animate-pulse" />
             {t('hero.cta.demo')}
           </Button>
         </div>
@@ -67,7 +141,7 @@ const HeroSection = () => {
       </div>
       
       {/* Service Showcase integrated in hero section with glassmorphic effect */}
-      <div className="w-full max-w-7xl mt-8 sm:mt-12 z-10">
+      <div className="w-full max-w-7xl mt-8 sm:mt-12 z-10 animate-fade-in-up animate-delay-1000">
         <div className="cosmic-glow relative rounded-lg sm:rounded-xl overflow-hidden border border-border backdrop-blur-sm bg-card shadow-lg hover-lift">
           {/* Showcase Header */}
           <div className="bg-card backdrop-blur-md w-full">
@@ -144,136 +218,50 @@ const HeroSection = () => {
                     <h3 className="text-sm sm:text-base font-medium text-foreground">{t('services.workers.title')}</h3>
                     <span className="text-xs bg-primary/10 text-primary px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full font-medium">Aktīvs</span>
                   </div>
-                  
                 </div>
                 
                 {/* Service Cards Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 overflow-hidden">
-                  {/* AI Workers Service */}
-                  <div className="bg-card border border-border rounded-lg p-4 hover:shadow-md transition-all duration-300 cursor-pointer hover-lift hover-glow group">
-                    <div className="flex items-center gap-3 mb-3">
-                      <div className="h-8 w-8 rounded-md bg-primary/20 flex items-center justify-center">
-                        <div className="h-4 w-4 rounded-sm bg-primary"></div>
+                  {services.map((service, index) => (
+                    <div 
+                      key={service.id}
+                      onClick={() => handleServiceClick(service)}
+                      className="bg-card border border-border rounded-lg p-4 hover:shadow-md transition-all duration-300 cursor-pointer hover-lift hover-glow group animate-fade-in-up"
+                      style={{ animationDelay: `${(index + 1) * 100}ms` }}
+                    >
+                      <div className="flex items-center gap-3 mb-3">
+                        <div className={`h-8 w-8 rounded-md ${service.iconColor} flex items-center justify-center`}>
+                          <div className={`h-4 w-4 rounded-sm ${service.iconBg}`}></div>
+                        </div>
+                        <div>
+                          <h4 className="font-medium text-foreground text-sm group-hover:text-primary transition-colors">{service.title}</h4>
+                        </div>
                       </div>
-                      <div>
-                        <h4 className="font-medium text-foreground text-sm">{t('services.workers.title')}</h4>
-                      </div>
-                    </div>
-                    <p className="text-xs text-muted-foreground mb-3 line-clamp-2">{t('services.workers.subtitle')}</p>
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-1">
-                        <div className="h-2 w-2 rounded-full bg-green-500"></div>
-                        <span className="text-xs text-muted-foreground">Aktīvs</span>
-                      </div>
-                      <span className="text-xs text-primary font-medium">→</span>
-                    </div>
-                  </div>
-                  
-                  {/* AI Chatbots Service */}
-                  <div className="bg-card border border-border rounded-lg p-4 hover:shadow-md transition-shadow cursor-pointer">
-                    <div className="flex items-center gap-3 mb-3">
-                      <div className="h-8 w-8 rounded-md bg-primary/20 flex items-center justify-center">
-                        <div className="h-4 w-4 rounded-sm bg-primary"></div>
-                      </div>
-                      <div>
-                        <h4 className="font-medium text-foreground text-sm">{t('services.chatbots.title')}</h4>
+                      <p className="text-xs text-muted-foreground mb-3 line-clamp-2 group-hover:text-foreground transition-colors">{service.subtitle}</p>
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-1">
+                          <div className={`h-2 w-2 rounded-full ${service.statusColor}`}></div>
+                          <span className="text-xs text-muted-foreground group-hover:text-foreground transition-colors">{service.status}</span>
+                        </div>
+                        <span className={`text-xs ${service.iconBg} font-medium group-hover:scale-110 transition-transform`}>→</span>
                       </div>
                     </div>
-                    <p className="text-xs text-muted-foreground mb-3 line-clamp-2">{t('services.chatbots.subtitle')}</p>
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-1">
-                        <div className="h-2 w-2 rounded-full bg-green-500"></div>
-                        <span className="text-xs text-muted-foreground">Aktīvs</span>
-                      </div>
-                      <span className="text-xs text-primary font-medium">→</span>
-                    </div>
-                  </div>
-                  
-                  {/* Process Automation Service */}
-                  <div className="bg-card border border-border rounded-lg p-4 hover:shadow-md transition-shadow cursor-pointer">
-                    <div className="flex items-center gap-3 mb-3">
-                      <div className="h-8 w-8 rounded-md bg-green-500/20 flex items-center justify-center">
-                        <div className="h-4 w-4 rounded-sm bg-green-500"></div>
-                      </div>
-                      <div>
-                        <h4 className="font-medium text-foreground text-sm">{t('services.automation.title')}</h4>
-                      </div>
-                    </div>
-                    <p className="text-xs text-muted-foreground mb-3 line-clamp-2">{t('services.automation.subtitle')}</p>
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-1">
-                        <div className="h-2 w-2 rounded-full bg-yellow-500"></div>
-                        <span className="text-xs text-muted-foreground">Izstrādē</span>
-                      </div>
-                      <span className="text-xs text-green-500 font-medium">→</span>
-                    </div>
-                  </div>
-                  
-                  {/* Document Processing Service */}
-                  <div className="bg-card border border-border rounded-lg p-4 hover:shadow-md transition-shadow cursor-pointer">
-                    <div className="flex items-center gap-3 mb-3">
-                      <div className="h-8 w-8 rounded-md bg-purple-500/20 flex items-center justify-center">
-                        <div className="h-4 w-4 rounded-sm bg-purple-500"></div>
-                      </div>
-                      <div>
-                        <h4 className="font-medium text-foreground text-sm">{t('services.documents.title')}</h4>
-                      </div>
-                    </div>
-                    <p className="text-xs text-muted-foreground mb-3 line-clamp-2">{t('services.documents.subtitle')}</p>
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-1">
-                        <div className="h-2 w-2 rounded-full bg-green-500"></div>
-                        <span className="text-xs text-muted-foreground">Aktīvs</span>
-                      </div>
-                      <span className="text-xs text-purple-500 font-medium">→</span>
-                    </div>
-                  </div>
-                  
-                  {/* Data Intelligence Service */}
-                  <div className="bg-card border border-border rounded-lg p-4 hover:shadow-md transition-shadow cursor-pointer">
-                    <div className="flex items-center gap-3 mb-3">
-                      <div className="h-8 w-8 rounded-md bg-cyan-500/20 flex items-center justify-center">
-                        <div className="h-4 w-4 rounded-sm bg-cyan-500"></div>
-                      </div>
-                      <div>
-                        <h4 className="font-medium text-foreground text-sm">{t('services.intelligence.title')}</h4>
-                      </div>
-                    </div>
-                    <p className="text-xs text-muted-foreground mb-3 line-clamp-2">{t('services.intelligence.subtitle')}</p>
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-1">
-                        <div className="h-2 w-2 rounded-full bg-green-500"></div>
-                        <span className="text-xs text-muted-foreground">Aktīvs</span>
-                      </div>
-                      <span className="text-xs text-cyan-500 font-medium">→</span>
-                    </div>
-                  </div>
-                  
-                  {/* Custom Solutions Service */}
-                  <div className="bg-card border border-border rounded-lg p-4 hover:shadow-md transition-shadow cursor-pointer">
-                    <div className="flex items-center gap-3 mb-3">
-                      <div className="h-8 w-8 rounded-md bg-orange-500/20 flex items-center justify-center">
-                        <div className="h-4 w-4 rounded-sm bg-orange-500"></div>
-                      </div>
-                      <div>
-                        <h4 className="font-medium text-foreground text-sm">{t('services.custom.title')}</h4>
-                      </div>
-                    </div>
-                    <p className="text-xs text-muted-foreground mb-3 line-clamp-2">{t('services.custom.subtitle')}</p>
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-1">
-                        <div className="h-2 w-2 rounded-full bg-primary"></div>
-                        <span className="text-xs text-muted-foreground">Pieejams</span>
-                      </div>
-                      <span className="text-xs text-orange-500 font-medium">→</span>
-                    </div>
-                  </div>
+                  ))}
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
+
+      {/* Service Modal */}
+      {selectedService && (
+        <ServiceModal
+          isOpen={isModalOpen}
+          onClose={closeModal}
+          service={selectedService}
+        />
+      )}
     </section>
   );
 };

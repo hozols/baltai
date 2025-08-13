@@ -101,7 +101,7 @@ const Services = () => {
               onClick={() => setActiveTab('webdev')}
               className="px-6 py-2"
             >
-              Web Dev
+              Web izstrāde
             </Button>
           </div>
         </div>

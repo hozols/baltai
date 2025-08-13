@@ -16,7 +16,7 @@ const translations = {
     'nav.home': 'Sākums',
     'nav.features': 'Iespējas',
     'nav.solutions': 'Risinājumi',
-    'nav.portfolio': 'Portfelis',
+    'nav.portfolio': 'Projekti',
     'nav.training': 'Apmācības',
     'nav.pricing': 'Cenas',
     'nav.contact': 'Kontakti',
