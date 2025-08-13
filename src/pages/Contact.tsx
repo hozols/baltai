@@ -16,6 +16,7 @@ import {
 } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { usePricing } from "@/contexts/PricingContext";
 import {
   Mail,
   Phone,
@@ -25,6 +26,7 @@ import {
   CheckCircle,
   AlertCircle,
   MessageCircle,
+  Calculator,
 } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -37,6 +39,11 @@ const contactFormSchema = z.object({
   phone: z.string().optional(),
   service: z.string().min(1, "Lūdzu izvēlieties pakalpojumu"),
   message: z.string().min(10, "Ziņojumam jābūt vismaz 10 rakstzīmes garšam"),
+  budget: z.string().optional(),
+  timeline: z.string().optional(),
+  gdprConsent: z.boolean().refine((val) => val === true, {
+    message: "Jums jāpiekrīt datu apstrādei, lai turpinātu",
+  }),
 });
 
 type ContactFormData = z.infer<typeof contactFormSchema>;
@@ -44,6 +51,7 @@ type ContactFormData = z.infer<typeof contactFormSchema>;
 const Contact = () => {
   const { t } = useLanguage();
   const { toast } = useToast();
+  const { pricingData, clearPricingData } = usePricing();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
@@ -67,10 +75,34 @@ const Contact = () => {
       const formData = new FormData();
       formData.append("name", data.name);
       formData.append("email", data.email);
-      formData.append("company", data.company || "Not provided");
-      formData.append("phone", data.phone || "Not provided");
+      formData.append("company", data.company || "Nav norādīts");
+      formData.append("phone", data.phone || "Nav norādīts");
       formData.append("service", data.service);
       formData.append("message", data.message);
+      formData.append("budget", data.budget || "Nav norādīts");
+      formData.append("timeline", data.timeline || "Nav norādīts");
+      
+      // Add timestamp and source
+      formData.append("submitted_at", new Date().toISOString());
+      formData.append("source", "automatizacijas.lv");
+      formData.append("gdpr_consent", data.gdprConsent ? "Yes" : "No");
+      
+      // Add user agent and referrer for analytics
+      formData.append("user_agent", navigator.userAgent);
+      formData.append("referrer", document.referrer || "Direct");
+      
+      // Add pricing data if available
+      if (pricingData) {
+        formData.append("pricing_project_type", pricingData.projectType);
+        formData.append("pricing_complexity", pricingData.complexity.toString());
+        formData.append("pricing_timeline", pricingData.timeline.toString());
+        formData.append("pricing_integrations", pricingData.integrations.join(", ") || "Nav izvēlēts");
+        formData.append("pricing_custom_features", pricingData.customFeatures.join(", ") || "Nav izvēlēts");
+        formData.append("pricing_estimated_cost", `€${pricingData.estimatedCost.toLocaleString()}`);
+        formData.append("pricing_service_name", pricingData.serviceType.name);
+        formData.append("pricing_base_price", `€${pricingData.serviceType.basePrice.toLocaleString()}`);
+        formData.append("pricing_source", "Pricing Calculator");
+      }
 
       const response = await fetch("https://formspree.io/f/mqalbdra", {
         method: "POST",
@@ -84,6 +116,7 @@ const Contact = () => {
         console.log("Form submitted successfully:", data);
         setIsSubmitted(true);
         reset();
+        clearPricingData(); // Clear pricing data after successful submission
 
         toast({
           title: t("contact.form.success.title"),
@@ -91,7 +124,9 @@ const Contact = () => {
           variant: "default",
         });
       } else {
-        throw new Error("Form submission failed");
+        const errorData = await response.json().catch(() => ({}));
+        console.error("Form submission failed:", response.status, errorData);
+        throw new Error(`Form submission failed: ${response.status} ${errorData.error || ''}`);
       }
     } catch (error) {
       console.error("Form submission error:", error);
@@ -201,6 +236,39 @@ const Contact = () => {
                         </div>
                         {t("contact.form.title")}
                       </CardTitle>
+                      
+                      {/* Pricing Data Indicator */}
+                      {pricingData && (
+                        <div className="mt-4 p-4 bg-primary/5 border border-primary/20 rounded-lg">
+                          <div className="flex items-center gap-2 mb-2">
+                            <Calculator className="h-4 w-4 text-primary" />
+                            <span className="text-sm font-medium text-primary">Projekta informācija no kalkulatora</span>
+                          </div>
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-muted-foreground">
+                            <div><span className="font-medium">Projekta veids:</span> {pricingData.serviceType.name}</div>
+                            <div><span className="font-medium">Sarežģītība:</span> {pricingData.complexity}/5</div>
+                            <div><span className="font-medium">Laika ietvars:</span> {pricingData.timeline} nedēļas</div>
+                            <div><span className="font-medium">Aptuvenās izmaksas:</span> €{pricingData.estimatedCost.toLocaleString()}</div>
+                          </div>
+                          {pricingData.integrations.length > 0 && (
+                            <div className="mt-2 text-xs">
+                              <span className="font-medium">Integrācijas:</span> {pricingData.integrations.join(", ")}
+                            </div>
+                          )}
+                          {pricingData.customFeatures.length > 0 && (
+                            <div className="mt-1 text-xs">
+                              <span className="font-medium">Papildu funkcijas:</span> {pricingData.customFeatures.join(", ")}
+                            </div>
+                          )}
+                          <button
+                            type="button"
+                            onClick={clearPricingData}
+                            className="mt-3 text-xs text-primary hover:text-primary/80 underline"
+                          >
+                            Noņemt projekta informāciju
+                          </button>
+                        </div>
+                      )}
                     </CardHeader>
 
                     <CardContent className="p-0 flex-1 relative z-10">
@@ -216,7 +284,10 @@ const Contact = () => {
                             </p>
                           </div>
                           <Button
-                            onClick={() => setIsSubmitted(false)}
+                            onClick={() => {
+                              setIsSubmitted(false);
+                              clearPricingData();
+                            }}
                             variant="outline"
                           >
                             {t("contact.form.send_another")}
@@ -340,25 +411,131 @@ const Contact = () => {
                             )}
                           </div>
 
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div className="space-y-2">
+                              <Label htmlFor="budget">
+                                Budžets
+                              </Label>
+                              <Select
+                                onValueChange={(value) =>
+                                  setValue("budget", value)
+                                }
+                              >
+                                <SelectTrigger>
+                                  <SelectValue placeholder="Izvēlieties budžetu" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                  <SelectItem value="under-1000">Līdz 1000€</SelectItem>
+                                  <SelectItem value="1000-5000">1000€ - 5000€</SelectItem>
+                                  <SelectItem value="5000-10000">5000€ - 10000€</SelectItem>
+                                  <SelectItem value="10000-25000">10000€ - 25000€</SelectItem>
+                                  <SelectItem value="25000+">Vairāk par 25000€</SelectItem>
+                                  <SelectItem value="discuss">Vēlos apspriest</SelectItem>
+                                </SelectContent>
+                              </Select>
+                            </div>
+
+                            <div className="space-y-2">
+                              <Label htmlFor="timeline">
+                                Projekta termiņš
+                              </Label>
+                              <Select
+                                onValueChange={(value) =>
+                                  setValue("timeline", value)
+                                }
+                              >
+                                <SelectTrigger>
+                                  <SelectValue placeholder="Izvēlieties termiņu" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                  <SelectItem value="asap">Cik ātri vien iespējams</SelectItem>
+                                  <SelectItem value="1-2-months">1-2 mēneši</SelectItem>
+                                  <SelectItem value="3-6-months">3-6 mēneši</SelectItem>
+                                  <SelectItem value="6-12-months">6-12 mēneši</SelectItem>
+                                  <SelectItem value="12+months">Vairāk par 12 mēnešiem</SelectItem>
+                                  <SelectItem value="flexible">Elastīgs termiņš</SelectItem>
+                                </SelectContent>
+                              </Select>
+                            </div>
+                          </div>
+
                           <div className="space-y-2">
                             <Label htmlFor="message">
                               {t("contact.form.message")} *
                             </Label>
-                            <Textarea
-                              id="message"
-                              {...register("message")}
-                              placeholder={t(
-                                "contact.form.message.placeholder"
-                              )}
-                              rows={5}
-                              className={
-                                errors.message ? "border-destructive" : ""
-                              }
-                            />
+                            <div className="relative">
+                              <Textarea
+                                id="message"
+                                {...register("message")}
+                                placeholder={t(
+                                  "contact.form.message.placeholder"
+                                )}
+                                rows={5}
+                                className={
+                                  errors.message ? "border-destructive" : ""
+                                }
+                              />
+                              <div className="absolute bottom-2 right-2 text-xs text-muted-foreground bg-background/80 px-2 py-1 rounded">
+                                {watch("message")?.length || 0}/1000
+                              </div>
+                            </div>
                             {errors.message && (
                               <p className="text-sm text-destructive flex items-center gap-1">
                                 <AlertCircle className="h-3 w-3" />
                                 {errors.message.message}
+                              </p>
+                            )}
+                          </div>
+
+                          {/* Form Progress Indicator */}
+                          {/* <div className="space-y-3">
+                            <div className="flex items-center justify-between text-sm text-muted-foreground">
+                              <span>Formas aizpildīšana</span>
+                              <span className="font-medium">
+                                {(() => {
+                                  const values = watch();
+                                  const filledFields = Object.values(values).filter(value => 
+                                    value && (typeof value === 'string' ? value.trim() !== '' : value === true)
+                                  ).length;
+                                  return `${filledFields}/8`;
+                                })()}
+                              </span>
+                            </div>
+                            <div className="w-full bg-muted rounded-full h-2">
+                              <div 
+                                className="bg-primary h-2 rounded-full transition-all duration-300"
+                                style={{ 
+                                  width: `${(() => {
+                                    const values = watch();
+                                    const filledFields = Object.values(values).filter(value => 
+                                      value && (typeof value === 'string' ? value.trim() !== '' : value === true)
+                                    ).length;
+                                    return (filledFields / 8) * 100;
+                                  })()}%` 
+                                }}
+                              ></div>
+                            </div>
+                          </div> */}
+
+                          <div className="space-y-2">
+                            <div className="flex items-start gap-2">
+                              <input
+                                type="checkbox"
+                                id="gdprConsent"
+                                {...register("gdprConsent")}
+                                className="mt-1 h-4 w-4 rounded border-border text-primary focus:ring-primary"
+                              />
+                              <Label htmlFor="gdprConsent" className="text-sm text-muted-foreground leading-relaxed">
+                                Es piekrītu, ka mana informācija tiks izmantota, lai sazinātos ar mani par šo pieprasījumu. 
+                                <a href="/privacy" className="text-primary hover:underline ml-1">
+                                  Lasīt vairāk par privātuma politiku
+                                </a>
+                              </Label>
+                            </div>
+                            {errors.gdprConsent && (
+                              <p className="text-sm text-destructive flex items-center gap-1">
+                                <AlertCircle className="h-3 w-3" />
+                                {errors.gdprConsent.message}
                               </p>
                             )}
                           </div>

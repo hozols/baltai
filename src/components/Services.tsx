@@ -235,7 +235,7 @@ const Services = () => {
         
         {/* Tabs */}
         <div className="flex justify-center">
-          <div className="flex bg-muted rounded-lg p-1">
+          <div className="flex bg-muted/70 rounded-lg p-1 border border-border">
             <Button
               variant={activeTab === 'ai' ? 'default' : 'ghost'}
               onClick={() => setActiveTab('ai')}
@@ -281,16 +281,16 @@ const Services = () => {
                 {/* Related Project(s) Proof */}
                 {service.relatedProjects && service.relatedProjects.length > 0 && (
                   <div className="mt-4">
-                    <p className="text-xs font-medium text-muted-foreground mb-2 flex items-center gap-1">
+                    <p className="text-xs font-medium text-foreground mb-2 flex items-center gap-1">
                       <span>Saistītais projekts</span>
                       <span className="text-xs text-primary">(klikšķis atvērs detaļas)</span>
                     </p>
                     {service.relatedProjects.slice(0, 1).map((project) => (
-                      <div 
-                        key={project.id} 
-                        className="bg-muted/30 rounded-lg p-3 border border-border/50 hover:bg-muted/50 hover:border-primary/30 cursor-pointer transition-all duration-200"
-                        onClick={() => handleProjectClick(project)}
-                      >
+                                              <div 
+                          key={project.id} 
+                          className="bg-muted/50 rounded-lg p-3 border border-border hover:bg-muted/70 hover:border-primary/30 cursor-pointer transition-all duration-200"
+                          onClick={() => handleProjectClick(project)}
+                        >
                         <div className="flex items-center gap-3">
                           <img 
                             src={project.image} 

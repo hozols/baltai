@@ -10,9 +10,11 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Slider } from '@/components/ui/slider';
 import { Calculator, Zap, Clock, Users, TrendingUp, MessageSquare, Bot, FileText, BarChart3, Lightbulb, Code, Globe, Smartphone } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { usePricing } from '@/contexts/PricingContext';
 
 const Pricing = () => {
   const navigate = useNavigate();
+  const { setPricingData } = usePricing();
   
   // Project calculator state
   const [projectType, setProjectType] = useState('ai-automation');
@@ -113,6 +115,22 @@ const Pricing = () => {
   ];
 
   const estimatedCost = calculateCost();
+
+  const handleContactNavigation = () => {
+    // Save pricing data to context before navigating
+    const pricingData = {
+      projectType,
+      complexity: complexity[0],
+      timeline: timeline[0],
+      integrations,
+      customFeatures,
+      estimatedCost,
+      serviceType: serviceTypes[projectType as keyof typeof serviceTypes]
+    };
+    
+    setPricingData(pricingData);
+    navigate('/contact');
+  };
 
   return (
     <section id="pricing" className="w-full py-20 pb-24 px-6 md:px-12 bg-background">
@@ -302,7 +320,7 @@ const Pricing = () => {
                 <div className="pt-4 border-t">
                   <Button 
                     className="w-full bg-primary text-primary-foreground hover:bg-primary/90"
-                    onClick={() => navigate('/contact')}
+                    onClick={handleContactNavigation}
                   >
                     <span className="mr-2">Pieteikties konsultācijai</span>
                     <Zap className="h-4 w-4" />
@@ -310,6 +328,9 @@ const Pricing = () => {
                   <p className="text-xs text-muted-foreground text-center mt-2">
                     *Cenas ir orientējošas un var mainīties atkarībā no projekta specifikas
                   </p>
+                  <div className="mt-3 p-2 bg-primary/5 border border-primary/20 rounded text-xs text-primary text-center">
+                    📋 Projekta informācija tiks automātiski iekļauta kontaktformā
+                  </div>
                 </div>
               </CardContent>
             </Card>

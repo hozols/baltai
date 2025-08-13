@@ -23,7 +23,7 @@
     --secondary-foreground: 0 0% 25%;
 
     --muted: 0 0% 88%; /* Medium light grey */
-    --muted-foreground: 0 0% 45%; /* Medium grey */
+    --muted-foreground: 0 0% 35%; /* Darker grey for better contrast */
 
     --accent: 217 91% 60%; /* Blue accent */
     --accent-foreground: 0 0% 98%;
@@ -31,7 +31,7 @@
     --destructive: 0 84% 60%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 0 0% 85%; /* Light grey border */
+    --border: 0 0% 75%; /* Darker grey border for better contrast */
     --input: 0 0% 90%;
     --ring: 217 91% 60%; /* Blue ring */
 

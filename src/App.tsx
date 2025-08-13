@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { LanguageProvider } from "@/contexts/LanguageContext";
 import { CookieProvider } from "@/contexts/CookieContext";
+import { PricingProvider } from "@/contexts/PricingContext";
 import Index from "./pages/Index";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
@@ -22,24 +23,26 @@ const App = () => (
   <QueryClientProvider client={queryClient}>
     <LanguageProvider>
       <CookieProvider>
-        <TooltipProvider>
-          <Router>
-            <ScrollToTop />
-            <Toaster />
-            <Sonner />
-            <Routes>
-              <Route path="/" element={<Index />} />
-              <Route path="/services" element={<Services />} />
-              <Route path="/portfolio" element={<Portfolio />} />
-              <Route path="/training" element={<Training />} />
-              <Route path="/pricing" element={<Pricing />} />
-              <Route path="/contact" element={<Contact />} />
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-            <CookieBanner />
-            <CookieSettingsModal />
-          </Router>
-        </TooltipProvider>
+        <PricingProvider>
+          <TooltipProvider>
+            <Router>
+              <ScrollToTop />
+              <Toaster />
+              <Sonner />
+              <Routes>
+                <Route path="/" element={<Index />} />
+                <Route path="/services" element={<Services />} />
+                <Route path="/portfolio" element={<Portfolio />} />
+                <Route path="/training" element={<Training />} />
+                <Route path="/pricing" element={<Pricing />} />
+                <Route path="/contact" element={<Contact />} />
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+              <CookieBanner />
+              <CookieSettingsModal />
+            </Router>
+          </TooltipProvider>
+        </PricingProvider>
       </CookieProvider>
     </LanguageProvider>
   </QueryClientProvider>
