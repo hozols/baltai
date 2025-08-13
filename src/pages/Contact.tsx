@@ -24,6 +24,7 @@ import {
   Send,
   CheckCircle,
   AlertCircle,
+  MessageCircle,
 } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -163,10 +164,18 @@ const Contact = () => {
                 className="animate-fade-in-up animate-bounce-slow"
                 style={{ animationDelay: "0.4s" }}
               >
-                <div className="inline-flex items-center gap-2 px-6 py-3 bg-primary/10 backdrop-blur-sm border border-primary/20 rounded-full text-primary">
-                  <Send className="h-4 w-4" />
-                  <span className="text-sm font-medium">Sāciet sarunu</span>
-                </div>
+                <button
+                  onClick={() => {
+                    const phoneNumber = '+37128600401';
+                    const message = 'Sveiki! Es vēlos uzzināt vairāk par jūsu pakalpojumiem.';
+                    const whatsappUrl = `https://wa.me/${phoneNumber.replace(/\D/g, '')}?text=${encodeURIComponent(message)}`;
+                    window.open(whatsappUrl, '_blank');
+                  }}
+                  className="inline-flex items-center gap-2 px-6 py-3 bg-primary/10 backdrop-blur-sm border border-primary/20 rounded-full text-primary hover:bg-primary/20 hover:scale-105 transition-all duration-300 cursor-pointer group"
+                >
+                  <MessageCircle className="h-4 w-4 group-hover:scale-110 transition-transform" />
+                  <span className="text-sm font-medium">Sāciet sarunu WhatsApp</span>
+                </button>
               </div>
             </div>
           </section>
@@ -371,6 +380,8 @@ const Contact = () => {
                               </div>
                             )}
                           </Button>
+
+
                         </form>
                       )}
                     </CardContent>
@@ -434,6 +445,30 @@ const Contact = () => {
                             >
                               +371 28 600 401
                             </a>
+                          </p>
+                        </div>
+                      </div>
+
+                      <div className="flex items-start gap-4 group/item hover:scale-[1.02] transition-transform duration-300">
+                        <div className="p-2 rounded-lg bg-green-500/20 group-hover/item:bg-green-500/30 transition-colors duration-300">
+                          <MessageCircle className="h-5 w-5 text-green-600" />
+                        </div>
+                        <div>
+                          <h3 className="font-medium text-foreground mb-1">
+                            WhatsApp
+                          </h3>
+                          <p className="text-muted-foreground">
+                            <button
+                              onClick={() => {
+                                const phoneNumber = '+37128600401';
+                                const message = 'Sveiki! Es vēlos uzzināt vairāk par jūsu pakalpojumiem.';
+                                const whatsappUrl = `https://wa.me/${phoneNumber.replace(/\D/g, '')}?text=${encodeURIComponent(message)}`;
+                                window.open(whatsappUrl, '_blank');
+                              }}
+                              className="text-green-600 hover:text-green-700 font-medium transition-colors"
+                            >
+                              Sāciet sarunu WhatsApp
+                            </button>
                           </p>
                         </div>
                       </div>
