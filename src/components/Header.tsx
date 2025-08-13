@@ -21,7 +21,7 @@ const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(() => {
     const saved = localStorage.getItem('theme');
-    return saved ? saved === 'dark' : true; // Default to dark mode
+    return saved ? saved === 'dark' : false; // Default to light mode
   });
   const { t } = useLanguage();
 
@@ -36,6 +36,14 @@ const Header = () => {
       localStorage.setItem('theme', 'light');
     }
   }, [isDarkMode]);
+
+  // Apply light theme by default on mount if no theme is saved
+  useEffect(() => {
+    const saved = localStorage.getItem('theme');
+    if (!saved) {
+      document.documentElement.classList.add('light-mode');
+    }
+  }, []);
 
   const activePage = location.pathname;
 
