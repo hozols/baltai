@@ -12,10 +12,12 @@ const Index = () => {
     <PageTransition>
       <div className="min-h-screen flex flex-col bg-background text-foreground">
         <Header />
-        <main>
-          <HeroSection />
-          <Features />
-          <Testimonials />
+        <main className="flex-1">
+          <div className="space-y-8 sm:space-y-12 md:space-y-16 lg:space-y-20">
+            <HeroSection />
+            <Features />
+            <Testimonials />
+          </div>
         </main>
         <Footer />
       </div>
