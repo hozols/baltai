@@ -12,6 +12,7 @@ import Portfolio from "./pages/Portfolio";
 import Training from "./pages/Training";
 import Pricing from "./pages/Pricing";
 import ScrollToTop from "./components/ScrollToTop";
+import CookieBanner from "./components/CookieBanner";
 
 const queryClient = new QueryClient();
 
@@ -32,6 +33,7 @@ const App = () => (
             <Route path="/contact" element={<Contact />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
+          <CookieBanner />
         </Router>
       </TooltipProvider>
     </LanguageProvider>
