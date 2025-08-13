@@ -1,16 +1,15 @@
-import React, { createContext, useContext, useState, ReactNode } from 'react';
+import React, { createContext, useContext, ReactNode } from 'react';
 
-export type Language = 'lv' | 'en';
+export type Language = 'lv';
 
 interface LanguageContextType {
   language: Language;
-  setLanguage: (lang: Language) => void;
   t: (key: string) => string;
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
-// Translations object
+// Translations object - only Latvian
 const translations = {
   lv: {
     // Navigation
@@ -204,196 +203,6 @@ const translations = {
     'training.cta.description': 'Sazinieties ar mums, lai uzzinātu vairāk par mūsu kursiem un semināriiem',
     'training.cta.courses': 'Apskatīt kursus',
     'training.cta.contact': 'Pieteikt semināru',
-  },
-  en: {
-    // Navigation
-    'nav.home': 'Home',
-    'nav.features': 'Features',
-    'nav.solutions': 'Solutions',
-    'nav.portfolio': 'Portfolio',
-    'nav.training': 'Training',
-    'nav.pricing': 'Pricing',
-    'nav.contact': 'Contact',
-    'nav.theme': 'Theme',
-    
-    // Hero Section
-    'hero.badge': 'New AI Solutions',
-    'hero.title': 'AI automation for growing businesses',
-    'hero.title.highlight': 'growing',
-    'hero.description': 'Optimize your business processes with our comprehensive AI solutions. Built for modern companies that value efficiency, precision, and scalable growth.',
-    'hero.cta.demo': 'Book a Demo',
-    'hero.trial': 'Free 14-day trial',
-    'hero.showcase.title': 'Our AI Solutions',
-    'hero.showcase.view_all': 'View All',
-    'hero.showcase.nav.workers': 'AI Workers',
-    'hero.showcase.nav.chatbots': 'Chatbots',
-    'hero.showcase.nav.automation': 'Automation',
-    'hero.showcase.nav.analytics': 'Analytics',
-    'hero.showcase.categories.automation': 'Automation',
-    'hero.showcase.categories.intelligence': 'Data Intelligence',
-    'hero.showcase.categories.support': 'Customer Support',
-    'hero.showcase.services': 'Active Services',
-    'hero.showcase.explore': 'Explore Services',
-    
-    // Services
-    'services.title': 'Our AI Services',
-    'services.description': 'Comprehensive AI solutions that transform your business processes and improve efficiency',
-    'services.workers.title': 'AI Workers',
-    'services.workers.subtitle': 'Ready-to-use AI workers that seamlessly integrate with your team',
-    'services.workers.description': 'Custom-trained AI workers that can perform specific tasks and workflows, with built-in knowledge and adaptable skills.',
-    'services.chatbots.title': 'AI Chatbots',
-    'services.chatbots.subtitle': 'Intelligent conversation agents for 24/7 customer support',
-    'services.chatbots.description': 'Modern chatbots powered by the latest AI technology, providing instant support and improving customer satisfaction.',
-    'services.automation.title': 'Process Automation',
-    'services.automation.subtitle': 'Optimize operations with intelligent automation',
-    'services.automation.description': 'Complete automation solutions that optimize workflows, reduce costs, and improve efficiency.',
-    'services.documents.title': 'Document Processing',
-    'services.documents.subtitle': 'Automated document generation and analysis',
-    'services.documents.description': 'Intelligent systems for document creation, processing, and analysis, reducing manual work and errors.',
-    'services.intelligence.title': 'Data Intelligence',
-    'services.intelligence.subtitle': 'Transform your data into actionable insights',
-    'services.intelligence.description': 'Modern data analytics and AI-driven insights for better business decision-making and opportunity identification.',
-    'services.custom.title': 'Custom AI Solutions',
-    'services.custom.subtitle': 'Individual AI solutions for unique challenges',
-    'services.custom.description': 'Specially developed AI solutions tailored to your business needs and industry requirements.',
-    'services.integration.title': 'System Integration',
-    'services.integration.subtitle': 'AI integration with existing systems',
-    'services.integration.description': 'Seamlessly integrate AI solutions with your existing business systems and workflows.',
-    'services.training.title': 'AI Training',
-    'services.training.subtitle': 'Staff training in AI usage',
-    'services.training.description': 'Comprehensive AI training programs for your team to maximize technology adoption.',
-    'services.maintenance.title': 'Technical Support',
-    'services.maintenance.subtitle': 'Continuous AI system maintenance',
-    'services.maintenance.description': 'Professional technical support and system maintenance available 24/7.',
-    
-    // Web Development Services
-    'services.webdev.title': 'Website & App Development',
-    'services.webdev.subtitle': 'Modern web solutions and MVP development',
-    'services.webdev.description': 'We create professional websites, web applications and MVP solutions.',
-    'services.ecommerce.title': 'E-commerce',
-    'services.ecommerce.subtitle': 'Online store development',
-    'services.ecommerce.description': 'Complete e-commerce solutions with payment systems and inventory management.',
-    'services.mobile.title': 'Mobile Applications',
-    'services.mobile.subtitle': 'iOS and Android applications',
-    'services.mobile.description': 'Native and cross-platform mobile applications for your business.',
-    'services.cta.title': 'Ready to start?',
-    'services.cta.description': 'Contact us to discuss how AI can transform your business and help achieve new goals.',
-    'services.cta.contact': 'Contact us',
-    'services.cta.consultation': 'Free consultation',
-    'services.learn_more': 'Learn more',
-    
-    // Pricing
-    'pricing.title': 'Transparent Pricing for Every Stage',
-    'pricing.subtitle': 'Choose the plan that fits your needs and start transforming your business with AI',
-    'pricing.starter.title': 'Starter',
-    'pricing.starter.price': 'Starting from €299',
-    'pricing.starter.period': 'per month',
-    'pricing.starter.description': 'Perfect for small businesses starting their AI automation journey',
-    'pricing.professional.title': 'Professional',
-    'pricing.professional.price': 'Starting from €699',
-    'pricing.professional.period': 'per month',
-    'pricing.professional.description': 'Complete solution for businesses with complex automation needs',
-    'pricing.contact': 'Contact Us',
-    'pricing.popular': 'Most Popular',
-    
-    // Benefits
-    'features.title': 'Everything your business needs',
-    'features.description': 'AI technologies that deliver real results and transform your business operations',
-    'features.efficiency.title': 'Dramatic Efficiency Increase',
-    'features.efficiency.description': 'Reduce manual work by up to 80% and accelerate processes with intelligent automation.',
-    'features.efficiency.expanded': 'Our clients save an average of 15-25 hours per week per employee by automating repetitive tasks. AI systems work 24/7 without breaks or errors.',
-    'features.savings.title': 'Significant Cost Reduction',
-    'features.savings.description': 'Reduce labor costs and operational expenses with AI automation.',
-    'features.savings.expanded': 'Average cost reduction for our clients is 40-60% in the first year. AI solutions pay for themselves in 3-6 months and continue generating savings long-term.',
-    'features.growth.title': 'Scalable Business Growth',
-    'features.growth.description': 'Expand your business without proportionally increasing headcount.',
-    'features.growth.expanded': 'AI systems allow processing 10x more work with the same team. Our clients typically increase their capacity by 200-500% in the first year.',
-    'features.accuracy.title': 'Maximum Precision and Quality',
-    'features.accuracy.description': 'Minimize human errors with AI precision.',
-    'features.accuracy.expanded': 'AI systems provide 99.9% accuracy in data processing and decision-making. Completely eliminate typical manual work errors.',
-    'features.competitive.title': 'Competitive Advantage',
-    'features.competitive.description': 'Outpace competitors with cutting-edge AI technologies and innovations.',
-    'features.competitive.expanded': 'Become an industry leader by offering faster, more accurate, and higher quality service. AI enables real-time response to market changes.',
-    'features.satisfaction.title': 'Improved Customer Satisfaction',
-    'features.satisfaction.description': 'Provide 24/7 support and personalized experience for every customer.',
-    'features.satisfaction.expanded': 'Our clients report 40-70% increase in customer satisfaction. AI enables instant, accurate responses and personalized service.',
-    'features.learn_more': 'Learn more →',
-    
-    // Contact Page
-    'contact.title': 'Contact Us',
-    'contact.subtitle': 'Ready to transform your business with AI? Get in touch with our experts.',
-    'contact.form.title': 'Send us a message',
-    'contact.form.name': 'Name',
-    'contact.form.name.placeholder': 'Your name',
-    'contact.form.email': 'Email',
-    'contact.form.email.placeholder': 'your.email@example.com',
-    'contact.form.company': 'Company',
-    'contact.form.company.placeholder': 'Your company name',
-    'contact.form.phone': 'Phone',
-    'contact.form.phone.placeholder': '+371 20 000 000',
-    'contact.form.service': 'Service of Interest',
-    'contact.form.service.placeholder': 'Select a service',
-    'contact.form.service.workers': 'AI Workers',
-    'contact.form.service.chatbots': 'AI Chatbots',
-    'contact.form.service.automation': 'Process Automation',
-    'contact.form.service.documents': 'Document Processing',
-    'contact.form.service.intelligence': 'Data Intelligence',
-    'contact.form.service.custom': 'Custom Solutions',
-    'contact.form.service.consultation': 'Consultation',
-    'contact.form.message': 'Message',
-    'contact.form.message.placeholder': 'Tell us about your project and needs...',
-    'contact.form.submit': 'Send Message',
-    'contact.form.sending': 'Sending...',
-    'contact.form.success.title': 'Message Sent!',
-    'contact.form.success.message': 'Thank you for your message. We\'ll get back to you soon.',
-    'contact.form.error.title': 'Error',
-    'contact.form.error.message': 'Failed to send message. Please try again.',
-    'contact.form.send_another': 'Send Another Message',
-    'contact.info.title': 'Contact Information',
-    'contact.info.address': 'Address',
-    'contact.info.phone': 'Phone',
-    'contact.info.email': 'Email',
-    'contact.info.hours': 'Business Hours',
-    'contact.info.hours.weekdays': 'Monday - Friday: 9:00 - 18:00',
-    'contact.info.hours.weekend': 'Saturday - Sunday: By appointment',
-    'contact.map.title': 'Our Location',
-    'contact.form.success': 'Thank you! Your message has been sent. We will contact you within 24 hours.',
-    'contact.form.error': 'There was an error sending your message. Please try again.',
-    
-    // Training Page
-    'training.title': 'AI Training and Education',
-    'training.subtitle': 'Master AI technologies with our expert-led courses and seminars',
-    'training.courses.title': 'Online Courses',
-    'training.courses.subtitle': 'Learn at your own pace with structured online courses',
-    'training.courses.description': 'Our online courses are designed to provide practical AI knowledge foundation. Each course includes real projects, hands-on exercises, and expert support.',
-    'training.courses.features.selfpaced': 'Self-paced learning',
-    'training.courses.features.practical': 'Practical projects',
-    'training.courses.features.certificate': 'Completion certificate',
-    'training.courses.features.support': '24/7 expert support',
-    'training.seminars.title': 'Corporate Seminars',
-    'training.seminars.subtitle': 'Train your team with customized seminars',
-    'training.seminars.description': 'We organize corporate seminars tailored to your company\'s specific needs. Our experts visit your office or conduct online sessions.',
-    'training.seminars.features.customized': 'Customized content',
-    'training.seminars.features.expert': 'Expert-led',
-    'training.seminars.features.interactive': 'Interactive sessions',
-    'training.seminars.features.materials': 'Training materials',
-    'training.topics.title': 'Training Topics',
-    'training.topics.ai_basics': 'AI Basics for Business',
-    'training.topics.ai_basics.description': 'Learn fundamental AI principles and their practical application in business processes',
-    'training.topics.automation': 'Process Automation',
-    'training.topics.automation.description': 'Learn to automate daily tasks and optimize workflows',
-    'training.topics.chatbots': 'Chatbot Development',
-    'training.topics.chatbots.description': 'Create intelligent chatbots for customer service and support',
-    'training.topics.data_analysis': 'AI Data Analysis',
-    'training.topics.data_analysis.description': 'Analyze data with AI tools and make data-driven decisions',
-    'training.topics.machine_learning': 'Machine Learning',
-    'training.topics.machine_learning.description': 'Master machine learning algorithms and their practical implementation',
-    'training.topics.ethics': 'AI Ethics and Safety',
-    'training.topics.ethics.description': 'Understand ethical aspects of AI and safety requirements in business environment',
-    'training.cta.title': 'Ready to start learning?',
-    'training.cta.description': 'Contact us to learn more about our courses and seminars',
-    'training.cta.courses': 'View courses',
-    'training.cta.contact': 'Request seminar',
   }
 };
 
@@ -402,14 +211,12 @@ interface LanguageProviderProps {
 }
 
 export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) => {
-  const [language, setLanguage] = useState<Language>('lv');
-
   const t = (key: string): string => {
-    return translations[language][key] || key;
+    return translations.lv[key] || key;
   };
 
   return (
-    <LanguageContext.Provider value={{ language, setLanguage, t }}>
+    <LanguageContext.Provider value={{ language: 'lv', t }}>
       {children}
     </LanguageContext.Provider>
   );

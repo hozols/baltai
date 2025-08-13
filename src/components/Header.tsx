@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import Logo from './Logo';
-import { Menu, X, DollarSign, Sun, Moon, Globe, MessageCircle, Home, Briefcase, GraduationCap, LayoutDashboard } from 'lucide-react';
+import { Menu, X, DollarSign, Sun, Moon, MessageCircle, Home, Briefcase, GraduationCap, LayoutDashboard } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Switch } from '@/components/ui/switch';
 import { useLanguage } from '@/contexts/LanguageContext';
@@ -23,7 +23,7 @@ const Header = () => {
     const saved = localStorage.getItem('theme');
     return saved ? saved === 'dark' : true; // Default to dark mode
   });
-  const { language, setLanguage, t } = useLanguage();
+  const { t } = useLanguage();
 
   useEffect(() => {
     if (isDarkMode) {
@@ -49,10 +49,6 @@ const Header = () => {
 
   const toggleTheme = () => {
     setIsDarkMode(!isDarkMode);
-  };
-
-  const toggleLanguage = () => {
-    setLanguage(language === 'lv' ? 'en' : 'lv');
   };
 
   return (
@@ -141,17 +137,6 @@ const Header = () => {
                   <Sun size={16} className={cn(!isDarkMode ? 'text-primary' : 'text-muted-foreground')} />
                 </div>
               </div>
-              
-              <div className="flex items-center justify-between px-3 py-2.5">
-                <span className="text-sm sm:text-base text-muted-foreground">Language</span>
-                <button 
-                  onClick={toggleLanguage}
-                  className="flex items-center gap-2 px-2.5 py-1.5 rounded-md hover:bg-muted transition-colors"
-                >
-                  <Globe size={16} className="text-primary" />
-                  <span className="text-sm sm:text-base font-medium text-foreground">{language.toUpperCase()}</span>
-                </button>
-              </div>
             </div>
           </div>
         )}
@@ -163,13 +148,6 @@ const Header = () => {
             <Switch checked={!isDarkMode} onCheckedChange={toggleTheme} className="data-[state=checked]:bg-primary" />
             <Sun size={18} className={cn(!isDarkMode ? 'text-primary' : 'text-muted-foreground')} />
           </div>
-          <button 
-            onClick={toggleLanguage}
-            className="flex items-center gap-2 px-3 py-2 rounded-full border border-border hover:bg-accent hover:text-accent-foreground transition-colors"
-          >
-            <Globe size={18} className="text-primary" />
-            <span className="text-sm lg:text-base font-medium">{language.toUpperCase()}</span>
-          </button>
         </div>
 
         {/* Tablet Controls */}
@@ -179,13 +157,6 @@ const Header = () => {
             <Switch checked={!isDarkMode} onCheckedChange={toggleTheme} className="data-[state=checked]:bg-primary scale-90" />
             <Sun size={16} className={cn(!isDarkMode ? 'text-primary' : 'text-muted-foreground')} />
           </div>
-          <button 
-            onClick={toggleLanguage}
-            className="flex items-center gap-1.5 px-2 py-1.5 rounded-full border border-border hover:bg-accent hover:text-accent-foreground transition-colors"
-          >
-            <Globe size={16} className="text-primary" />
-            <span className="text-xs font-medium">{language.toUpperCase()}</span>
-          </button>
         </div>
       </header>
     </div>
