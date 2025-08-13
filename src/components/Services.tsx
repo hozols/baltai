@@ -119,7 +119,7 @@ const Services = () => {
       title: t('services.workers.title'),
       subtitle: t('services.workers.subtitle'),
       description: t('services.workers.description'),
-      relatedProjects: [portfolioProjects[0], portfolioProjects[2]], // Kleen1 and Artisan Agency
+      relatedProjects: [portfolioProjects[0]], // Kleen1
       learnMoreLink: "/services#ai-workers"
     },
     {
@@ -135,7 +135,7 @@ const Services = () => {
       title: t('services.automation.title'),
       subtitle: t('services.automation.subtitle'),
       description: t('services.automation.description'),
-      relatedProjects: [portfolioProjects[0], portfolioProjects[1], portfolioProjects[5]], // Kleen1, LinkedIn, Sula Studios
+      relatedProjects: [portfolioProjects[1]], // LinkedIn
       learnMoreLink: "/services#automation"
     },
     {
@@ -143,7 +143,7 @@ const Services = () => {
       title: t('services.documents.title'),
       subtitle: t('services.documents.subtitle'),
       description: t('services.documents.description'),
-      relatedProjects: [portfolioProjects[0]], // Kleen1
+      relatedProjects: [portfolioProjects[5]], // Sula Studios
       learnMoreLink: "/services#documents"
     },
     {
@@ -151,7 +151,7 @@ const Services = () => {
       title: t('services.intelligence.title'),
       subtitle: t('services.intelligence.subtitle'),
       description: t('services.intelligence.description'),
-      relatedProjects: [portfolioProjects[1]], // LinkedIn
+      relatedProjects: [], // No unique project available
       learnMoreLink: "/services#intelligence"
     },
     {
@@ -159,7 +159,7 @@ const Services = () => {
       title: t('services.custom.title'),
       subtitle: t('services.custom.subtitle'),
       description: t('services.custom.description'),
-      relatedProjects: [portfolioProjects[2], portfolioProjects[5]], // Artisan Agency, Sula Studios
+      relatedProjects: [], // No unique project available
       learnMoreLink: "/services#custom"
     }
   ];
@@ -250,55 +250,41 @@ const Services = () => {
                   {service.description}
                 </p>
                 
-                {/* Learn More Button */}
-                <Button 
-                  variant="outline"
-                  className="w-full border-primary/20 text-primary hover:bg-primary/10 hover:border-primary/30 transition-all duration-200 group-hover:scale-105"
-                  onClick={() => window.location.href = service.learnMoreLink}
-                >
-                  <span className="mr-2">Uzzināt vairāk</span>
-                  <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                </Button>
+                {/* Related Project(s) Proof */}
+                {service.relatedProjects && service.relatedProjects.length > 0 && (
+                  <div className="mt-4">
+                    <p className="text-xs font-medium text-muted-foreground mb-2">Saistītais projekts</p>
+                    {service.relatedProjects.slice(0, 1).map((project) => (
+                      <div 
+                        key={project.id} 
+                        className="bg-muted/30 rounded-lg p-3 border border-border/50 hover:bg-muted/50 hover:border-primary/30 cursor-pointer transition-all duration-200"
+                        onClick={() => window.location.href = '/portfolio'}
+                      >
+                        <div className="flex items-center gap-3">
+                          <img 
+                            src={project.image} 
+                            alt={project.title}
+                            className="w-12 h-12 rounded-md object-cover"
+                          />
+                          <div className="flex-1 min-w-0">
+                            <h4 className="text-sm font-medium text-foreground truncate">
+                              {project.title}
+                            </h4>
+                            <p className="text-xs text-muted-foreground">
+                              {project.client} • {project.year}
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
               </CardContent>
             </Card>
           ))}
         </div>
 
-        {/* Proof of Work Section */}
-        <div className="space-y-12">
-          <div className="text-center space-y-4">
-            <h3 className="text-2xl md:text-3xl font-medium tracking-tighter text-foreground">
-              Mūsu darbu pierādījumi
-            </h3>
-            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-              Katrs pakalpojums ir balstīts uz reāliem projektiem un pieredzi. Apskatiet mūsu portfolio, lai redzētu, kā mēs palīdzam klientiem sasniegt rezultātus.
-            </p>
-          </div>
 
-          {/* Project Cards Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {portfolioProjects.slice(0, 6).map((project, index) => (
-              <div 
-                key={project.id}
-                className="animate-fade-in-up"
-                style={{ animationDelay: `${index * 100}ms` }}
-              >
-                <ProjectCard project={project} />
-              </div>
-            ))}
-          </div>
-
-          {/* View All Projects CTA */}
-          <div className="text-center">
-            <Button 
-              className="bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-200 group px-8 py-3"
-              onClick={() => window.location.href = '/portfolio'}
-            >
-              <span className="mr-2">Skatīt visus projektus</span>
-              <ExternalLink className="h-4 w-4 group-hover:scale-110 transition-transform" />
-            </Button>
-          </div>
-        </div>
       </div>
     </section>
   );

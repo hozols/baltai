@@ -1,37 +1,42 @@
 import React, { useState, useEffect } from 'react';
 import { X, Shield, Settings, CheckCircle, Info } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { useCookies } from '@/contexts/CookieContext';
 
 const CookieBanner = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
+  const { 
+    hasAcceptedCookies, 
+    acceptAllCookies, 
+    rejectAllCookies, 
+    openModal 
+  } = useCookies();
 
   useEffect(() => {
     // Check if user has already made a choice
-    const cookieConsent = localStorage.getItem('cookieConsent');
-    if (!cookieConsent) {
+    if (!hasAcceptedCookies) {
       // Show banner after a short delay
       const timer = setTimeout(() => {
         setIsVisible(true);
       }, 1000);
       return () => clearTimeout(timer);
     }
-  }, []);
+  }, [hasAcceptedCookies]);
 
   const handleAcceptAll = () => {
-    localStorage.setItem('cookieConsent', 'all');
-    localStorage.setItem('cookieConsentDate', new Date().toISOString());
+    acceptAllCookies();
     setIsVisible(false);
   };
 
   const handleAcceptEssential = () => {
-    localStorage.setItem('cookieConsent', 'essential');
-    localStorage.setItem('cookieConsentDate', new Date().toISOString());
+    rejectAllCookies();
     setIsVisible(false);
   };
 
   const handleCustomize = () => {
-    setIsExpanded(!isExpanded);
+    openModal();
+    setIsVisible(false);
   };
 
   const handleClose = () => {

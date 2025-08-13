@@ -1,7 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { TrendingUp, Users, Clock } from 'lucide-react';
+import ProjectModal from './ProjectModal';
 
 const PortfolioShowcase = () => {
+  const [selectedProject, setSelectedProject] = useState<any>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleProjectClick = (project: any) => {
+    setSelectedProject(project);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setSelectedProject(null);
+  };
 
   const portfolioItems = [
     {
@@ -124,10 +137,11 @@ const PortfolioShowcase = () => {
           {portfolioItems.map((item, index) => (
             <div
               key={item.id}
-              className="group relative bg-card rounded-2xl border border-border overflow-hidden hover:border-primary/50 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/10 hover:-translate-y-2"
+              className="group relative bg-card rounded-2xl border border-border overflow-hidden hover:border-primary/50 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/10 hover:-translate-y-2 cursor-pointer"
               style={{
                 animation: `fadeInUp 0.6s ease-out ${index * 0.1}s both`
               }}
+              onClick={() => handleProjectClick(item)}
             >
               {/* Image Section */}
               <div className="relative overflow-hidden">
@@ -186,6 +200,13 @@ const PortfolioShowcase = () => {
           ))}
         </div>
       </div>
+
+      {/* Project Modal */}
+      <ProjectModal
+        project={selectedProject}
+        isOpen={isModalOpen}
+        onClose={closeModal}
+      />
     </section>
   );
 };

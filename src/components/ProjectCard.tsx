@@ -90,10 +90,13 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
           })}
         </div>
 
-        {/* View Project Button */}
+        {/* Consultation Button */}
         <div className="pt-2">
-          <button className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-primary/10 text-primary hover:bg-primary/20 border border-primary/20 rounded-lg transition-all duration-200 group-hover:scale-105">
-            <span className="text-sm font-medium">Skatīt projektu</span>
+          <button 
+            onClick={() => window.location.href = '/contact'}
+            className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-primary/10 text-primary hover:bg-primary/20 border border-primary/20 rounded-lg transition-all duration-200 group-hover:scale-105"
+          >
+            <span className="text-sm font-medium">Pieteikties konsultācijai</span>
             <ExternalLink className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
           </button>
         </div>
