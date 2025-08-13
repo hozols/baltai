@@ -16,12 +16,12 @@ import Footer from '@/components/Footer';
 import PageTransition from '@/components/PageTransition';
 
 const contactFormSchema = z.object({
-  name: z.string().min(2, 'Name must be at least 2 characters'),
-  email: z.string().email('Please enter a valid email address'),
+  name: z.string().min(2, 'Vārds jābūt vismaz 2 rakstzīmes garš'),
+  email: z.string().email('Lūdzu ievadiet derīgu e-pasta adresi'),
   company: z.string().optional(),
   phone: z.string().optional(),
-  service: z.string().min(1, 'Please select a service'),
-  message: z.string().min(10, 'Message must be at least 10 characters'),
+  service: z.string().min(1, 'Lūdzu izvēlieties pakalpojumu'),
+  message: z.string().min(10, 'Ziņojumam jābūt vismaz 10 rakstzīmes garšam'),
 });
 
 type ContactFormData = z.infer<typeof contactFormSchema>;
@@ -107,32 +107,66 @@ const Contact = () => {
       
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="relative w-full py-16 md:py-24 px-6 md:px-12 bg-background">
-          <div className="absolute inset-0 cosmic-grid opacity-20"></div>
-          <div className="relative z-10 max-w-4xl mx-auto text-center space-y-6">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-medium tracking-tighter text-foreground">
-              {t('contact.title')}
-            </h1>
-            <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
-              {t('contact.subtitle')}
-            </p>
+        <section className="relative w-full py-20 md:py-32 px-6 md:px-12 overflow-hidden">
+          {/* Animated Background Elements */}
+          <div className="absolute inset-0">
+            <div className="absolute inset-0 bg-gradient-to-br from-background via-muted/20 to-background"></div>
+            <div className="absolute inset-0 cosmic-grid opacity-10"></div>
+            
+            {/* Floating Orbs */}
+            <div className="absolute top-20 left-20 w-32 h-32 bg-primary/10 rounded-full blur-3xl animate-pulse"></div>
+            <div className="absolute top-40 right-32 w-24 h-24 bg-blue-500/10 rounded-full blur-2xl animate-pulse" style={{ animationDelay: '1s' }}></div>
+            <div className="absolute bottom-20 left-1/3 w-20 h-20 bg-purple-500/10 rounded-full blur-2xl animate-pulse" style={{ animationDelay: '2s' }}></div>
+            
+            {/* Geometric Shapes */}
+            <div className="absolute top-1/4 right-1/4 w-16 h-16 border border-primary/20 rotate-45 animate-spin-slow"></div>
+            <div className="absolute bottom-1/3 left-1/4 w-12 h-12 border border-blue-500/20 rounded-full animate-bounce-slow"></div>
+          </div>
+          
+          <div className="relative z-10 max-w-4xl mx-auto text-center space-y-8">
+            <div className="animate-fade-in-up">
+              <h1 className="text-5xl md:text-6xl lg:text-7xl font-medium tracking-tighter text-foreground bg-gradient-to-r from-foreground via-primary to-foreground bg-clip-text text-transparent">
+                {t('contact.title')}
+              </h1>
+            </div>
+            <div className="animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
+              <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+                {t('contact.subtitle')}
+              </p>
+            </div>
+            
+            {/* Floating Action Button */}
+            <div className="animate-fade-in-up animate-bounce-slow" style={{ animationDelay: '0.4s' }}>
+              <div className="inline-flex items-center gap-2 px-6 py-3 bg-primary/10 backdrop-blur-sm border border-primary/20 rounded-full text-primary">
+                <Send className="h-4 w-4" />
+                <span className="text-sm font-medium">Sāciet sarunu</span>
+              </div>
+            </div>
           </div>
         </section>
 
         {/* Contact Content */}
-        <section className="w-full py-16 px-6 md:px-12">
-          <div className="max-w-7xl mx-auto">
+        <section className="w-full py-20 px-6 md:px-12 relative">
+          {/* Background Pattern */}
+          <div className="absolute inset-0 bg-gradient-to-br from-muted/5 via-transparent to-primary/5"></div>
+          
+          <div className="max-w-7xl mx-auto relative z-10">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:items-stretch">
               
               {/* Contact Form */}
-              <Card className="p-8 border border-border cosmic-gradient flex flex-col">
-                <CardHeader className="p-0 mb-8">
-                  <CardTitle className="text-2xl font-medium tracking-tighter text-foreground">
-                    {t('contact.form.title')}
-                  </CardTitle>
-                </CardHeader>
+              <div className="animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
+                <Card className="p-8 border border-border/50 bg-card/60 backdrop-blur-xl shadow-2xl hover:shadow-primary/10 transition-all duration-500 hover:scale-[1.02] group">
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-blue-500/5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  <CardHeader className="p-0 mb-8 relative z-10">
+                    <CardTitle className="text-2xl font-medium tracking-tighter text-foreground flex items-center gap-3">
+                      <div className="p-2 rounded-lg bg-primary/20">
+                        <Send className="h-5 w-5 text-primary" />
+                      </div>
+                      {t('contact.form.title')}
+                    </CardTitle>
+                  </CardHeader>
                 
-                <CardContent className="p-0 flex-1">
+                <CardContent className="p-0 flex-1 relative z-10">
                   {isSubmitted ? (
                     <div className="text-center space-y-6 py-8">
                       <CheckCircle className="h-16 w-16 text-green-500 mx-auto" />
@@ -264,78 +298,93 @@ const Contact = () => {
                   )}
                 </CardContent>
               </Card>
+              </div>
 
               {/* Contact Information */}
-              <Card className="p-8 border border-border cosmic-gradient flex flex-col">
-                <CardHeader className="p-0 mb-8">
-                  <CardTitle className="text-2xl font-medium tracking-tighter text-foreground">
-                    {t('contact.info.title')}
-                  </CardTitle>
-                </CardHeader>
+              <div className="animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
+                <Card className="p-8 border border-border/50 bg-card/60 backdrop-blur-xl shadow-2xl hover:shadow-primary/10 transition-all duration-500 hover:scale-[1.02] group">
+                  <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-transparent to-purple-500/5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  <CardHeader className="p-0 mb-8 relative z-10">
+                    <CardTitle className="text-2xl font-medium tracking-tighter text-foreground flex items-center gap-3">
+                      <div className="p-2 rounded-lg bg-blue-500/20">
+                        <MapPin className="h-5 w-5 text-blue-500" />
+                      </div>
+                      {t('contact.info.title')}
+                    </CardTitle>
+                  </CardHeader>
                 
-                <CardContent className="p-0 space-y-6 flex-1">
-                  <div className="flex items-start gap-4">
-                    <MapPin className="h-6 w-6 text-primary mt-1 flex-shrink-0" />
-                    <div>
-                      <h3 className="font-medium text-foreground mb-1">{t('contact.info.address')}</h3>
-                      <p className="text-muted-foreground">
-                        <a 
-                          href="https://www.google.com/maps/search/?api=1&query=Gustava+Zemgala+gatve+67,+Riga,+Latvia" 
-                          target="_blank" 
-                          rel="noopener noreferrer"
-                          className="hover:text-primary transition-colors"
-                        >
-                          Gustava Zemgala gatve 67<br />
-                          Rīga, LV-1039<br />
-                          Latvija
-                        </a>
-                      </p>
+                                  <CardContent className="p-0 space-y-6 flex-1 relative z-10">
+                    <div className="flex items-start gap-4 group/item hover:scale-[1.02] transition-transform duration-300">
+                      <div className="p-2 rounded-lg bg-primary/20 group-hover/item:bg-primary/30 transition-colors duration-300">
+                        <MapPin className="h-5 w-5 text-primary" />
+                      </div>
+                      <div>
+                        <h3 className="font-medium text-foreground mb-1">{t('contact.info.address')}</h3>
+                        <p className="text-muted-foreground">
+                          <a 
+                            href="https://www.google.com/maps/search/?api=1&query=Gustava+Zemgala+gatve+67,+Riga,+Latvia" 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="hover:text-primary transition-colors"
+                          >
+                            Gustava Zemgala gatve 67<br />
+                            Rīga, LV-1039<br />
+                            Latvija
+                          </a>
+                        </p>
+                      </div>
                     </div>
-                  </div>
-                  
-                  <div className="flex items-start gap-4">
-                    <Phone className="h-6 w-6 text-primary mt-1 flex-shrink-0" />
-                    <div>
-                      <h3 className="font-medium text-foreground mb-1">{t('contact.info.phone')}</h3>
-                      <p className="text-muted-foreground">
-                        <a href="tel:+37128600401" className="hover:text-primary transition-colors">
-                          +371 28 600 401
-                        </a>
-                      </p>
+                    
+                    <div className="flex items-start gap-4 group/item hover:scale-[1.02] transition-transform duration-300">
+                      <div className="p-2 rounded-lg bg-primary/20 group-hover/item:bg-primary/30 transition-colors duration-300">
+                        <Phone className="h-5 w-5 text-primary" />
+                      </div>
+                      <div>
+                        <h3 className="font-medium text-foreground mb-1">{t('contact.info.phone')}</h3>
+                        <p className="text-muted-foreground">
+                          <a href="tel:+37128600401" className="hover:text-primary transition-colors">
+                            +371 28 600 401
+                          </a>
+                        </p>
+                      </div>
                     </div>
-                  </div>
-                  
-                  <div className="flex items-start gap-4">
-                    <Mail className="h-6 w-6 text-primary mt-1 flex-shrink-0" />
-                    <div>
-                      <h3 className="font-medium text-foreground mb-1">{t('contact.info.email')}</h3>
-                      <p className="text-muted-foreground">
-                        <a href="mailto:info@sulalabs.io" className="hover:text-primary transition-colors">
-                          info@sulalabs.io
-                        </a>
-                      </p>
+                    
+                    <div className="flex items-start gap-4 group/item hover:scale-[1.02] transition-transform duration-300">
+                      <div className="p-2 rounded-lg bg-primary/20 group-hover/item:bg-primary/30 transition-colors duration-300">
+                        <Mail className="h-5 w-5 text-primary" />
+                      </div>
+                      <div>
+                        <h3 className="font-medium text-foreground mb-1">{t('contact.info.email')}</h3>
+                        <p className="text-muted-foreground">
+                          <a href="mailto:info@sulalabs.io" className="hover:text-primary transition-colors">
+                            info@sulalabs.io
+                          </a>
+                        </p>
+                      </div>
                     </div>
-                  </div>
-                  
-                  <div className="flex items-start gap-4">
-                    <Clock className="h-6 w-6 text-primary mt-1 flex-shrink-0" />
-                    <div>
-                      <h3 className="font-medium text-foreground mb-1">{t('contact.info.hours')}</h3>
-                      <p className="text-muted-foreground">{t('contact.info.hours.weekdays')}</p>
-                      <p className="text-muted-foreground">{t('contact.info.hours.weekend')}</p>
+                    
+                    <div className="flex items-start gap-4 group/item hover:scale-[1.02] transition-transform duration-300">
+                      <div className="p-2 rounded-lg bg-primary/20 group-hover/item:bg-primary/30 transition-colors duration-300">
+                        <Clock className="h-5 w-5 text-primary" />
+                      </div>
+                      <div>
+                        <h3 className="font-medium text-foreground mb-1">{t('contact.info.hours')}</h3>
+                        <p className="text-muted-foreground">{t('contact.info.hours.weekdays')}</p>
+                        <p className="text-muted-foreground">{t('contact.info.hours.weekend')}</p>
+                      </div>
                     </div>
-                  </div>
-                </CardContent>
-              </Card>
+                  </CardContent>
+                </Card>
+              </div>
             </div>
           </div>
         </section>
       </main>
 
-        <Footer />
-      </div>
-    </PageTransition>
-  );
+      <Footer />
+    </div>
+  </PageTransition>
+);
 };
 
 export default Contact;

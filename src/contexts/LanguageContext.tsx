@@ -20,7 +20,7 @@ const translations = {
     'nav.training': 'Apmācības',
     'nav.pricing': 'Cenas',
     'nav.contact': 'Kontakti',
-    'nav.theme': 'Tēma',
+    'nav.theme': 'Kontrasts',
     
     // Hero Section
     'hero.badge': 'Jauni AI risinājumi',
