@@ -1,11 +1,9 @@
 
-import React, { useState, useEffect, useRef } from 'react';
-import { Button } from '@/components/ui/button';
+import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import Logo from './Logo';
-import { Menu, X, CircleDot, LayoutDashboard, DollarSign, Sun, Moon, Globe, MessageCircle, Home, Briefcase, GraduationCap } from 'lucide-react';
+import { Menu, X, DollarSign, Sun, Moon, Globe, MessageCircle, Home, Briefcase, GraduationCap, LayoutDashboard } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group';
 import { Switch } from '@/components/ui/switch';
 import { useLanguage } from '@/contexts/LanguageContext';
 
@@ -64,52 +62,60 @@ const Header = () => {
           <Logo />
         </div>
         
-        <button className="md:hidden p-3 rounded-2xl text-muted-foreground hover:text-foreground" onClick={toggleMobileMenu}>
+        <button 
+          className="md:hidden p-3 rounded-2xl text-muted-foreground hover:text-foreground transition-colors" 
+          onClick={toggleMobileMenu}
+        >
           {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
         
         <nav className="hidden md:flex items-center absolute left-1/2 transform -translate-x-1/2">
-          <div className="rounded-full px-1 py-1 backdrop-blur-md bg-background/80 border border-border shadow-lg hover-glow transition-all duration-300 flex gap-1">
+          <div className="rounded-full px-1 py-1 backdrop-blur-md bg-background/80 border border-border shadow-lg transition-all duration-300 flex gap-1">
             {NAV_SECTIONS.map(({ id, icon: Icon, labelKey, path }) => (
               <Link
                 key={id}
                 to={path}
                 className={cn(
-                  "px-4 py-2 rounded-full transition-all duration-300 relative hover-scale group",
+                  "px-4 py-2 rounded-full transition-all duration-300 relative group",
                   activePage === path
                     ? 'text-accent-foreground bg-accent'
                     : 'text-muted-foreground hover:text-foreground hover:bg-muted'
                 )}
               >
-                <Icon size={16} className="inline-block mr-1.5 group-hover:animate-pulse" /> {t(labelKey)}
+                <Icon size={16} className="inline-block mr-1.5 group-hover:animate-pulse" /> 
+                {t(labelKey)}
               </Link>
             ))}
           </div>
         </nav>
         
-        <div className={`md:hidden absolute top-20 left-4 right-4 bg-background/95 backdrop-blur-md py-4 px-6 border border-border rounded-2xl shadow-lg z-50 transition-all duration-300 ease-in-out ${
-          mobileMenuOpen 
-            ? 'opacity-100 translate-y-0 animate-slide-down' 
-            : 'opacity-0 -translate-y-4 pointer-events-none'
-        }`}>
+        {/* Mobile Menu */}
+        {mobileMenuOpen && (
+          <div className="md:hidden absolute top-20 left-4 right-4 bg-background/95 backdrop-blur-md py-4 px-6 border border-border rounded-2xl shadow-lg z-50 animate-in slide-in-from-top-2 duration-300">
             <div className="flex flex-col gap-4">
-              {NAV_SECTIONS.map(({ id, icon: Icon, labelKey, path }, idx) => (
+              {NAV_SECTIONS.map(({ id, icon: Icon, labelKey, path }) => (
                 <Link
                   key={id}
                   to={path}
-                  className={`px-3 py-2 text-sm rounded-md transition-all duration-300 hover-lift animate-fade-in-left animate-delay-${(idx + 1) * 100} ${activePage === path ? 'bg-accent text-accent-foreground' : 'text-muted-foreground hover:text-foreground hover:bg-muted'}`}
+                  className={cn(
+                    "px-3 py-2 text-sm rounded-md transition-all duration-300 flex items-center",
+                    activePage === path 
+                      ? 'bg-accent text-accent-foreground' 
+                      : 'text-muted-foreground hover:text-foreground hover:bg-muted'
+                  )}
                   onClick={handleMobileNavClick}
                 >
-                  <Icon size={16} className="inline-block mr-1.5 animate-pulse" /> {t(labelKey)}
+                  <Icon size={16} className="mr-2" /> 
+                  {t(labelKey)}
                 </Link>
               ))}
               
-              <div className="flex items-center justify-between px-3 py-2">
+              <div className="flex items-center justify-between px-3 py-2 border-t border-border pt-4">
                 <span className="text-sm text-muted-foreground">{t('nav.theme')}</span>
                 <div className="flex items-center gap-2">
-                  <Moon size={16} className={`${isDarkMode ? 'text-primary' : 'text-muted-foreground'}`} />
+                  <Moon size={16} className={cn(isDarkMode ? 'text-primary' : 'text-muted-foreground')} />
                   <Switch checked={!isDarkMode} onCheckedChange={toggleTheme} className="data-[state=checked]:bg-primary" />
-                  <Sun size={16} className={`${!isDarkMode ? 'text-primary' : 'text-muted-foreground'}`} />
+                  <Sun size={16} className={cn(!isDarkMode ? 'text-primary' : 'text-muted-foreground')} />
                 </div>
               </div>
               
@@ -124,13 +130,15 @@ const Header = () => {
                 </button>
               </div>
             </div>
-        </div>
+          </div>
+        )}
         
+        {/* Desktop Controls */}
         <div className="hidden md:flex items-center gap-4">
-          <div className="flex items-center gap-2 rounded-full px-3 py-2">
-            <Moon size={18} className={`${isDarkMode ? 'text-primary' : 'text-muted-foreground'}`} />
+          <div className="flex items-center gap-2 rounded-full px-3 py-2 bg-background/80 border border-border">
+            <Moon size={18} className={cn(isDarkMode ? 'text-primary' : 'text-muted-foreground')} />
             <Switch checked={!isDarkMode} onCheckedChange={toggleTheme} className="data-[state=checked]:bg-primary" />
-            <Sun size={18} className={`${!isDarkMode ? 'text-primary' : 'text-muted-foreground'}`} />
+            <Sun size={18} className={cn(!isDarkMode ? 'text-primary' : 'text-muted-foreground')} />
           </div>
           <button 
             onClick={toggleLanguage}
