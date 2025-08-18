@@ -10,6 +10,7 @@ import { PricingProvider } from "@/contexts/PricingContext";
 import ScrollToTop from "./components/ScrollToTop";
 import CookieBanner from "./components/CookieBanner";
 import CookieSettingsModal from "./components/CookieSettingsModal";
+import Loader from "./components/Loader";
 
 const Index = lazy(() => import("./pages/Index"));
 const Contact = lazy(() => import("./pages/Contact"));
@@ -31,7 +32,7 @@ const App = () => (
               <ScrollToTop />
               <Toaster />
               <Sonner />
-              <Suspense fallback={<div>Loading...</div>}>
+              <Suspense fallback={<Loader />}>
                 <Routes>
                   <Route path="/" element={<Index />} />
                   <Route path="/services" element={<Services />} />
