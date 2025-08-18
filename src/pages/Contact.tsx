@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Helmet } from 'react-helmet-async';
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
@@ -152,6 +153,10 @@ const Contact = () => {
 
   return (
     <PageTransition>
+      <Helmet>
+        <title>Sazinies ar mums | automatizacijas.lv</title>
+        <meta name="description" content="Sazinieties ar mums, lai uzzinātu vairāk par mūsu AI risinājumiem un pakalpojumiem. Mēs esam šeit, lai atbildētu uz jūsu jautājumiem."/>
+      </Helmet>
       <div className="min-h-screen flex flex-col bg-background text-foreground">
         <Header />
 
